@@ -1,0 +1,31 @@
+Brewery:
+  - country: POLAND
+    name: "Kiepski Browar"
+  - country: SCOTLAND
+    name: "Brew Dog"
+  - country: BELGIUM
+    name: "Brouwerij Huyghe"
+  - country: BELGIUM
+    name: "Brouwerij Bosteels"
+
+Beer:
+  - alcohol: 4.5
+    name: "Mocny Full"
+    price: 1.0
+    type: LAGER
+  - alcohol: 55.0
+    name: "End of history"
+    price: 765
+    type: BLOND_ALE
+  - alcohol: 41.0
+    name: "Sink The Bismarck!"
+    price: 64.0
+    type: QUADRUPEL_IPA
+  - alcohol: 8.5
+    name: "Delirium Tremens"
+    price: 10.0
+    type: PALE_ALE
+  - alcohol: 8.4
+    name: "Pauwel Kwak"
+    price: 4.0
+    type: AMBER

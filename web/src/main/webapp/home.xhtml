@@ -1,0 +1,37 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				template="template.xhtml">
+				
+	<ui:define name="content">
+		<h:form id="advisor">
+			<div id="search_beer">
+				<h:inputText id="beerSearch" value="#{beerAdvisorController.filter}"
+					styleClass="beer-search-field">
+					<f:ajax event="keyup" render="beers" />
+				</h:inputText>
+			</div>
+			<h:panelGroup id="beers">
+				<table id="beer-results-table">
+					<thead>
+						<th>Name</th>
+						<th style="text-align: right;">Country</th>
+					</thead>
+					<tbody>
+						<ui:repeat var="beer" value="#{beerAdvisorController.beers}">
+							<tr>
+								<td id="#{beer.code}"><h:link value="#{beer.name}"
+										style="text-decoration: none;"
+										outcome="details.xhtml?beerId=#{beer.id}" /></td>
+								<td style="text-align: right;"><h:graphicImage
+										library="images" name="#{beer.brewery.country.label}.png" />
+								</td>
+							</tr>
+						</ui:repeat>
+					</tbody>
+				</table>
+			</h:panelGroup>
+		</h:form>
+	</ui:define>
+</ui:composition>

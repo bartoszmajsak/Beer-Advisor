@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+	<meta content="text/html;charset=UTF-8" http-equiv="content-type" />
+	<title>Beer Advisor</title>
+	<link type="text/css" rel="stylesheet" media="screen" href="resources/css/style.css" />
+	<link rel="shortcut icon" href="resources/images/favicon-beer.png" />
+	<ui:insert name="head"/>
+</head>
+<body>
+	<div id="menu">
+		<div id="menu_content">
+			<div class="left" id="top_logo">
+				<div style="float: left;">
+					<img width="200px" height="200px" alt="beer_logo" src="resources/images/beer-advisor-logo.png" />
+				</div>
+				<div style="float: left;">
+					<img style="margin-top: 80px" alt="beer_text" src="resources/images/beer-advisor-text.png" />
+				</div>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+	<div class="page_width">
+		<ui:insert name="content" />
+		<div class="footer">
+			<p>Probably the best beer app in the world. &copy; JDD 11</p>
+		</div>
+	</div>
+</body>
+</html>
+

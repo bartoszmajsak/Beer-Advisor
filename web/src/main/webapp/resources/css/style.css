@@ -1,0 +1,231 @@
+body {
+	background-color: #fff;
+	color: #666;
+	margin: 0 auto;
+}
+
+a:active {
+	border: 0;
+}
+
+body,p,ol,li ul,td {
+	font-family: verdana, arial, helvetica, sans-serif;
+	font-size: 13px;
+	line-height: 18px;
+}
+
+pre {
+	background-color: #eee;
+	padding: 10px;
+	font-size: 11px;
+}
+
+a {
+	color: #3295b1;
+}
+
+hr {
+	color: #DDD;
+	background-color: #DDD;
+}
+
+.page_width {
+	margin: 40px auto;
+	padding-top: 1px; /* fix for Mac FF error */
+	width: 880px;
+}
+
+.page_width_2 {
+	margin: -40px auto 0 auto;
+	padding-top: 1px; /* fix for Mac FF error */
+	width: 880px;
+}
+
+.left {
+	float: left;
+	display: inline;
+}
+
+.right {
+	float: right;
+	display: inline;
+}
+
+div.footer {
+	border-top: solid 1px #9f9f9f;
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+div.footer p {
+	font-family: Arial, sans-serif;
+	font-size: 9pt;
+	color: #333;
+}
+
+.grey_background {
+	background-color: #EEE;
+}
+
+div.last {
+	margin-right: 0;
+}
+
+.grey {
+	color: #979797;
+}
+
+h2 {
+	font-family: Arial, sans-serif;
+	margin-top: 0;
+	font-size: 19pt;
+	font-weight: 400;
+	color: #aed34c;
+}
+
+#menu {
+	width: 100%;
+	height: 100%;
+	height: 240px;
+	background-color: #56A0D3;
+	background-image: url("../images/menu.bg.gif");
+	background-position: bottom;
+	background-repeat: repeat-x;
+	margin: 0;
+	padding: 0;
+	position: relative;
+}
+
+#top_logo img {
+	border: none;
+	margin-left: 20px;
+	margin-top: 18px;
+}
+
+div#menu_content div#top_logo a {
+	margin: 0;
+	padding: 0;
+}
+
+#main_menu {
+	height: 32px;
+	position: absolute;
+	bottom: 0;
+	right: 0px;
+	margin-left: 40px;
+}
+
+#main_menu ul {
+	list-style: none;
+	padding-left: 0;
+	margin-left: 0;
+}
+
+#main_menu ul {
+	margin: 0;
+	padding: 0;
+}
+
+#main_menu ul li {
+	float: left;
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+#main_menu ul li a {
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 0;
+	display: block;
+	height: 32px;
+	text-align: center;
+	font-size: 11pt;
+}
+
+#menu_content {
+	margin: 0 auto;
+	width: 880px;
+	position: relative;
+	height: 95px;
+}
+
+#menu_content div a {
+	font-size: 10pt;
+	font-weight: bold;
+	color: #585858;
+	margin-left: 20px;
+	text-decoration: none;
+}
+
+.info {
+	font-size: 22px;
+	margin-top: 40px;
+	position: absolute;
+	z-index: 5;
+}
+
+.voltage {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+	font-family: sans-serif;
+	font-size: 160px;
+	font-weight: bold;
+	margin-top: 135px;
+	padding: 0;
+	z-index: 1;
+	/* These three lines are for transparency in all browsers. */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=15)";
+	filter: alpha(opacity = 15);
+	opacity: .15;
+}
+
+.beer-search-field {
+	-moz-border-bottom-colors: none;
+	-moz-border-image: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background: url("../images/search_icon.png") no-repeat scroll 5px 50%;
+	border-color: #CCCCCC #DDDDDD #EAEAEA;
+	border-left: 1px solid #DDDDDD;
+	border-radius: 6px 6px 6px 6px;
+	border-right: 1px solid #DDDDDD;
+	border-style: solid;
+	border-width: 1px;
+	font-family: Helvetica, Arial, freesans, sans-serif;
+	font-size: 40px;
+	margin: 20px 0px 0px 45px;
+	padding: 3px 3px 3px 60px;
+	width: 750px;
+}
+
+#beer-results-table {
+	font-family: "Lucida Sans Unicode", "Lucida Grande", Sans-Serif;
+	font-size: 12px;
+	background: #fff;
+	margin: 45px;
+	width: 800px;
+	border-collapse: collapse;
+	text-align: left;
+}
+
+#beer-results-table th {
+	font-size: 28px;
+	font-weight: bold;
+	padding: 10px 8px;
+	border-bottom: 2px solid #666;
+}
+
+#beer-results-table td {
+	border-bottom: 1px solid #777;
+	padding: 6px 8px;
+	font-size: 20px;
+}
+
+#beer-results-table tbody tr:hover td {
+	color: #009;
+}
