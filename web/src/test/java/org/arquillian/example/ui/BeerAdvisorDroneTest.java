@@ -19,14 +19,13 @@ import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openqa.selenium.firefox.FirefoxDriver;
-
+import org.openqa.selenium.WebDriver;
 
 @RunWith(Arquillian.class)
+@RunAsClient
 public class BeerAdvisorDroneTest
 {
-
-   @Deployment
+   @Deployment(testable = false)
    public static WebArchive createDeployment()
    {
       return Deployments.create();
@@ -36,10 +35,9 @@ public class BeerAdvisorDroneTest
    URL deploymentUrl;
 
    @Drone
-   FirefoxDriver driver;
+   WebDriver driver;
 
    @Test
-   @RunAsClient
    public void shouldFindCheapestBeer()
    {
       // given
@@ -55,7 +53,6 @@ public class BeerAdvisorDroneTest
    }
 
    @Test
-   @RunAsClient
    public void shouldFindAllBelgianBeers()
    {
       // given
@@ -71,7 +68,6 @@ public class BeerAdvisorDroneTest
    }
 
    @Test
-   @RunAsClient
    public void shouldFindStrongestBeerDetails()
    {
       // given
@@ -91,5 +87,4 @@ public class BeerAdvisorDroneTest
           .shouldCost(expectedPrice)
           .shouldHaveAlcoholPercentageOf(expectedAlcohol);
    }
-
 }

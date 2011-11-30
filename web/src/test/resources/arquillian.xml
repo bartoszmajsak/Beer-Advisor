@@ -5,7 +5,7 @@
 
 	<container qualifier="jboss7" default="true">
 		<configuration>
-			<property name="jbossHome">target/jboss-as-7.0.2.Final</property>
+			<property name="jbossHome">target/jboss-as-7.1.0.Beta1</property>
 		</configuration>
 	</container>
 
@@ -13,6 +13,10 @@
 		<property name="defaultDataSource">java:jboss/datasources/ExampleDS</property>
 		<property name="initStatement">SET REFERENTIAL_INTEGRITY FALSE</property>
 		<property name="userTransactionJndi">java:jboss/UserTransaction</property>
+	</extension>
+
+	<extension qualifier="webdriver">
+		<property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property> 
 	</extension>
 
 </arquillian>

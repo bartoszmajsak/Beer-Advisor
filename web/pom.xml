@@ -23,6 +23,13 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+      <dependency>
+        <groupId>org.jboss.arquillian.extension</groupId>
+        <artifactId>arquillian-drone-bom</artifactId>
+        <version>${version.arquillian_drone}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -33,13 +40,13 @@
     <jboss.home>${env.JBOSS_HOME}</jboss.home>
 
     <!-- Dependencies versions -->
-    <version.jbossas_7>7.0.2.Final</version.jbossas_7>
+    <version.jbossas_7>7.1.0.Beta1</version.jbossas_7>
     <version.jboss_spec>1.0.0.Final</version.jboss_spec>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_core>1.0.0.CR5</version.arquillian_core>
-    <version.arquillian_drone>1.0.0.CR2</version.arquillian_drone>
+    <version.arquillian_core>1.0.0.CR6</version.arquillian_core>
+    <version.arquillian_drone>1.0.0.CR3</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Final-SNAPSHOT</version.arquillian_spock>
     <version.selenium>2.13.0</version.selenium>
     <version.selenium.server>2.13.0</version.selenium.server>
@@ -110,35 +117,30 @@
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-drone-impl</artifactId>
-      <version>${version.arquillian_drone}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-drone-api</artifactId>
-      <version>${version.arquillian_drone}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-drone-spi</artifactId>
-      <version>${version.arquillian_drone}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-drone-configuration</artifactId>
-      <version>${version.arquillian_drone}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-drone-webdriver</artifactId>
-      <version>${version.arquillian_drone}</version>
       <scope>test</scope>
     </dependency>
 
@@ -151,12 +153,6 @@
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
-      <version>${version.selenium}</version>
-      <exclusions>
-        <exclusion>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-      </exclusions>
       <scope>test</scope>
     </dependency>
 
@@ -185,7 +181,6 @@
       <artifactId>groovy-all</artifactId>
       <version>${version.groovy}</version>
     </dependency>
-
 
   </dependencies>
 

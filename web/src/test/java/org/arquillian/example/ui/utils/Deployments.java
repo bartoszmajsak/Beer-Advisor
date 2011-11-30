@@ -7,12 +7,10 @@ import org.arquillian.example.controller.BeerAdvisorController;
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.repository.BeerRepository;
 import org.arquillian.example.service.BeerService;
-import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.resolver.api.DependencyResolvers;
 import org.jboss.shrinkwrap.resolver.api.maven.MavenDependencyResolver;
-
 
 public class Deployments
 {
@@ -20,31 +18,27 @@ public class Deployments
 
    public static WebArchive create()
    {
-      final MavenDependencyResolver mvnResolver = DependencyResolvers.use(MavenDependencyResolver.class)
+      final MavenDependencyResolver resolver = DependencyResolvers.use(MavenDependencyResolver.class)
                                                                      .loadMetadataFromPom("pom.xml")
                                                                      .goOffline();
 
-      WebArchive warArchive = ShrinkWrap.create(WebArchive.class, "beer-advisor.war");
-      addWebResources(warArchive);
-      return warArchive.addPackages(true, Beer.class.getPackage(),
-                                          BeerRepository.class.getPackage(),
-                                          BeerService.class.getPackage(),
-                                          BeerAdvisorController.class.getPackage())
-                       .addAsWebInfResource("test-persistence.xml", ArchivePaths.create("classes/META-INF/persistence.xml"))
-                       .addAsLibraries(mvnResolver.artifact("com.google.guava:guava:r09").resolveAsFiles());
+      return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor.war"))
+            .addPackages(true, Beer.class.getPackage(), BeerRepository.class.getPackage(),
+                  BeerService.class.getPackage(), BeerAdvisorController.class.getPackage())
+            .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
+            .addAsLibraries(resolver.artifact("com.google.guava:guava").resolveAsFiles());
    }
 
-   private static void addWebResources(WebArchive warArchive)
+   private static WebArchive addWebResourcesTo(WebArchive archive)
    {
       final File webAppDirectory = new File(WEBAPP_SRC);
       for (File file : FileUtils.listFiles(webAppDirectory, null, true))
       {
          if (!file.isDirectory())
          {
-            warArchive.addAsWebResource(file, file.getPath().substring(WEBAPP_SRC.length()));
+            archive.addAsWebResource(file, file.getPath().substring(WEBAPP_SRC.length()));
          }
       }
-
+      return archive;
    }
-
 }

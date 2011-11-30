@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns="http://jboss.org/schema/arquillian"
+  xsi:schemaLocation="http://jboss.org/schema/arquillian
+    http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <!--
+  <engine>
+    <property name="deploymentExportPath">target/deployment</property>
+  </engine>
+  -->
+
+  <container qualifier="glassfish-embedded" default="true">
+    <configuration>
+      <property name="sunResourcesXml">src/test/resources-glassfish-3/glassfish-resources.xml</property>
+      <property name="bindHttpPort">9090</property>
+    </configuration>
+  </container>
+
+  <extension qualifier="persistence">
+    <property name="defaultDataSource">jdbc/arquillian</property>
+    <property name="initStatement">set referential_integrity FALSE</property>
+    <property name="dumpData">true</property>
+  </extension>
+
+</arquillian>

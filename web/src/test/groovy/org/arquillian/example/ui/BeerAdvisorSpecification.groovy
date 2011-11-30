@@ -11,7 +11,7 @@ import org.jboss.arquillian.drone.api.annotation.Drone
 import org.jboss.arquillian.test.api.ArquillianResource
 import org.jboss.shrinkwrap.api.spec.WebArchive
 import org.junit.Test
-import org.openqa.selenium.firefox.FirefoxDriver
+import org.openqa.selenium.WebDriver
 
 import org.arquillian.example.ui.utils.BeersAssert
 import org.arquillian.example.ui.utils.Deployments
@@ -19,10 +19,10 @@ import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisor
 import spock.lang.*
 
+@RunAsClient
 class BeerAdvisorSpecification extends Specification
 {
-
-   @Deployment
+   @Deployment(testable = false)
    public static WebArchive createDeployment()
    {
       return Deployments.create()
@@ -32,10 +32,9 @@ class BeerAdvisorSpecification extends Specification
    URL deploymentUrl
 
    @Drone
-   FirefoxDriver driver
+   WebDriver driver
 
    @Test
-   @RunAsClient
    def "Should find all belgian beers"()
    {
       given:
@@ -51,7 +50,6 @@ class BeerAdvisorSpecification extends Specification
    }
 
    @Test
-   @RunAsClient
    def "Should find cheapest beer"()
    {
       given:
@@ -67,7 +65,6 @@ class BeerAdvisorSpecification extends Specification
    }
 
    @Test
-   @RunAsClient
    def "Should find details of the strongest beer"()
    {
       given:
@@ -87,5 +84,4 @@ class BeerAdvisorSpecification extends Specification
              .shouldCost(expectedPrice)
              .shouldHaveAlcoholPercentageOf(expectedAlcohol)
    }
-
 }
