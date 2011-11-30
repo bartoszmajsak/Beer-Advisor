@@ -41,7 +41,7 @@
 
     <!-- Dependencies versions -->
     <version.jbossas_7>7.1.0.Beta1</version.jbossas_7>
-    <version.jboss_spec>1.0.0.Final</version.jboss_spec>
+    <version.jboss_spec>2.0.0.Final</version.jboss_spec>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
@@ -71,10 +71,16 @@
 
     <dependency>
       <groupId>org.jboss.spec</groupId>
-      <artifactId>jboss-javaee-6.0</artifactId>
+      <artifactId>jboss-javaee-web-6.0</artifactId>
       <version>${version.jboss_spec}</version>
       <type>pom</type>
       <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.xalan</groupId>
+          <artifactId>xalan</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
