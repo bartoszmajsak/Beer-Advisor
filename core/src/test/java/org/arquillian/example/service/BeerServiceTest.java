@@ -20,11 +20,9 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-
 @RunWith(Arquillian.class)
 public class BeerServiceTest
 {
-
    @Deployment
    public static Archive<?> createDeployment()
    {

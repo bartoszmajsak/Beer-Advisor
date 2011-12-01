@@ -5,7 +5,9 @@
 
 	<container qualifier="jbossas" default="true">
 		<configuration>
+			<!--
 			<property name="jbossHome">target/jboss-as-7.1.0.Beta1</property>
+			-->
 		</configuration>
 	</container>
 

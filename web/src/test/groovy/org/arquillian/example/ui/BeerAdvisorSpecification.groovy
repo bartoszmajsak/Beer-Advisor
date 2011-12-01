@@ -4,6 +4,7 @@ import static org.fest.assertions.Assertions.assertThat
 
 import java.net.URL
 import java.util.List
+import java.util.concurrent.TimeUnit
 
 import org.jboss.arquillian.container.test.api.Deployment
 import org.jboss.arquillian.container.test.api.RunAsClient
@@ -33,6 +34,12 @@ class BeerAdvisorSpecification extends Specification
 
    @Drone
    WebDriver driver
+
+   def setup()
+   {
+      // make the driver more patient for our VM environments :)
+      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS)
+   }
 
    @Test
    def "Should find all belgian beers"()
