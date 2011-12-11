@@ -12,7 +12,7 @@ import org.arquillian.example.domain.Country;
 import org.arquillian.example.repository.BeerRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.Data;
+import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
@@ -40,7 +40,7 @@ public class BeerRepositoryTest
    BeerRepository beerRepository;
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldFindStrongestBeer() throws Exception
    {
       // given
@@ -57,7 +57,7 @@ public class BeerRepositoryTest
    }
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldFindCheapestBeer() throws Exception
    {
       // given
@@ -74,7 +74,7 @@ public class BeerRepositoryTest
    }
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldFindAllBelgianBeers() throws Exception
    {
       // given
@@ -88,7 +88,7 @@ public class BeerRepositoryTest
    }
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldFindAllPolishBeers() throws Exception
    {
       // given
@@ -102,7 +102,7 @@ public class BeerRepositoryTest
    }
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldReturnAllBeers() throws Exception
    {
       // given
@@ -116,7 +116,7 @@ public class BeerRepositoryTest
    }
 
    @Test
-   @Data("datasets/beers.yml")
+   @UsingDataSet("beers.yml")
    public void shouldReturnBeerByItsId() throws Exception
    {
       // given

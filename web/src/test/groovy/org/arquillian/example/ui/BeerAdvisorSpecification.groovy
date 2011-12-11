@@ -44,29 +44,29 @@ class BeerAdvisorSpecification extends Specification
    @Test
    def "Should find all belgian beers"()
    {
-      given:
+      given: "On the main page"
          def delirium = new Beer("Delirium Tremens")
          def kwak = new Beer("Pauwel Kwak")
          def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
 
-      when:
+      when: "Enter 'from belgium' as the search criteria"
          def beers = beerAdvisor.searchFor("from belgium")
 
-      then:
+      then: "You should see all Belgian beers"
          BeersAssert.assertThat(beers).shouldContain(delirium, kwak)
    }
 
    @Test
    def "Should find cheapest beer"()
    {
-      given:
+      given: "On the main page"
          def expectedBeerName = "Mocny Full"
          def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
 
-      when:
+      when: "Enter 'cheapest' as the search criteria and click on the beer"
          def beers = beerAdvisor.searchFor("cheapest")
 
-      then:
+      then: "You should see the best Polish beer ever created ;)"
          assertThat(beers).hasSize(1)
          beers.get(0).shouldBeNamed(expectedBeerName)
    }
@@ -74,7 +74,7 @@ class BeerAdvisorSpecification extends Specification
    @Test
    def "Should find details of the strongest beer"()
    {
-      given:
+      given: "On the main page"
          def expectedBeerName = "End of history"
          def expectedBrewery = "Brew Dog"
          def expectedPrice = BigDecimal.valueOf(765.0)
@@ -82,10 +82,10 @@ class BeerAdvisorSpecification extends Specification
 
          def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
 
-      when:
+      when: "Enter 'strongest' as the search criteria and click on the beer"
          def beer = beerAdvisor.detailsOf("strongest")
 
-      then:
+      then: "You should see detailed information about the strongest beer in the world"
          beer.shouldBeNamed(expectedBeerName)
              .shouldBeFrom(expectedBrewery)
              .shouldCost(expectedPrice)

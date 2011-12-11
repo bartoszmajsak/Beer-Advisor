@@ -1,21 +1,20 @@
 package org.arquillian.example.ui.utils;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.arquillian.example.ui.web.Beer;
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
 
-
-public class BeersAssert extends GenericAssert<BeersAssert, List<Beer>>
+public class BeersAssert extends GenericAssert<BeersAssert, Collection<Beer>>
 {
 
-   private BeersAssert(List<Beer> actual)
+   private BeersAssert(Collection<Beer> actual)
    {
       super(BeersAssert.class, actual);
    }
 
-   public static BeersAssert assertThat(List<Beer> beers)
+   public static BeersAssert assertThat(Collection<Beer> beers)
    {
       return new BeersAssert(beers);
    }
@@ -25,14 +24,5 @@ public class BeersAssert extends GenericAssert<BeersAssert, List<Beer>>
       Assertions.assertThat(actual).contains(beers);
       return this;
    }
-
-   /*
-    *    public BeersAssert shouldContain(Beer ... beers)
-   {
-
-
-      return this;
-   }
-    */
 
 }

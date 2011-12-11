@@ -39,7 +39,7 @@
     <jboss.home>${env.JBOSS_HOME}</jboss.home>
 
     <!-- Dependencies versions -->
-    <version.jbossas_7>7.1.0.Beta1</version.jbossas_7>
+    <version.jbossas_7>7.0.2.Final</version.jbossas_7>
     <version.jboss_spec>2.0.0.Final</version.jboss_spec>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
@@ -47,8 +47,8 @@
     <version.arquillian_core>1.0.0.CR6</version.arquillian_core>
     <version.arquillian_drone>1.0.0.CR3</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Final-SNAPSHOT</version.arquillian_spock>
-    <version.selenium>2.13.0</version.selenium>
-    <version.selenium.server>2.13.0</version.selenium.server>
+    <version.selenium>2.14.0</version.selenium>
+    <version.selenium.server>2.14.0</version.selenium.server>
     <version.spock>0.5-groovy-1.8</version.spock>
     <version.groovy>1.8.0</version.groovy>
     <version.groovy.eclipse_compiler>2.5.1-1</version.groovy.eclipse_compiler>
@@ -210,7 +210,6 @@
       </dependencies>
       <build>
         <plugins>
-	  <!--
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -237,7 +236,6 @@
               </execution>
             </executions>
           </plugin>
-	  -->
         </plugins>
         <testResources>
           <testResource>
