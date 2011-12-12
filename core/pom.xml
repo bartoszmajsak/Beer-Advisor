@@ -227,19 +227,6 @@
             <directory>src/test/resources-glassfish-3</directory>
           </testResource>
         </testResources>
-        <plugins>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${version.maven_surefire}</version>
-                <!-- not sure why this is failing
-            <configuration>
-              <excludes>
-                <exclude>**/BeerServiceTest.java</exclude>
-              </excludes>
-            </configuration>
-              -->
-          </plugin>
-        </plugins>
       </build>
     </profile>
   </profiles>
