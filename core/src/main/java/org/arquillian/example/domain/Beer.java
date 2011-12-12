@@ -38,7 +38,8 @@ public class Beer implements Serializable
    @Enumerated(EnumType.STRING)
    private Type type;
 
-   @ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   // If lazy then Glassfish Embedded is facing this problem: https://bugs.eclipse.org/bugs/show_bug.cgi?id=323403
+   @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
    private Brewery brewery;
 
    Beer()
