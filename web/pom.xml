@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
   xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
   <parent>
@@ -314,8 +315,36 @@
         </testResources>
       </build>
     </profile>
-
+    <profile>
+      <id>arq-openshift-express</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.spec</groupId>
+          <artifactId>jboss-javaee-6.0</artifactId>
+          <version>1.0.0.Final</version>
+          <type>pom</type>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.arquillian.container</groupId>
+          <artifactId>arquillian-openshift-express</artifactId>
+          <version>1.0.0.Alpha1</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <testResources>
+          <testResource>
+            <directory>src/test/resources</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-openshift</directory>
+          </testResource>
+        </testResources>
+      </build>
+    </profile>
   </profiles>
+
   <build>
     <finalName>beer-advisor</finalName>
     <pluginManagement>

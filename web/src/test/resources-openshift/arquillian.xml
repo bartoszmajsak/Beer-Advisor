@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+
+  <container qualifier="openshift-express" default="true">
+    <configuration>
+      <property name="namespace">bmajsak</property>
+      <property name="application">test</property>
+      <property name="sshUserName">c7ffcd717cc542acb26e00f390fed8d8</property>
+      <!--
+      Set as environment variable SSH_PASSPHRASE
+      <property name="passphrase"></property>
+      -->
+      <property name="login">bartosz.majsak@gmail.com</property>
+    </configuration>
+  </container>
+
+  <extension qualifier="persistence">
+    <property name="defaultDataSource">java:jboss/datasources/ExampleDS</property>
+    <property name="initStatement">SET REFERENTIAL_INTEGRITY FALSE</property>
+    <property name="userTransactionJndi">java:jboss/UserTransaction</property>
+  </extension>
+
+  <extension qualifier="webdriver">
+    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+  </extension>
+
+</arquillian>

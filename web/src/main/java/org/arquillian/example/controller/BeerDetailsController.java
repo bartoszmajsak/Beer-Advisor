@@ -7,7 +7,6 @@ import javax.inject.Named;
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.service.BeerService;
 
-
 @Named
 @RequestScoped
 public class BeerDetailsController
@@ -44,9 +43,5 @@ public class BeerDetailsController
    {
       this.beer = beer;
    }
-
-
-
-
 
 }
