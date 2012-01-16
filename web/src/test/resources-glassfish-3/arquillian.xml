@@ -17,7 +17,8 @@
   </extension>
 
   <extension qualifier="webdriver">
-    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property> 
+    <property name="implementationClass">org.openqa.selenium.chrome.ChromeDriver</property>
+    <property name="chromeDriverBinary">/usr/bin/google-chrome/chromedriver</property>
   </extension>
 
 </arquillian>
