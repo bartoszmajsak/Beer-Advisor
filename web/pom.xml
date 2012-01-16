@@ -44,14 +44,14 @@
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_core>1.0.0.CR6</version.arquillian_core>
+    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
     <version.arquillian_drone>1.0.0.CR3</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Final-SNAPSHOT</version.arquillian_spock>
-    <version.selenium>2.14.0</version.selenium>
-    <version.selenium.server>2.14.0</version.selenium.server>
+    <version.selenium>2.16.1</version.selenium>
+    <version.selenium.server>2.16.1</version.selenium.server>
     <version.spock>0.5-groovy-1.8</version.spock>
-    <version.groovy>1.8.0</version.groovy>
-    <version.groovy.eclipse_compiler>2.5.1-1</version.groovy.eclipse_compiler>
+    <version.groovy>1.8.5</version.groovy>
+    <version.groovy.eclipse_compiler>2.6.0-01</version.groovy.eclipse_compiler>
     <version.hsqldb>1.8.0.10</version.hsqldb>
   </properties>
 

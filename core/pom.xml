@@ -19,8 +19,8 @@
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_core>1.0.0.CR6</version.arquillian_core>
-    <version.arquillian_persistence>1.0.0.Alpha2</version.arquillian_persistence>
+    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
+    <version.arquillian_persistence>1.0.0.Alpha3</version.arquillian_persistence>
   </properties>
   <dependencyManagement>
     <dependencies>
