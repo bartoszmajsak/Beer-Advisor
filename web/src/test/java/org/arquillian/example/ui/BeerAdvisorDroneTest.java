@@ -8,6 +8,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import org.arquillian.drone.browser.Firefox;
 import org.arquillian.example.ui.utils.BeersAssert;
 import org.arquillian.example.ui.utils.Deployments;
 import org.arquillian.example.ui.web.Beer;
@@ -44,7 +45,7 @@ public class BeerAdvisorDroneTest
 	   // make the driver more patient for our VM environments :)
 	   driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
    }
-   
+
    @Test
    public void shouldFindCheapestBeer()
    {
@@ -61,7 +62,7 @@ public class BeerAdvisorDroneTest
    }
 
    @Test
-   public void shouldFindAllBelgianBeers()
+   public void shouldFindAllBelgianBeers(@Drone @Firefox WebDriver driver)
    {
       // given
       Beer delirium = new Beer("Delirium Tremens");

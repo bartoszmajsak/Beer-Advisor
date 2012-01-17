@@ -15,4 +15,8 @@
     <property name="chromeDriverBinary">/usr/bin/google-chrome/chromedriver</property>
   </extension>
 
+  <extension qualifier="webdriver-firefox">
+    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+  </extension>
+
 </arquillian>
