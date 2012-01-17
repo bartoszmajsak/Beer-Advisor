@@ -9,12 +9,6 @@
       </configuration>
   </container>
 
-  <extension qualifier="persistence">
-    <property name="defaultDataSource">java:jboss/datasources/ExampleDS</property>
-    <property name="initStatement">SET REFERENTIAL_INTEGRITY FALSE</property>
-    <property name="userTransactionJndi">java:jboss/UserTransaction</property>
-  </extension>
-
   <extension qualifier="webdriver">
     <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
   </extension>
