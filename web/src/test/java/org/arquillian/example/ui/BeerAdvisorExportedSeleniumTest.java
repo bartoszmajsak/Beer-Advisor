@@ -10,6 +10,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.thoughtworks.selenium.SeleneseTestCase;
 import com.thoughtworks.selenium.Selenium;
 
+/**
+ * This test was exported from Selenium IDE. Unfortunately it does not work :)
+ *
+ * @see BeerAdvisorFixedSeleniumTest
+ *
+ */
 public class BeerAdvisorExportedSeleniumTest extends SeleneseTestCase {
 
    @Before

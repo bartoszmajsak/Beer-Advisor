@@ -12,6 +12,12 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.thoughtworks.selenium.Selenium;
 
+/**
+ *
+ * Fixed version of test recorded using Selenium IDE and exported
+ * as JUnit4 WebDriverBackedSelenium.
+ *
+ */
 public class BeerAdvisorFixedSeleniumTest
 {
 
