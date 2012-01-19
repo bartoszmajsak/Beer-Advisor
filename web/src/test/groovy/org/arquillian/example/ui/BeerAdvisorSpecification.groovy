@@ -20,6 +20,7 @@ import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisor
 import spock.lang.*
 
+
 @RunAsClient
 class BeerAdvisorSpecification extends Specification
 {

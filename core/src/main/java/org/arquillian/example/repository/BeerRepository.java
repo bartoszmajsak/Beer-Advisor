@@ -6,7 +6,6 @@ import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Brewery;
 import org.arquillian.example.domain.Country;
 
-
 public interface BeerRepository
 {
 

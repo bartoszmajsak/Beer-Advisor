@@ -13,7 +13,6 @@ import org.arquillian.example.domain.Brewery;
 import org.arquillian.example.domain.Country;
 import org.arquillian.example.domain.Type;
 
-
 @Singleton
 @Startup
 public class BeersInserter
