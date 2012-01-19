@@ -6,7 +6,6 @@ import static org.fest.assertions.Assertions.assertThat;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import org.arquillian.drone.browser.Firefox;
 import org.arquillian.example.ui.utils.BeersAssert;
@@ -19,7 +18,6 @@ import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -40,10 +38,25 @@ public class BeerAdvisorDroneTest
    @Drone
    WebDriver driver;
 
-   @Before
-   public void config() {
-	   // make the driver more patient for our VM environments :)
-	   driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+   @Test
+   public void shouldFindStrongestBeerDetails()
+   {
+      // given
+      final String expectedBeerName = "End of history";
+      final String expectedBrewery = "Brew Dog";
+      final BigDecimal expectedPrice = BigDecimal.valueOf(765.0);
+      final BigDecimal expectedAlcohol = BigDecimal.valueOf(55.0);
+
+      BeerAdvisor beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString());
+
+      // when
+      Beer beer = beerAdvisor.detailsOf("strongest");
+
+      // then
+      beer.shouldBeNamed(expectedBeerName)
+          .shouldBeFrom(expectedBrewery)
+          .shouldCost(expectedPrice)
+          .shouldHaveAlcoholPercentageOf(expectedAlcohol);
    }
 
    @Test
@@ -76,24 +89,4 @@ public class BeerAdvisorDroneTest
       BeersAssert.assertThat(beers).shouldContain(delirium, kwak);
    }
 
-   @Test
-   public void shouldFindStrongestBeerDetails()
-   {
-      // given
-      final String expectedBeerName = "End of history";
-      final String expectedBrewery = "Brew Dog";
-      final BigDecimal expectedPrice = BigDecimal.valueOf(765.0);
-      final BigDecimal expectedAlcohol = BigDecimal.valueOf(55.0);
-
-      BeerAdvisor beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString());
-
-      // when
-      Beer beer = beerAdvisor.detailsOf("strongest");
-
-      // then
-      beer.shouldBeNamed(expectedBeerName)
-          .shouldBeFrom(expectedBrewery)
-          .shouldCost(expectedPrice)
-          .shouldHaveAlcoholPercentageOf(expectedAlcohol);
-   }
 }
