@@ -49,6 +49,11 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>jboss-staging-repository</id>
+      <name>JBoss Staging Repository for Spock Alpha 1</name>
+      <url>https://repository.jboss.org/nexus/content/repositories/jboss_releases_staging_profile-186/</url>
+    </repository>
   </repositories>
 
   <build>
