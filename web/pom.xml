@@ -35,6 +35,7 @@
     <version.groovy>1.8.5</version.groovy>
     <version.groovy.eclipse_compiler>2.6.0-01</version.groovy.eclipse_compiler>
     <version.hsqldb>1.8.0.10</version.hsqldb>
+    <version.easyb>1.4</version.easyb>
   </properties>
 
   <dependencyManagement>
@@ -144,6 +145,18 @@
       <artifactId>junit</artifactId>
       <version>${version.junit}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.easyb</groupId>
+      <artifactId>easyb-core</artifactId>
+      <version>${version.easyb}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <!-- Arquillian dependencies -->
