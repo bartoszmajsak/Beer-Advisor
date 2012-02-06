@@ -22,22 +22,14 @@ public class BeerAdvisorController
 
    private String filter;
 
-   private List<Beer> beers;
-
-   private void loadBeers()
+   public List<Beer> getBeers()
    {
       if (filter == null || filter.trim().isEmpty())
       {
          filter = "none";
       }
       Set<Beer> result = beerService.fetchByCriteria(filter);
-      beers = Lists.newArrayList(result);
-   }
-
-   public List<Beer> getBeers()
-   {
-      loadBeers();
-      return beers;
+      return Lists.newArrayList(result);
    }
 
    public String getFilter()
