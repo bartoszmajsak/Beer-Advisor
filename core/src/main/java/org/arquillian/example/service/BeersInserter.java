@@ -62,7 +62,7 @@ public class BeersInserter
 
       Beer appenzellerSchwarzKrystall = new Beer(new Brewery("Locher", Country.SWITZERLAND),
             Type.SCHWARZBIER, "Appenzeller Schwarzer Kristall", BigDecimal.valueOf(4.0), BigDecimal.valueOf(6.3));
-      bugel.setCode("schwarzer_kristall");
+      appenzellerSchwarzKrystall.setCode("schwarzer_kristall");
       em.persist(appenzellerSchwarzKrystall);
 
    }
