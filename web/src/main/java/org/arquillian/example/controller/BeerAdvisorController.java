@@ -32,7 +32,6 @@ public class BeerAdvisorController
       }
       Set<Beer> result = beerService.fetchByCriteria(filter);
       beers = Lists.newArrayList(result);
-      System.out.println("loaded " + beers.size() + ", filter is: " + filter);
    }
 
    public List<Beer> getBeers()
@@ -48,7 +47,6 @@ public class BeerAdvisorController
 
    public void setFilter(String filter)
    {
-      System.out.println(filter);
       this.filter = filter;
    }
 
