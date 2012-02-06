@@ -57,12 +57,12 @@ public class BeersInserter
 
       Beer bugel = new Beer(new Brewery("Feldschlösschen", Country.SWITZERLAND),
             Type.VIENNA, "Bügel", BigDecimal.valueOf(3.0), BigDecimal.valueOf(4.8));
-      kwak.setCode("bugel");
+      bugel.setCode("bugel");
       em.persist(bugel);
 
       Beer appenzellerSchwarzKrystall = new Beer(new Brewery("Locher", Country.SWITZERLAND),
             Type.SCHWARZBIER, "Appenzeller Schwarzer Kristall", BigDecimal.valueOf(4.0), BigDecimal.valueOf(6.3));
-      kwak.setCode("schwarzer_kristall");
+      bugel.setCode("schwarzer_kristall");
       em.persist(appenzellerSchwarzKrystall);
 
    }

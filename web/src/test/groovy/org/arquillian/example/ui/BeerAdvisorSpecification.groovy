@@ -43,6 +43,21 @@ class BeerAdvisorSpecification extends Specification
    }
 
    @Test
+   def "Should find all Swiss beers"()
+   {
+      given: "On the main page"
+         def bugel = new Beer("Bügel")
+         def appenzeller = new Beer("Appenzeller Schwarzer Kristall")
+         def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
+
+      when: "Enter 'from switzerland' as the search criteria"
+         def beers = beerAdvisor.searchFor("from switzerland")
+
+      then: "You should see all Swiss beers"
+         BeersAssert.assertThat(beers).shouldContain(bugel, appenzeller)
+   }
+
+   @Test
    def "Should find all belgian beers"()
    {
       given: "On the main page"

@@ -73,6 +73,21 @@ public class BeerAdvisorDroneTest
    }
 
    @Test
+   public void shouldFindAllSwissBeers()
+   {
+      // given
+      Beer bugel = new Beer("Bügel");
+      Beer appenzeller = new Beer("Appenzeller Schwarzer Kristall");
+      BeerAdvisor beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString());
+
+      // when
+      List<Beer> beers = beerAdvisor.searchFor("from switzerland");
+
+      // then
+      BeersAssert.assertThat(beers).shouldContain(bugel, appenzeller);
+   }
+
+   @Test
    public void shouldFindAllBelgianBeers(@Drone @Firefox WebDriver driver)
    {
       // given
