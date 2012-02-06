@@ -10,7 +10,6 @@ import javax.inject.Named;
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.service.BeerService;
 
-
 import com.google.common.collect.Lists;
 
 @Named
@@ -23,16 +22,24 @@ public class BeerAdvisorController
 
    private String filter;
 
-   public List<Beer> getBeers()
+   private List<Beer> beers;
+
+   private void loadBeers()
    {
       if (filter == null || filter.trim().isEmpty())
       {
          filter = "none";
       }
       Set<Beer> result = beerService.fetchByCriteria(filter);
-      return Lists.newArrayList(result);
+      beers = Lists.newArrayList(result);
+      System.out.println("loaded " + beers.size() + ", filter is: " + filter);
    }
 
+   public List<Beer> getBeers()
+   {
+      loadBeers();
+      return beers;
+   }
 
    public String getFilter()
    {
@@ -41,6 +48,7 @@ public class BeerAdvisorController
 
    public void setFilter(String filter)
    {
+      System.out.println(filter);
       this.filter = filter;
    }
 

@@ -11,6 +11,7 @@ public enum BeerCriteria
    CHEAPEST("cheapest"),
    STRONGEST("strongest"),
    BELGIUM("from belgium"),
+   SWITZERLAND("from switzerland"),
    NONE("none");
 
    private final String criteriaString;
@@ -33,7 +34,7 @@ public enum BeerCriteria
             return beerCriteria;
          }
       }
-      throw new UnknownBeerCriteriaException("Cannot resolve criteria for given string representation: " + criteriaString);
+      throw new UnknownBeerCriteriaException("Cannot resolve criteria for given string representation: '" + criteriaString + "'");
    }
 
 }

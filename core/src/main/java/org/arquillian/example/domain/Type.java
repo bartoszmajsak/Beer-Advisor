@@ -6,7 +6,9 @@ public enum Type {
    PALE_ALE("Pale Ale"),
    BLOND_ALE("Blond Ale"),
    QUADRUPEL_IPA("Quadrupel India Pale Ale"),
-   AMBER("Amber");
+   AMBER("Amber"),
+   VIENNA("Vienna"),
+   SCHWARZBIER("Schwarzbier");
 
    private final String label;
 

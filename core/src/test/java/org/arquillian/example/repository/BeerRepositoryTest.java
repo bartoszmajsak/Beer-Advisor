@@ -9,10 +9,8 @@ import javax.inject.Inject;
 
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
-import org.arquillian.example.repository.BeerRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.Transactional;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -106,7 +104,7 @@ public class BeerRepositoryTest
    public void shouldReturnAllBeers() throws Exception
    {
       // given
-      int expectedAmountOfBeers = 5;
+      int expectedAmountOfBeers = 7;
 
       // when
       Set<Beer> allBeers = beerRepository.fetchAll();

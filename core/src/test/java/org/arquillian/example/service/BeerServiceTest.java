@@ -44,7 +44,7 @@ public class BeerServiceTest
    public void shouldReturnAllBeers() throws Exception
    {
       // given
-      int expectedAmountOfBeers = 5;
+      int expectedAmountOfBeers = 7;
 
       // when
       Set<Beer> allBeers = beerService.fetchByCriteria("ALL");

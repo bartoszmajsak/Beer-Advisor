@@ -7,6 +7,10 @@ Brewery:
     name: "Brouwerij Huyghe"
   - country: BELGIUM
     name: "Brouwerij Bosteels"
+  - country: SWITZERLAND
+    name: "Feldschlösschen"
+  - country: SWITZERLAND
+    name: "Locher"
 
 Beer:
   - alcohol: 4.5
@@ -29,3 +33,11 @@ Beer:
     name: "Pauwel Kwak"
     price: 4.0
     type: AMBER
+  - alcohol: 4.8
+    name: "Bügel"
+    price: 3.0
+    type: VIENNA
+  - alcohol: 6.3
+    name: "Appenzeller Schwarzer Kristall"
+    price: 4.0
+    type: SCHWARZBIER

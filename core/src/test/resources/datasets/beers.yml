@@ -11,7 +11,12 @@ Brewery:
   - id: 4
     country: BELGIUM
     name: "Brouwerij Bosteels"
-
+  - id: 5
+    country: SWITZERLAND
+    name: "Feldschlösschen"
+  - id: 6
+    country: SWITZERLAND
+    name: "Locher"
 Beer:
   - id: 1
     alcohol: 4.5
@@ -43,3 +48,15 @@ Beer:
     price: 4.0
     type: AMBER
     brewery_id: 4
+  - id: 6
+    alcohol: 4.8
+    name: "Bügel"
+    price: 3.0
+    type: VIENNA
+    brewery_id: 5
+  - id: 7
+    alcohol: 6.3
+    name: "Appenzeller Schwarzer Kristall"
+    price: 4.0
+    type: SCHWARZBIER
+    brewery_id: 6

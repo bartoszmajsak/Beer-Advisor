@@ -27,6 +27,8 @@ public class BeerService
       {
          case ALL:
             return beerRepository.fetchAll();
+         case SWITZERLAND:
+            return beerRepository.from(Country.SWITZERLAND);
          case BELGIUM:
             return beerRepository.from(Country.BELGIUM);
          case CHEAPEST:
