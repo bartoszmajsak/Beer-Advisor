@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class BeerDetails
 {
@@ -21,11 +22,9 @@ public class BeerDetails
    @FindBy(id = "price")
    private WebElement priceElement;
 
-   private WebDriver driver;
-
    public BeerDetails(WebDriver driver)
    {
-      this.driver = driver;
+      PageFactory.initElements(driver, this);
    }
 
    public Beer getBeer()
