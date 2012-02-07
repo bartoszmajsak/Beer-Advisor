@@ -33,7 +33,7 @@ import org.junit.runner.RunWith;
  */
 @RunWith(Arquillian.class)
 @Ignore("Used for presentation purposes only")
-public class BeerRepositoryJpaTest
+public class BeerRepositoryBasicJpaTest
 {
 
    @Deployment
