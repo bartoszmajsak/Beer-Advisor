@@ -21,7 +21,7 @@ public class BeerAdvisorExportedSeleniumTest extends SeleneseTestCase {
    @Before
     public void setUp() throws Exception {
         WebDriver driver = new FirefoxDriver();
-        String baseUrl = "http://localhost:8080/beer-advisor";
+        String baseUrl = "http://beeradvisor-bmajsak.rhcloud.com";
         Selenium selenium = new WebDriverBackedSelenium(driver, baseUrl);
         selenium.start();
     }

@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -38,7 +37,6 @@ public class Beer implements Serializable
    @Enumerated(EnumType.STRING)
    private Type type;
 
-   // If lazy then Glassfish Embedded is facing this problem: https://bugs.eclipse.org/bugs/show_bug.cgi?id=323403
    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
    private Brewery brewery;
 
