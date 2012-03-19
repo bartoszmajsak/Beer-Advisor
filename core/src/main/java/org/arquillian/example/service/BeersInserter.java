@@ -64,7 +64,6 @@ public class BeersInserter
             Type.SCHWARZBIER, "Appenzeller Schwarzer Kristall", BigDecimal.valueOf(4.0), BigDecimal.valueOf(6.3));
       appenzellerSchwarzKrystall.setCode("schwarzer_kristall");
       em.persist(appenzellerSchwarzKrystall);
-
    }
 
 }
