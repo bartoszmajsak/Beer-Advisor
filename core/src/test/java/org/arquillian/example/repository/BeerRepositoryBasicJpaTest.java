@@ -11,6 +11,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.UserTransaction;
 
 import org.arquillian.example.domain.Beer;
+import org.arquillian.example.domain.BeerBuilder;
 import org.arquillian.example.domain.Brewery;
 import org.arquillian.example.domain.Country;
 import org.arquillian.example.domain.Type;
@@ -27,8 +28,8 @@ import org.junit.runner.RunWith;
 
 /**
  *
- * The most simple way of writing JPA tests.
- *
+ * Simple (and a bit tedious) way of writing JPA tests.
+ * @see BeerRepositoryTest test using Arquillian Persistence Extension.
  */
 @RunWith(Arquillian.class)
 public class BeerRepositoryBasicJpaTest
@@ -76,41 +77,63 @@ public class BeerRepositoryBasicJpaTest
    private void insertData() throws Exception {
        utx.begin();
        em.joinTransaction();
-       Beer mocnyFull = new Beer(new Brewery("Kiepski Browar", Country.POLAND),
-             Type.LAGER, "Mocny Full",
-             BigDecimal.valueOf(1.0), BigDecimal.valueOf(4.5));
-       mocnyFull.setCode("mocny_full");
-       em.persist(mocnyFull);
+       Beer mocnyFull = BeerBuilder.create()
+                                   .named("Mocny Full")
+                                   .withPrice(BigDecimal.valueOf(1.0))
+                                   .havingAlcohol(BigDecimal.valueOf(4.5))
+                                   .from(new Brewery("Kiepski Browar", Country.POLAND))
+                                   .ofType(Type.LAGER)
+                                   .withCode("mocny_full")
+                                   .build();
+      em.persist(mocnyFull);
 
-       Brewery brewDog = new Brewery("Brew Dog", Country.SCOTLAND);
-       Beer endOfHistory = new Beer(brewDog, Type.BLOND_ALE, "End of history", BigDecimal.valueOf(765.0), BigDecimal.valueOf(55.0));
-       endOfHistory.setCode("end_of_history");
-       brewDog.addBeer(endOfHistory);
-       Beer bismarck = new Beer(brewDog, Type.QUADRUPEL_IPA, "Sink The Bismarck!", BigDecimal.valueOf(64.0), BigDecimal.valueOf(41.0));
-       bismarck.setCode("bismarck");
+      Brewery brewDog = new Brewery("Brew Dog", Country.SCOTLAND);
+      Beer endOfHistory = BeerBuilder.create()
+                                     .named("End of history")
+                                     .withPrice(BigDecimal.valueOf(765.0))
+                                     .havingAlcohol(BigDecimal.valueOf(55.0))
+                                     .from(brewDog)
+                                     .ofType(Type.BLOND_ALE)
+                                     .withCode("end_of_history")
+                                     .build();
 
-       brewDog.addBeer(bismarck);
-       em.persist(endOfHistory);
-       em.persist(bismarck);
-       em.persist(brewDog);
+      Beer bismarck = BeerBuilder.create()
+                                 .named("Sink The Bismarck!")
+                                 .withPrice(BigDecimal.valueOf(64.0))
+                                 .havingAlcohol(BigDecimal.valueOf(41.0))
+                                 .from(brewDog)
+                                 .ofType(Type.QUADRUPEL_IPA)
+                                 .withCode("bismarck")
+                                 .build();
 
-       Beer delirium = new Beer(new Brewery("Brouwerij Huyghe", Country.BELGIUM),
-             Type.PALE_ALE, "Delirium Tremens",
-             BigDecimal.valueOf(10.0), BigDecimal.valueOf(8.5));
-       delirium.setCode("delirium");
+      em.persist(endOfHistory);
+      em.persist(bismarck);
 
-       em.persist(delirium);
+      Beer delirium = BeerBuilder.create()
+                                 .named("Delirium Tremens")
+                                 .withPrice(BigDecimal.valueOf(10.0))
+                                 .havingAlcohol(BigDecimal.valueOf(8.5))
+                                 .from(new Brewery("Brouwerij Huyghe", Country.BELGIUM))
+                                 .ofType(Type.PALE_ALE)
+                                 .withCode("delirium")
+                                 .build();
+      em.persist(delirium);
 
-       Beer kwak = new Beer(new Brewery("Brouwerij Bosteels", Country.BELGIUM),
-             Type.AMBER, "Pauwel Kwak",
-             BigDecimal.valueOf(4.0), BigDecimal.valueOf(8.4));
-       kwak.setCode("kwak");
-       em.persist(kwak);
-       utx.commit();
+      Beer kwak = BeerBuilder.create()
+                             .named("Pauwel Kwak")
+                             .withPrice(BigDecimal.valueOf(4.0))
+                             .havingAlcohol(BigDecimal.valueOf(8.4))
+                             .from(new Brewery("Brouwerij Bosteels", Country.BELGIUM))
+                             .ofType(Type.AMBER)
+                             .withCode("kwak")
+                             .build();
+      em.persist(kwak);
+
+      utx.commit();
    }
 
    private void startTransaction() throws Exception {
-       utx.begin();
+      utx.begin();
    }
 
    @Test

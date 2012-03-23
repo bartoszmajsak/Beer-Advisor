@@ -11,13 +11,12 @@ import org.arquillian.example.domain.Country;
 import org.arquillian.example.repository.BeerCriteria;
 import org.arquillian.example.repository.BeerRepository;
 
-
 @RequestScoped
 public class BeerService
 {
 
    @Inject
-   BeerRepository beerRepository;
+   private BeerRepository beerRepository;
 
    public Set<Beer> fetchByCriteria(String criteriaString)
    {
