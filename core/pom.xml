@@ -1,79 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<project
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>org.arquillian.example</groupId>
     <artifactId>beer-advisor-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
+
   <artifactId>beer-advisor-core</artifactId>
 
   <properties>
-    <version.maven_surefire>2.11</version.maven_surefire>
     <version.maven_compiler>2.3.2</version.maven_compiler>
-    <jboss.home>${env.JBOSS_HOME}</jboss.home>
-    <version.hibernate_jpamodelgen>1.1.1.Final</version.hibernate_jpamodelgen>
+    <version.hibernate_jpamodelgen>1.2.0.Final</version.hibernate_jpamodelgen>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.jbossas_7>7.0.2.Final</version.jbossas_7>
-    <version.jboss_spec>2.0.0.Final</version.jboss_spec>
-    <version.junit>4.8.2</version.junit>
-    <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
     <version.arquillian_persistence>1.0.0.Alpha3</version.arquillian_persistence>
   </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.jboss.arquillian</groupId>
-        <artifactId>arquillian-bom</artifactId>
-        <version>${version.arquillian_core}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
+
   <dependencies>
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
       <version>${version.guava}</version>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate</groupId>
-      <artifactId>hibernate-jpamodelgen</artifactId>
-      <version>${version.hibernate_jpamodelgen}</version>
-      <scope>provided</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.hibernate.javax.persistence</groupId>
-          <artifactId>hibernate-jpa-2.0-api</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-    <dependency>
-      <groupId>org.easytesting</groupId>
-      <artifactId>fest-assert</artifactId>
-      <version>${version.fest_assert}</version>
-      <scope>test</scope>
-    </dependency>
+
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
-      <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.easytesting</groupId>
+      <artifactId>fest-assert</artifactId>
+    </dependency>
+
     <dependency>
       <groupId>org.jboss.arquillian.junit</groupId>
       <artifactId>arquillian-junit-container</artifactId>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-persistence-api</artifactId>
       <version>${version.arquillian_persistence}</version>
       <scope>test</scope>
     </dependency>
+
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
       <artifactId>arquillian-persistence-impl</artifactId>
@@ -81,6 +58,7 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
   <build>
     <plugins>
       <plugin>
@@ -89,10 +67,64 @@
         <configuration>
           <source>1.6</source>
           <target>1.6</target>
+          <compilerArgument>-proc:none</compilerArgument>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.bsc.maven</groupId>
+        <artifactId>maven-processor-plugin</artifactId>
+        <version>2.0.5</version>
+        <executions>
+          <execution>
+            <id>process</id>
+            <goals>
+              <goal>process</goal>
+            </goals>
+            <phase>generate-sources</phase>
+            <configuration>
+              <processors>
+                <processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+              </processors>
+              <outputDirectory>target/generated-sources</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+        <dependencies>
+          <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-jpamodelgen</artifactId>
+            <version>${version.hibernate_jpamodelgen}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>org.hibernate.javax.persistence</groupId>
+                <artifactId>hibernate-jpa-2.0-api</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>1.7</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>target/generated-sources</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>arq-jbossas-managed-7</id>
@@ -202,7 +234,7 @@
         <dependency>
           <groupId>org.jboss.arquillian.container</groupId>
           <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-          <version>1.0.0.CR2</version>
+          <version>1.0.0.CR3</version>
           <scope>test</scope>
         </dependency>
         <dependency>

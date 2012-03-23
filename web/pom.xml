@@ -15,18 +15,11 @@
   <packaging>war</packaging>
 
   <properties>
-    <version.maven_surefire>2.12</version.maven_surefire>
     <version.maven_compiler>2.3.2</version.maven_compiler>
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
-    <jboss.home>${env.JBOSS_HOME}</jboss.home>
 
     <!-- Dependencies versions -->
-    <version.jbossas_7>7.0.2.Final</version.jbossas_7>
-    <version.jboss_spec>2.0.0.Final</version.jboss_spec>
-    <version.junit>4.8.2</version.junit>
-    <version.fest_assert>1.4</version.fest_assert>
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
     <version.arquillian_drone>1.0.0.CR3</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Alpha1</version.arquillian_spock>
     <version.selenium>2.20.0</version.selenium>
@@ -34,7 +27,6 @@
     <version.spock>0.5-groovy-1.8</version.spock>
     <version.groovy>1.8.5</version.groovy>
     <version.groovy.eclipse_compiler>2.6.0-01</version.groovy.eclipse_compiler>
-    <version.hsqldb>1.8.0.10</version.hsqldb>
     <version.easyb>1.4</version.easyb>
   </properties>
 
@@ -47,6 +39,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
+
       <!-- Selenium Server -->
       <dependency>
         <groupId>org.seleniumhq.selenium</groupId>
@@ -136,14 +129,12 @@
     <dependency>
       <groupId>org.easytesting</groupId>
       <artifactId>fest-assert</artifactId>
-      <version>${version.fest_assert}</version>
       <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${version.junit}</version>
       <scope>test</scope>
     </dependency>
 
@@ -213,13 +204,6 @@
     </dependency>
 
     <dependency>
-      <groupId>com.opera</groupId>
-      <artifactId>operadriver</artifactId>
-      <version>0.8.1</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.jboss.shrinkwrap.resolver</groupId>
       <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
       <scope>test</scope>
@@ -242,220 +226,34 @@
       <groupId>org.jboss.arquillian.spock</groupId>
       <artifactId>arquillian-spock-container</artifactId>
       <version>${version.arquillian_spock}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
       <version>${version.spock}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
       <groupId>org.codehaus.groovy</groupId>
       <artifactId>groovy-all</artifactId>
       <version>${version.groovy}</version>
+      <scope>test</scope>
     </dependency>
 
   </dependencies>
-
-  <profiles>
-    <profile>
-      <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-      <!-- Use this profile for any OpenShift specific customization your app will need. -->
-      <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-      <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-      <id>openshift</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <finalName>BeerAdvisor</finalName>
-        <plugins>
-          <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>2.1.1</version>
-            <configuration>
-              <outputDirectory>deployments</outputDirectory>
-              <warName>ROOT</warName>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-
-    <!-- Test profiles for Arquillian -->
-    <profile>
-      <id>arq-jbossas-managed-7</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.arquillian.protocol</groupId>
-          <artifactId>arquillian-protocol-servlet</artifactId>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.jboss.as</groupId>
-          <artifactId>jboss-as-arquillian-container-managed</artifactId>
-          <version>${version.jbossas_7}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.apache.xalan</groupId>
-              <artifactId>xalan</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-dependency-plugin</artifactId>
-            <version>2.1</version>
-            <executions>
-              <execution>
-                <id>unpack</id>
-                <phase>process-test-classes</phase>
-                <goals>
-                  <goal>unpack</goal>
-                </goals>
-                <configuration>
-                  <artifactItems>
-                    <artifactItem>
-                      <groupId>org.jboss.as</groupId>
-                      <artifactId>jboss-as-dist</artifactId>
-                      <version>${version.jbossas_7}</version>
-                      <type>zip</type>
-                      <overWrite>false</overWrite>
-                      <outputDirectory>${project.build.directory}</outputDirectory>
-                    </artifactItem>
-                  </artifactItems>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-jbossas-7</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
-      <id>arq-jbossas-remote-7</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.as</groupId>
-          <artifactId>jboss-as-arquillian-container-remote</artifactId>
-          <version>${version.jbossas_7}</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.apache.xalan</groupId>
-              <artifactId>xalan</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-jbossas-7</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
-      <id>arq-glassfish-embedded-3</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-          <version>1.0.0.CR2</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.extras</groupId>
-          <artifactId>glassfish-embedded-all</artifactId>
-          <version>3.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>hsqldb</groupId>
-          <artifactId>hsqldb</artifactId>
-          <version>${version.hsqldb}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-glassfish-3</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
-      <id>arq-openshift-express</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-6.0</artifactId>
-          <version>1.0.0.Final</version>
-          <type>pom</type>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-openshift-express</artifactId>
-          <version>1.0.0.Alpha2</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-openshift</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-  </profiles>
 
   <build>
     <finalName>beer-advisor</finalName>
@@ -489,8 +287,8 @@
             <version>${version.groovy.eclipse_compiler}</version>
             <exclusions>
               <exclusion>
-                <groupId>javax.servlet</groupId>
-                <artifactId>javax.servlet-api</artifactId>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
               </exclusion>
             </exclusions>
           </dependency>
@@ -544,4 +342,171 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>arq-jbossas-managed-7</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.as</groupId>
+          <artifactId>jboss-as-arquillian-container-managed</artifactId>
+          <version>${version.jbossas_7}</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.spec</groupId>
+          <artifactId>jboss-javaee-web-6.0</artifactId>
+          <version>${version.jboss_spec}</version>
+          <type>pom</type>
+          <scope>provided</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>org.apache.xalan</groupId>
+              <artifactId>xalan</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+      <build>
+        <testResources>
+          <testResource>
+            <directory>src/test/resources</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-jbossas-7</directory>
+          </testResource>
+        </testResources>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>${version.maven_surefire}</version>
+          </plugin>
+          <plugin>
+            <artifactId>maven-dependency-plugin</artifactId>
+            <version>2.1</version>
+            <executions>
+              <execution>
+                <id>unpack</id>
+                <phase>process-test-classes</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.jboss.as</groupId>
+                      <artifactId>jboss-as-dist</artifactId>
+                      <version>${version.jbossas_7}</version>
+                      <type>zip</type>
+                      <overWrite>false</overWrite>
+                      <outputDirectory>${project.build.directory}</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>arq-jbossas-remote-7</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.as</groupId>
+          <artifactId>jboss-as-arquillian-container-remote</artifactId>
+          <version>${version.jbossas_7}</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.spec</groupId>
+          <artifactId>jboss-javaee-web-6.0</artifactId>
+          <version>${version.jboss_spec}</version>
+          <type>pom</type>
+          <scope>provided</scope>
+          <exclusions>
+            <exclusion>
+              <groupId>org.apache.xalan</groupId>
+              <artifactId>xalan</artifactId>
+            </exclusion>
+          </exclusions>
+        </dependency>
+      </dependencies>
+      <build>
+        <testResources>
+          <testResource>
+            <directory>src/test/resources</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-jbossas-7</directory>
+          </testResource>
+        </testResources>
+      </build>
+    </profile>
+    <profile>
+      <id>arq-glassfish-embedded-3</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.arquillian.container</groupId>
+          <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
+          <version>1.0.0.CR3</version>
+          <scope>test</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.glassfish.extras</groupId>
+          <artifactId>glassfish-embedded-all</artifactId>
+          <version>3.1.1</version>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>hsqldb</groupId>
+          <artifactId>hsqldb</artifactId>
+          <version>${version.hsqldb}</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <testResources>
+          <testResource>
+            <directory>src/test/resources</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-glassfish-3</directory>
+          </testResource>
+        </testResources>
+      </build>
+    </profile>
+    <profile>
+      <id>arq-openshift-express</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.spec</groupId>
+          <artifactId>jboss-javaee-6.0</artifactId>
+          <version>1.0.0.Final</version>
+          <type>pom</type>
+          <scope>provided</scope>
+        </dependency>
+        <dependency>
+          <groupId>org.jboss.arquillian.container</groupId>
+          <artifactId>arquillian-openshift-express</artifactId>
+          <version>1.0.0.Alpha2</version>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <testResources>
+          <testResource>
+            <directory>src/test/resources</directory>
+          </testResource>
+          <testResource>
+            <directory>src/test/resources-openshift-express</directory>
+          </testResource>
+        </testResources>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

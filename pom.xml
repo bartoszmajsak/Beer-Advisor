@@ -32,12 +32,47 @@
     <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
+
+    <!-- dependencies -->
+    <version.jbossas_7>7.0.2.Final</version.jbossas_7>
+    <version.jboss_spec>2.0.0.Final</version.jboss_spec>
+    <version.maven_surefire>2.12</version.maven_surefire>
+    <version.junit>4.8.2</version.junit>
+    <version.fest_assert>1.4</version.fest_assert>
+    <version.hsqldb>1.8.0.10</version.hsqldb>
+    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
   </properties>
 
   <modules>
     <module>core</module>
     <module>web</module>
   </modules>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jboss.arquillian</groupId>
+        <artifactId>arquillian-bom</artifactId>
+        <version>${version.arquillian_core}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.easytesting</groupId>
+        <artifactId>fest-assert</artifactId>
+        <version>${version.fest_assert}</version>
+        <scope>test</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>${version.junit}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <repositories>
     <repository>
@@ -50,11 +85,6 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
-    </repository>
-    <repository>
-      <id>jboss-staging-repository</id>
-      <name>JBoss Staging Repository for Spock Alpha 1</name>
-      <url>https://repository.jboss.org/nexus/content/repositories/jboss_releases_staging_profile-186/</url>
     </repository>
   </repositories>
 
@@ -70,5 +100,17 @@
       </plugin>
     </plugins>
   </build>
+
+  <profiles>
+    <profile>
+      <id>arq-jbossas-managed-7</id>
+    </profile>
+    <profile>
+      <id>arq-jbossas-remote-7</id>
+    </profile>
+    <profile>
+      <id>arq-glassfish-embedded-3</id>
+    </profile>
+  </profiles>
 
 </project>
