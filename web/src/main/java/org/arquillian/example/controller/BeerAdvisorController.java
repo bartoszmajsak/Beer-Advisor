@@ -28,7 +28,7 @@ public class BeerAdvisorController
       {
          filter = "none";
       }
-      Set<Beer> result = beerService.fetchByCriteria(filter);
+      final Set<Beer> result = beerService.fetchByCriteria(filter);
       return Lists.newArrayList(result);
    }
 

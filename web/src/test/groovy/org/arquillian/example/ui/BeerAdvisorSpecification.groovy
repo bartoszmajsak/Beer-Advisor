@@ -21,8 +21,11 @@ import org.arquillian.example.ui.web.BeerAdvisorPage
 import spock.lang.*
 
 /**
- * 
- * @author bartek
+ *
+ * Acceptance tests for Beer Advisor app covering
+ * its search capabilities. Tests can be treated as
+ * executable specifications. They are written
+ * in <a href="">gherkin language</a>
  *
  */
 @Stepwise
