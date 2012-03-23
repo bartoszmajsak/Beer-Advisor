@@ -14,7 +14,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
-public class BeerAdvisor
+/**
+ * Main page of the Beer Advisor app.
+ *
+ * Provides following functionalities:
+ * <ul>
+ *  <li>Searching for beers using some criteria</li>
+ *  <li>Getting details of the selected beer </li>
+ * </ul>
+ */
+public class BeerAdvisorPage
 {
 
    private static final int SECONDS_TO_WAIT = 2;
@@ -28,9 +37,9 @@ public class BeerAdvisor
    private final WebDriver driver;
 
    @FindBy(id = "advisor:beerSearch")
-   WebElement searchBox;
+   private WebElement searchBox;
 
-   public BeerAdvisor(WebDriver driver, String location)
+   public BeerAdvisorPage(WebDriver driver, String location)
    {
       this.driver = driver;
       driver.get(location);
@@ -44,29 +53,48 @@ public class BeerAdvisor
 
       waitUntilTableContentChanged();
 
+      return transformRowsToBeers();
+   }
+
+   /**
+    * Gets details of the first beer matching the criteria.
+    */
+   public Beer detailsOf(String criteria)
+   {
+      return openDetailsForFirstMatchingBeer(criteria);
+   }
+
+   // --- Private methods
+
+   private Beer openDetailsForFirstMatchingBeer(String criteria)
+   {
+      linkToFirstMatchingBeer(criteria).click();
+      return new BeerDetailsPage(driver).extract();
+   }
+
+   private WebElement linkToFirstMatchingBeer(String criteria)
+   {
+      Beer firstBeerMatchingCriteria = searchFor(criteria).get(0);
+
+      final String beerLinkXpath = String.format(BEER_LINK, firstBeerMatchingCriteria.getName());
+      final WebElement beerLink = driver.findElement(By.xpath(beerLinkXpath));
+      return beerLink;
+   }
+
+   private List<Beer> transformRowsToBeers()
+   {
       final List<WebElement> foundResultRows = driver.findElements(By.xpath(RESULT_TABLE_XPATH));
       return Lists.transform(foundResultRows, new BeerRowsExtractor());
    }
 
-   public Beer detailsOf(String criteria)
-   {
-      Beer strongest = searchFor(criteria).get(0);
-
-      String beerLinkXpath = String.format(BEER_LINK, strongest.getName());
-      WebElement beerLink = driver.findElement(By.xpath(beerLinkXpath));
-
-      beerLink.click();
-
-      BeerDetails beerDetails = PageFactory.initElements(driver, BeerDetails.class);
-      return beerDetails.getBeer();
-   }
-
-   // Private methods
-
+   /**
+    * Beer table content is loaded through AJAX so we
+    * need to wait for new content to appear.
+    */
    private void waitUntilTableContentChanged()
    {
       final List<WebElement> tableRows = driver.findElements(By.xpath(RESULT_TABLE_XPATH));
-      ExpectedCondition<Boolean> rowsInTableChangedCondition = new ExpectedCondition<Boolean>()
+      final ExpectedCondition<Boolean> rowsInTableChangedCondition = new ExpectedCondition<Boolean>()
       {
          @Override
          public Boolean apply(WebDriver input)
@@ -76,7 +104,8 @@ public class BeerAdvisor
             return domTableContentChanged;
          }
       };
-      WebDriverWait wait = new WebDriverWait(driver, SECONDS_TO_WAIT, POLL_EVERY_MS);
+
+      final WebDriverWait wait = new WebDriverWait(driver, SECONDS_TO_WAIT, POLL_EVERY_MS);
       wait.until(rowsInTableChangedCondition);
    }
 

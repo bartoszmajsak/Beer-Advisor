@@ -21,13 +21,14 @@ import com.google.common.base.Predicate;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Sets;
 
-
-@ApplicationScoped
-@Alternative
-/*
+/**
  * Until we implement repository/dao layer we can use
  * this stub for keeping our acceptance (end-to-end) tests green.
+ *
+ * @see Deployments
  */
+@ApplicationScoped
+@Alternative
 public class SkeletonBeerRepository implements BeerRepository
 {
    private Map<Long, Beer> beers = new HashMap<Long, Beer>();

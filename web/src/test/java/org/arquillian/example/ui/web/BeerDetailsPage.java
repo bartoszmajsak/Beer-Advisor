@@ -7,7 +7,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
-public class BeerDetails
+/**
+ * Page object encapsulating "beer details" page.
+ */
+public class BeerDetailsPage
 {
 
    @FindBy(id = "brewery")
@@ -22,19 +25,21 @@ public class BeerDetails
    @FindBy(id = "price")
    private WebElement priceElement;
 
-   public BeerDetails(WebDriver driver)
+   public BeerDetailsPage(WebDriver driver)
    {
       PageFactory.initElements(driver, this);
    }
 
-   public Beer getBeer()
+   public Beer extract()
    {
-      Beer beer = new Beer(nameElement.getText());
+      final Beer beer = new Beer(nameElement.getText());
       beer.setBrewery(breweryElement.getText().trim());
       beer.setAlcohol(extractAlcohol());
       beer.setPrice(extractPrice());
       return beer;
    }
+
+   // --- Private methods
 
    private BigDecimal extractPrice()
    {
@@ -51,6 +56,5 @@ public class BeerDetails
       BigDecimal alcohol = BigDecimal.valueOf(Double.valueOf(alcoholText));
       return alcohol;
    }
-
 
 }

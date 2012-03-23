@@ -17,9 +17,15 @@ import org.openqa.selenium.WebDriver
 import org.arquillian.example.ui.utils.BeersAssert
 import org.arquillian.example.ui.utils.Deployments
 import org.arquillian.example.ui.web.Beer
-import org.arquillian.example.ui.web.BeerAdvisor
+import org.arquillian.example.ui.web.BeerAdvisorPage
 import spock.lang.*
 
+/**
+ * 
+ * @author bartek
+ *
+ */
+@Stepwise
 class BeerAdvisorSpecification extends Specification
 {
    @Deployment(testable = false)
@@ -34,53 +40,32 @@ class BeerAdvisorSpecification extends Specification
    @Drone
    WebDriver driver
 
-   def setup()
-   {
-      // make the driver more patient for our VM environments :)
-      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS)
-   }
-
    @Test
-   def "Should find all Swiss beers"()
+   def "Finding all belgian beers"()
    {
-      given: "On the main page"
-         def bugel = new Beer("Bügel")
-         def appenzeller = new Beer("Appenzeller Schwarzer Kristall")
-         def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
-
-      when: "Enter 'from switzerland' as the search criteria"
-         def beers = beerAdvisor.searchFor("from switzerland")
-
-      then: "You should see all Swiss beers"
-         BeersAssert.assertThat(beers).shouldContain(bugel, appenzeller)
-   }
-
-   @Test
-   def "Should find all belgian beers"()
-   {
-      given: "On the main page"
+      given: "I'm on the main page"
          def delirium = new Beer("Delirium Tremens")
          def kwak = new Beer("Pauwel Kwak")
-         def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
+         def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
-      when: "Enter 'from belgium' as the search criteria"
+      when: "I enter 'from belgium' as the search criteria"
          def beers = beerAdvisor.searchFor("from belgium")
 
-      then: "You should see all Belgian beers"
+      then: "I should see Delirium and Kwak"
          BeersAssert.assertThat(beers).shouldContain(delirium, kwak)
    }
 
    @Test
-   def "Should find cheapest beer"()
+   def "Cheapest beer"()
    {
-      given: "On the main page"
+      given: "I'm on the main page"
          def expectedBeerName = "Mocny Full"
-         def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
+         def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
-      when: "Enter 'cheapest' as the search criteria and click on the beer"
+      when: "I search for the 'cheapest' beer"
          def beers = beerAdvisor.searchFor("cheapest")
 
-      then: "You should see the best Polish beer ever created ;)"
+      then: "I should see the best Polish beer ever created ;)"
          assertThat(beers).hasSize(1)
          beers.get(0).shouldBeNamed(expectedBeerName)
    }
@@ -88,21 +73,17 @@ class BeerAdvisorSpecification extends Specification
    @Test
    def "Should find details of the strongest beer"()
    {
-      given: "On the main page"
-         def expectedBeerName = "End of history"
-         def expectedBrewery = "Brew Dog"
-         def expectedPrice = BigDecimal.valueOf(765.0)
-         def expectedAlcohol = BigDecimal.valueOf(55.0)
+      given: "I'm on the main page"
+         def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
-         def beerAdvisor = new BeerAdvisor(driver, deploymentUrl.toString())
-
-      when: "Enter 'strongest' as the search criteria and click on the beer"
+      when: "I enter 'strongest' as the search criteria and click on the beer"
          def beer = beerAdvisor.detailsOf("strongest")
 
-      then: "You should see detailed information about the strongest beer in the world"
-         beer.shouldBeNamed(expectedBeerName)
-             .shouldBeFrom(expectedBrewery)
-             .shouldCost(expectedPrice)
-             .shouldHaveAlcoholPercentageOf(expectedAlcohol)
+      then: "I should see detailed information about the strongest beer in the world"
+         beer.shouldBeNamed("End of history")
+             .shouldBeFrom("Brew Dog")
+             .shouldCost(765.0)
+             .shouldHaveAlcoholPercentageOf(55.0)
    }
+
 }

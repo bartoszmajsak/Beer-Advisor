@@ -8,6 +8,13 @@ import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
+/**
+ * Represent beer exposed in the UI.
+ *
+ * Contains handy method to assert tge state (using fluent interface).
+ *
+ * @see BeerDetailsPage
+ */
 public class Beer
 {
 
@@ -30,15 +37,15 @@ public class Beer
       return this;
    }
 
-   public Beer shouldCost(BigDecimal price)
+   public Beer shouldCost(Double price)
    {
-      assertThat(this.price).isEqualByComparingTo(price);
+      assertThat(this.price).isEqualByComparingTo(BigDecimal.valueOf(price));
       return this;
    }
 
-   public Beer shouldHaveAlcoholPercentageOf(BigDecimal alcohol)
+   public Beer shouldHaveAlcoholPercentageOf(Double alcohol)
    {
-      assertThat(this.alcohol).isEqualByComparingTo(alcohol);
+      assertThat(this.alcohol).isEqualByComparingTo(BigDecimal.valueOf(alcohol));
       return this;
    }
 

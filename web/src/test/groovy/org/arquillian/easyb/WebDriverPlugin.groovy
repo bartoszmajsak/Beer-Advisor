@@ -5,6 +5,13 @@ import org.openqa.selenium.WebDriver
 import org.openqa.selenium.firefox.FirefoxDriver
 import org.openqa.selenium.support.events.EventFiringWebDriver
 
+/**
+ * Tiny easyb plugin to manage WebDriver initialization and cleanup transparently
+ * in the scenario.
+ *
+ * @see BeerAdvisorSearch.story
+ *
+ */
 class WebDriverPlugin extends BasePlugin {
 
     private WebDriver driver;
