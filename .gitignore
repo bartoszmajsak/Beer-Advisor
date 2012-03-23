@@ -9,6 +9,7 @@
 *.ipr
 *.iws
 .idea
+out/
 
 # Gradle
 .gradle/
