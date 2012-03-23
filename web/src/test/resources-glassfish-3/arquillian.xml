@@ -5,16 +5,17 @@
 
   <container qualifier="glassfish" default="true">
     <configuration>
-      <property name="sunResourcesXml">src/test/resources-glassfish-3/glassfish-resources.xml</property>
+      <property name="resourcesXml">src/test/resources-glassfish-3/glassfish-resources.xml</property>
       <property name="bindHttpPort">9090</property>
     </configuration>
   </container>
 
   <extension qualifier="webdriver">
     <property name="implementationClass">org.openqa.selenium.chrome.ChromeDriver</property>
-    <property name="chromeDriverBinary">/usr/bin/google-chrome/chromedriver</property>
+    <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
   </extension>
 
+  <!-- Binds implementation of the driver to @Firefox qualifiers -->
   <extension qualifier="webdriver-firefox">
     <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
   </extension>

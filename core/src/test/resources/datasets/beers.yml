@@ -23,40 +23,47 @@ Beer:
     name: "Mocny Full"
     price: 1.0
     type: LAGER
+    code: mocny_full
     brewery_id: 1
   - id: 2
     alcohol: 55.0
     name: "End of history"
     price: 765
     type: BLOND_ALE
+    code: end_of_history
     brewery_id: 2
   - id: 3
     alcohol: 41.0
     name: "Sink The Bismarck!"
     price: 64.0
     type: QUADRUPEL_IPA
+    code: bismarck
     brewery_id: 2
   - id: 4
     alcohol: 8.5
     name: "Delirium Tremens"
     price: 10.0
     type: PALE_ALE
+    code: delirium
     brewery_id: 3
   - id: 5
     alcohol: 8.4
     name: "Pauwel Kwak"
     price: 4.0
     type: AMBER
+    code: kwak
     brewery_id: 4
   - id: 6
     alcohol: 4.8
     name: "Bügel"
     price: 3.0
     type: VIENNA
+    code: bugel
     brewery_id: 5
   - id: 7
     alcohol: 6.3
     name: "Appenzeller Schwarzer Kristall"
     price: 4.0
     type: SCHWARZBIER
+    code: schwarzer_kristall
     brewery_id: 6
