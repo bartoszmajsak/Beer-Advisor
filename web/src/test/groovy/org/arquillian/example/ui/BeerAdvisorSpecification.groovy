@@ -107,7 +107,7 @@ class BeerAdvisorSpecification extends Specification
 
       then: "Error message should be displayed"
          Thread.sleep(1000)
-         beerAdvisorPage.errorMessageShouldBeDisplayed("No beers matching specified criteria 'aAa'")
+         beerAdvisorPage.errorMessageShouldBeDisplayed("No beers matching specified criteria 'aAa'.")
    }
 
 }
