@@ -17,8 +17,16 @@
     </configuration>
   </container>
 
+  <!--
+    Changing to Chrome until Selenium will get native events fixed for Firefox 11.
+    Sending ENTER does not work.
+    <extension qualifier="webdriver">
+      <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+    </extension>
+  -->
   <extension qualifier="webdriver">
-    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+    <property name="implementationClass">org.openqa.selenium.chrome.ChromeDriver</property>
+    <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
   </extension>
 
 </arquillian>
