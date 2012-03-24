@@ -8,7 +8,7 @@ public class BeerCriteriaTest
 {
 
    @Test(expected = NullPointerException.class)
-   public void shouldThrowExceptionIfCriteriaStringIsNull() throws Exception
+   public void should_throw_exception_if_criteria_string_is_null() throws Exception
    {
       // given
       String criteriaString = null;
@@ -21,7 +21,7 @@ public class BeerCriteriaTest
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionIfCriteriaStringIsEmpty() throws Exception
+   public void should_throw_exception_if_criteria_string_is_empty() throws Exception
    {
       // given
       String criteriaString = "";
@@ -34,7 +34,7 @@ public class BeerCriteriaTest
    }
 
    @Test(expected = IllegalArgumentException.class)
-   public void shouldThrowExceptionIfCriteriaStringIsBlank() throws Exception
+   public void should_throw_exception_if_criteria_string_is_blank() throws Exception
    {
       // given
       String criteriaString = "                     ";
@@ -47,7 +47,7 @@ public class BeerCriteriaTest
    }
 
    @Test
-   public void shouldReturnUnknownIfCriteriaStringIsNotRecognized() throws Exception
+   public void should_return_unknown_if_criteria_string_is_not_recognized() throws Exception
    {
       // given
       String criteriaString = "everything";
@@ -60,7 +60,7 @@ public class BeerCriteriaTest
    }
 
    @Test
-   public void shouldRecognizeAllBeerCriteria() throws Exception
+   public void should_recognize_all_beer_criteria() throws Exception
    {
       // given
       String criteriaString = "all";
@@ -73,7 +73,7 @@ public class BeerCriteriaTest
    }
 
    @Test
-   public void shouldRecognizeBelgiumBeerCriteria() throws Exception
+   public void should_recognize_belgium_beer_criteria() throws Exception
    {
       // given
       String criteriaString = "from Belgium    ";
@@ -86,7 +86,7 @@ public class BeerCriteriaTest
    }
 
    @Test
-   public void shouldRecognizeStrongestBeerCriteria() throws Exception
+   public void should_recognize_strongest_beer_criteria() throws Exception
    {
       // given
       String criteriaString = "   STRONGEST   ";
@@ -99,7 +99,7 @@ public class BeerCriteriaTest
    }
 
    @Test
-   public void shouldRecognizeCheapestBeerCriteria() throws Exception
+   public void should_recognize_cheapest_beer_criteria() throws Exception
    {
       // given
       String criteriaString = "cheapest";

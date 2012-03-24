@@ -39,7 +39,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindStrongestBeer() throws Exception
+   public void should_find_strongest_beer() throws Exception
    {
       // given
       String expectedName = "End of history";
@@ -56,7 +56,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindCheapestBeer() throws Exception
+   public void should_find_cheapest_beer() throws Exception
    {
       // given
       String expectedName = "Mocny Full";
@@ -73,7 +73,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindAllBelgianBeers() throws Exception
+   public void should_find_all_belgian_beers() throws Exception
    {
       // given
       Country belgium = Country.BELGIUM;
@@ -87,7 +87,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindAllPolishBeers() throws Exception
+   public void should_find_all_polish_beers() throws Exception
    {
       // given
       Country poland = Country.POLAND;
@@ -101,7 +101,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldReturnAllBeers() throws Exception
+   public void should_return_all_beers() throws Exception
    {
       // given
       int expectedAmountOfBeers = 7;
@@ -115,7 +115,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldReturnBeerByItsId() throws Exception
+   public void should_return_beer_by_its_id() throws Exception
    {
       // given
       Long beerId = 1L;

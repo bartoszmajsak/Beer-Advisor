@@ -41,7 +41,7 @@ public class BeerServiceTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldReturnAllBeers() throws Exception
+   public void should_return_all_beers() throws Exception
    {
       // given
       int expectedAmountOfBeers = 7;
@@ -55,7 +55,7 @@ public class BeerServiceTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindStrongestBeer() throws Exception
+   public void should_find_strongest_beer() throws Exception
    {
       // given
       String strongestCriteria = "strongest";
@@ -73,7 +73,7 @@ public class BeerServiceTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindCheapestBeer() throws Exception
+   public void should_find_cheapest_beer() throws Exception
    {
       // given
       String expectedName = "Mocny Full";
@@ -91,7 +91,7 @@ public class BeerServiceTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void shouldFindAllBelgianBeers() throws Exception
+   public void should_find_all_belgian_beers() throws Exception
    {
       // given
       String belgiumCriteria = "from Belgium";

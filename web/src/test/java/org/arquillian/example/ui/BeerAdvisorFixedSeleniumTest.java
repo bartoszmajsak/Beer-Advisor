@@ -6,7 +6,6 @@ import static org.junit.Assert.fail;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
@@ -44,7 +43,7 @@ public class BeerAdvisorFixedSeleniumTest
    }
 
    @Test
-   public void shouldFindStrongestBeer() throws Exception
+   public void should_find_strongest_beer() throws Exception
    {
       selenium.open("/home.jsf");
       selenium.type("id=advisor:beerSearch", "strongest");

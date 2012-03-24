@@ -27,8 +27,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 /**
- *
  * Simple (and a bit tedious) way of writing JPA tests.
+ *
  * @see BeerRepositoryTest test using Arquillian Persistence Extension.
  */
 @RunWith(Arquillian.class)
@@ -137,7 +137,7 @@ public class BeerRepositoryBasicJpaTest
    }
 
    @Test
-   public void shouldFindStrongestBeer() throws Exception
+   public void should_find_strongest_beer() throws Exception
    {
       // given
       String expectedName = "End of history";

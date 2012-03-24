@@ -36,7 +36,7 @@ public class BeersInserterTest
 
    @Test
    @ShouldMatchDataSet("expected-beers.yml")
-   public void shouldReturnAllBeers() throws Exception
+   public void should_return_all_beers() throws Exception
    {
       assertThat(beersInserter).isNotNull();
    }
