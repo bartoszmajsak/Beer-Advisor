@@ -5,6 +5,7 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.net.URL;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.arquillian.drone.browser.Firefox;
 import org.arquillian.example.ui.utils.BeersAssert;
@@ -17,6 +18,7 @@ import org.jboss.arquillian.drone.api.annotation.Drone;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -53,6 +55,13 @@ public class BeerAdvisorDroneTest
 
    @Drone
    WebDriver driver;
+
+   @Before
+   public void setup()
+   {
+      // make the driver more patient for our VM environments :)
+      driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+   }
 
    @Test
    public void should_find_cheapest_beer()
