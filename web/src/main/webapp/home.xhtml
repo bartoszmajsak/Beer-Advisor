@@ -9,6 +9,7 @@
 			<div id="search_beer">
 				<h:inputText id="beerSearch" value="#{beerAdvisorController.criteria}"
 							styleClass="beer-search-field"
+							autocomplete="off"
 							onkeypress="if (event.keyCode == 13) { this.blur(); }">
 					<f:ajax event="blur" render="beers" 
 							listener="#{beerAdvisorController.loadBeers}" />
