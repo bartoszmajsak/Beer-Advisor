@@ -229,3 +229,10 @@ div#menu_content div#top_logo a {
 #beer-results-table tbody tr:hover td {
 	color: #009;
 }
+
+.criteria-not-found {
+	margin: 16px 0px 0px 50px;
+	color:#f00;
+	font-size: 16px;
+	font-weight:bold;
+}

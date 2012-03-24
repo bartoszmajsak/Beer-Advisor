@@ -1,9 +1,11 @@
 package org.arquillian.example.controller;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.event.AjaxBehaviorEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -17,29 +19,52 @@ import com.google.common.collect.Lists;
 public class BeerAdvisorController
 {
 
-   @Inject
-   BeerService beerService;
+   private static final String NONE = "none";
 
-   private String filter;
+   private boolean notFound;
+
+   private List<Beer> beers = Collections.emptyList();
+
+   @Inject
+   private BeerService beerService;
+
+   private String criteria;
+
+   public void loadBeers(AjaxBehaviorEvent event)
+   {
+      if (criteria == null || criteria.trim().isEmpty())
+      {
+         criteria = NONE;
+      }
+
+      final Set<Beer> result = beerService.fetchByCriteria(criteria);
+      notFound = result.isEmpty() && !NONE.equals(criteria);
+      beers = Lists.newArrayList(result);
+   }
 
    public List<Beer> getBeers()
    {
-      if (filter == null || filter.trim().isEmpty())
-      {
-         filter = "none";
-      }
-      final Set<Beer> result = beerService.fetchByCriteria(filter);
-      return Lists.newArrayList(result);
+      return beers;
    }
 
-   public String getFilter()
+   public String getCriteria()
    {
-      return filter;
+      return criteria;
    }
 
-   public void setFilter(String filter)
+   public void setCriteria(String filter)
    {
-      this.filter = filter;
+      this.criteria = filter;
+   }
+
+   public boolean isNotFound()
+   {
+      return notFound;
+   }
+
+   public void setNotFound(boolean notFound)
+   {
+      this.notFound = notFound;
    }
 
 }

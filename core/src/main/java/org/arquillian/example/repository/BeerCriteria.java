@@ -1,9 +1,9 @@
 package org.arquillian.example.repository;
 
-import org.arquillian.example.repository.exception.UnknownBeerCriteriaException;
+import java.util.EnumSet;
+import java.util.Set;
 
 import com.google.common.base.Preconditions;
-
 
 public enum BeerCriteria
 {
@@ -12,7 +12,8 @@ public enum BeerCriteria
    STRONGEST("strongest"),
    BELGIUM("from belgium"),
    SWITZERLAND("from switzerland"),
-   NONE("none");
+   NONE("none"),
+   UNKNOWN("---");
 
    private final String criteriaString;
 
@@ -27,14 +28,16 @@ public enum BeerCriteria
       Preconditions.checkArgument(!criteriaString.trim().isEmpty(), "Criteria string should not be empty");
 
       criteriaString = criteriaString.trim().toLowerCase();
-      for (BeerCriteria beerCriteria : values())
+
+      final Set<BeerCriteria> handledCriteria = EnumSet.complementOf(EnumSet.of(UNKNOWN));
+      for (BeerCriteria beerCriteria : handledCriteria)
       {
          if (criteriaString.equals(beerCriteria.criteriaString))
          {
             return beerCriteria;
          }
       }
-      throw new UnknownBeerCriteriaException("Cannot resolve criteria for given string representation: '" + criteriaString + "'");
+      return UNKNOWN;
    }
 
 }

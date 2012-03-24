@@ -1,14 +1,21 @@
 package org.arquillian.example.ui.web;
 
+import static org.fest.assertions.Assertions.assertThat;
+
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.google.common.collect.Lists;
@@ -26,9 +33,9 @@ import com.google.common.collect.Sets;
 public class BeerAdvisorPage
 {
 
-   private static final int SECONDS_TO_WAIT = 2;
+   private static final int SECONDS_TO_WAIT = 1;
 
-   private static final int POLL_EVERY_MS = 15;
+   private static final int POLL_EVERY_MS = 60;
 
    private static final String RESULT_TABLE_XPATH = "//table[@id='beer-results-table']/tbody/tr";
 
@@ -48,10 +55,18 @@ public class BeerAdvisorPage
 
    public List<Beer> searchFor(String criteria)
    {
+      searchBox.clear();
       searchBox.sendKeys(criteria);
       searchBox.sendKeys(Keys.ENTER);
 
-      waitUntilTableContentChanged();
+      if (errorDisplayed())
+      {
+         return Collections.emptyList();
+      }
+      else
+      {
+         waitUntilTableContentChanged();
+      }
 
       return transformRowsToBeers();
    }
@@ -64,7 +79,18 @@ public class BeerAdvisorPage
       return openDetailsForFirstMatchingBeer(criteria);
    }
 
+   public void errorMessageShouldBeDisplayed(String errorMessage)
+   {
+      WebElement errorMessageTextField = getErrorMessageTextField();
+      assertThat(errorMessageTextField.getText()).isEqualTo(errorMessage);
+   }
+
    // --- Private methods
+
+   private WebElement getErrorMessageTextField()
+   {
+      return driver.findElement(By.id("advisor:error"));
+   }
 
    private Beer openDetailsForFirstMatchingBeer(String criteria)
    {
@@ -93,20 +119,38 @@ public class BeerAdvisorPage
     */
    private void waitUntilTableContentChanged()
    {
-      final List<WebElement> tableRows = driver.findElements(By.xpath(RESULT_TABLE_XPATH));
+      final Set<WebElement> originalTableRows = Sets.newHashSet(driver.findElements(By.xpath(RESULT_TABLE_XPATH)));
       final ExpectedCondition<Boolean> rowsInTableChangedCondition = new ExpectedCondition<Boolean>()
       {
          @Override
          public Boolean apply(WebDriver input)
          {
             final List<WebElement> currentTableRows = input.findElements(By.xpath(RESULT_TABLE_XPATH));
-            boolean domTableContentChanged = !Sets.newHashSet(tableRows).contains(Sets.newHashSet(currentTableRows));
+            boolean domTableContentChanged = !originalTableRows.contains(Sets.newHashSet(currentTableRows));
             return domTableContentChanged;
          }
       };
 
       final WebDriverWait wait = new WebDriverWait(driver, SECONDS_TO_WAIT, POLL_EVERY_MS);
       wait.until(rowsInTableChangedCondition);
+   }
+
+   private boolean errorDisplayed()
+   {
+      try
+      {
+         final WebDriverWait wait = new WebDriverWait(driver, SECONDS_TO_WAIT, POLL_EVERY_MS);
+         wait.until(ExpectedConditions.presenceOfElementLocated(By.id("advisor:error")));
+         return true;
+      }
+      catch (NoSuchElementException e)
+      {
+         return false;
+      }
+      catch (TimeoutException e)
+      {
+         return false;
+      }
    }
 
 }

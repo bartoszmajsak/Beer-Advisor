@@ -35,6 +35,7 @@ public class BeerService
          case STRONGEST:
             return beerRepository.strongest();
          case NONE:
+         case UNKNOWN:
             return Collections.emptySet();
       }
 

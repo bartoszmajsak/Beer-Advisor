@@ -89,4 +89,18 @@ class BeerAdvisorSpecification extends Specification
              .shouldHaveAlcoholPercentageOf(55.0)
    }
 
+   @Test
+   def "Should display error message when no result found for criteria"()
+   {
+      given: "I'm on the main page"
+         def beerAdvisorPage = new BeerAdvisorPage(driver, deploymentUrl.toString())
+
+      when: "I enter a criteria for which there is no result"
+         def beers = beerAdvisorPage.searchFor("aAa")
+
+      then: "Error message should be displayed"
+         Thread.sleep(1000)
+         beerAdvisorPage.errorMessageShouldBeDisplayed("No beers matching specified criteria 'aAa'")
+   }
+
 }

@@ -5,14 +5,21 @@
 				template="template.xhtml">
 				
 	<ui:define name="content">
-		<h:form id="advisor">
+		<h:form id="advisor" onkeypress="return event.keyCode != 13">
 			<div id="search_beer">
-				<h:inputText id="beerSearch" value="#{beerAdvisorController.filter}"
-					styleClass="beer-search-field">
-					<f:ajax event="keyup" render="beers" />
+				<h:inputText id="beerSearch" value="#{beerAdvisorController.criteria}"
+							styleClass="beer-search-field"
+							onkeypress="if (event.keyCode == 13) { this.blur(); }">
+					<f:ajax event="blur" render="beers" 
+							listener="#{beerAdvisorController.loadBeers}" />
 				</h:inputText>
 			</div>
 			<h:panelGroup id="beers">
+				<div class="criteria-not-found">
+					<h:outputText value="No beers matching specified criteria '#{beerAdvisorController.criteria}'."
+								  id="error"
+								  rendered="#{beerAdvisorController.notFound}" />
+				</div>
 				<table id="beer-results-table">
 					<thead>
 						<th>Name</th>

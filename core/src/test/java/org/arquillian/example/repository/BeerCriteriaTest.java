@@ -2,10 +2,7 @@ package org.arquillian.example.repository;
 
 import static org.fest.assertions.Assertions.assertThat;
 
-import org.arquillian.example.repository.BeerCriteria;
-import org.arquillian.example.repository.exception.UnknownBeerCriteriaException;
 import org.junit.Test;
-
 
 public class BeerCriteriaTest
 {
@@ -49,8 +46,8 @@ public class BeerCriteriaTest
       // exception should be thrown
    }
 
-   @Test(expected = UnknownBeerCriteriaException.class)
-   public void shouldThrowExceptionIfCriteriaStringIsNotRecognized() throws Exception
+   @Test
+   public void shouldReturnUnknownIfCriteriaStringIsNotRecognized() throws Exception
    {
       // given
       String criteriaString = "everything";
@@ -59,7 +56,7 @@ public class BeerCriteriaTest
       BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
       // then
-      // exception should be thrown
+      assertThat(beerCriteria).isEqualTo(BeerCriteria.UNKNOWN);
    }
 
    @Test
