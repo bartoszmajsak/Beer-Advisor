@@ -32,3 +32,6 @@ infinitest.filters
 
 # Libreoffice leftovers (XLS)
 .~lock*
+
+# Openshift
+deployments/
