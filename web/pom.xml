@@ -508,13 +508,25 @@
       </build>
     </profile>
     <profile>
-     <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-     <!-- Use this profile for any OpenShift specific customization your app will need. -->
-     <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-     <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-     <id>openshift</id>
-     <build>
-        <finalName>test</finalName>
+      <!-- When built in OpenShift the 'openshift' profile will be used when
+        invoking mvn. -->
+      <!-- Use this profile for any OpenShift specific customization your
+        app will need. -->
+      <!-- By default that is to put the resulting archive into the 'deployments'
+        folder. -->
+      <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+      <id>openshift</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.jboss.spec</groupId>
+          <artifactId>jboss-javaee-6.0</artifactId>
+          <version>1.0.0.Final</version>
+          <type>pom</type>
+          <scope>provided</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <finalName>beeradvisor</finalName>
         <plugins>
           <plugin>
             <artifactId>maven-war-plugin</artifactId>
