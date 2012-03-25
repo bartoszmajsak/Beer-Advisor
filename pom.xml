@@ -31,9 +31,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
     <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>
-
-    <!-- dependencies -->
+    <maven.compiler.target>1.6</maven.compiler.target>   
     <version.jbossas_7>7.0.2.Final</version.jbossas_7>
     <version.jboss_spec>2.0.0.Final</version.jboss_spec>
     <version.maven_surefire>2.12</version.maven_surefire>
