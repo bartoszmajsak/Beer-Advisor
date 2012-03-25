@@ -3,12 +3,11 @@
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-
   <container qualifier="openshift-express" default="true">
     <configuration>
       <property name="namespace">bmajsak</property>
-      <property name="application">test</property>
-      <property name="sshUserName">c7ffcd717cc542acb26e00f390fed8d8</property>
+      <property name="application">beeradvisortest</property>
+      <property name="sshUserName">208c47bf327d4d4bbbaf5b18c8dd472b</property>
       <!--
       Set as environment variable SSH_PASSPHRASE
       <property name="passphrase"></property>
