@@ -142,6 +142,7 @@
       <groupId>org.easyb</groupId>
       <artifactId>easyb-core</artifactId>
       <version>${version.easyb}</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.groovy</groupId>
@@ -154,16 +155,19 @@
     <dependency>
       <groupId>org.jboss.arquillian.core</groupId>
       <artifactId>arquillian-core-spi</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.test</groupId>
       <artifactId>arquillian-test-spi</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
       <groupId>org.jboss.arquillian.config</groupId>
       <artifactId>arquillian-config-api</artifactId>
+      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -227,6 +231,7 @@
       <groupId>org.jboss.arquillian.spock</groupId>
       <artifactId>arquillian-spock-container</artifactId>
       <version>${version.arquillian_spock}</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.groovy</groupId>
@@ -239,6 +244,7 @@
       <groupId>org.spockframework</groupId>
       <artifactId>spock-core</artifactId>
       <version>${version.spock}</version>
+      <scope>test</scope>
       <exclusions>
         <exclusion>
           <groupId>org.codehaus.groovy</groupId>
