@@ -29,18 +29,18 @@ public class Deployments
    public static WebArchive createSkeleton()
    {
       final MavenDependencyResolver resolver = DependencyResolvers.use(MavenDependencyResolver.class)
-            .loadMetadataFromPom("pom.xml")
-            .goOffline();
+                                                                  .loadMetadataFromPom("pom.xml")
+                                                                  .goOffline();
 
       return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor.war"))
             .addPackages(true, Beer.class.getPackage(),
                   BeerService.class.getPackage(),
                   BeerAdvisorController.class.getPackage())
-                  .addPackages(true, Filters.exclude(JpaBeerRepository.class),
-                        BeerRepository.class.getPackage())
-                        .addPackages(true, SkeletonBeerRepository.class.getPackage()) // Repository stub
-                        .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-                        .addAsLibraries(resolver.artifact("com.google.guava:guava").resolveAsFiles());
+            .addPackages(true, Filters.exclude(JpaBeerRepository.class),
+                  BeerRepository.class.getPackage())
+            .addPackages(true, SkeletonBeerRepository.class.getPackage()) // Repository stub
+            .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
+            .addAsLibraries(resolver.artifact("com.google.guava:guava").resolveAsFiles());
    }
 
    /**

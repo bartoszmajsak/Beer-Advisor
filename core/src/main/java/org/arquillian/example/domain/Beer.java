@@ -20,7 +20,7 @@ public class Beer implements Serializable
    private static final long serialVersionUID = 5892013208071126314L;
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @Basic

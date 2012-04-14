@@ -23,7 +23,7 @@ public class Brewery implements Serializable
    private static final long serialVersionUID = 1999262068535652596L;
 
    @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
    @OneToMany(cascade = CascadeType.ALL, mappedBy = "brewery")

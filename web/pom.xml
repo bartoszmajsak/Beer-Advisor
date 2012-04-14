@@ -20,7 +20,7 @@
 
     <!-- Dependencies versions -->
     <version.guava>10.0.1</version.guava>
-    <version.arquillian_drone>1.0.0.CR3</version.arquillian_drone>
+    <version.arquillian_drone>1.0.0.Final</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Alpha1</version.arquillian_spock>
     <version.selenium>2.20.0</version.selenium>
     <version.selenium.server>2.20.0</version.selenium.server>
@@ -218,6 +218,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
+      <version>1.5.10</version>
       <scope>test</scope>
     </dependency>
 

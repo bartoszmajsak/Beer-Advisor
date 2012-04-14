@@ -31,14 +31,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.build.timestamp.format>yyyyMMdd'T'HHmmss</maven.build.timestamp.format>
     <maven.compiler.source>1.6</maven.compiler.source>
-    <maven.compiler.target>1.6</maven.compiler.target>   
+    <maven.compiler.target>1.6</maven.compiler.target>
     <version.jbossas_7>7.0.2.Final</version.jbossas_7>
     <version.jboss_spec>2.0.0.Final</version.jboss_spec>
     <version.maven_surefire>2.12</version.maven_surefire>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.arquillian_core>1.0.0.CR7</version.arquillian_core>
+    <version.arquillian_core>1.0.0.Final</version.arquillian_core>
   </properties>
 
   <modules>
