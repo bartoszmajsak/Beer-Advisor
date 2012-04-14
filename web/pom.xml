@@ -493,7 +493,7 @@
         <dependency>
           <groupId>org.jboss.arquillian.container</groupId>
           <artifactId>arquillian-openshift-express</artifactId>
-          <version>1.0.0.Alpha2</version>
+          <version>1.0.0.Beta1</version>
           <scope>test</scope>
         </dependency>
       </dependencies>
