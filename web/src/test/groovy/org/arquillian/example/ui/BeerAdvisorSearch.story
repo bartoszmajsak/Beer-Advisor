@@ -3,21 +3,25 @@ package org.arquillian.example.ui
 import java.util.List;
 
 import org.openqa.selenium.firefox.FirefoxDriver
+import org.arquillian.example.domain.Type;
 import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisorPage
 import org.arquillian.example.ui.utils.BeersAssert
 
-
 description "Beer Advisor killing search features"
 
-using 'WebDriver' // loads easyb plugin
+using "WebDriver", "webdriver" // loads easyb plugin and make it available as property
+
+webdriver.configure { driver ->
+   driver.type = "chrome"
+}
 
 scenario "Searching for all Swiss beers using natural language", {
 
        given "I am on the main page", {
           bugel = new Beer("Bügel")
           appenzeller = new Beer("Appenzeller Schwarzer Kristall")
-          beerAdvisorPage = new BeerAdvisorPage(driver, "http://beeradvisor-bmajsak.rhcloud.com/")
+          beerAdvisorPage = new BeerAdvisorPage(driver, "http://beeradvisor.bartoszmajsak.com/")
        }
 
        when "I enter 'from switzerland' as the search criteria", {
