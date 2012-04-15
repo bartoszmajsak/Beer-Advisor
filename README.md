@@ -7,4 +7,4 @@ Demonstrates various aspects of [Arquillian](https://github.com/arquillian)
 
 * Web tests using [Arquillian Drone](https://github.com/arquillian/arquillian-extension-persistence) and [Spock](https://github.com/arquillian/arquillian-testrunner-spock)
 
-Running example available on [OpenShift](http://beeradvisor-bmajsak.rhcloud.com/)
+Running example available on [OpenShift](http://beeradvisor.bartoszmajsak.com/)
