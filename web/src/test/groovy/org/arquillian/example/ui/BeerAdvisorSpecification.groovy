@@ -59,7 +59,7 @@ class BeerAdvisorSpecification extends Specification
          def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
       when: "I enter 'from belgium' as the search criteria"
-         def beers = beerAdvisor.searchFor("from belgium")
+         def beers = beerAdvisor.searchFor "from belgium"
 
       then: "I should see Delirium and Kwak"
          BeersAssert.assertThat(beers).shouldContain(delirium, kwak)
@@ -73,7 +73,7 @@ class BeerAdvisorSpecification extends Specification
          def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
       when: "I search for the 'cheapest' beer"
-         def beers = beerAdvisor.searchFor("cheapest")
+         def beers = beerAdvisor.searchFor "cheapest"
 
       then: "I should see the best Polish beer ever created ;)"
          assertThat(beers).hasSize(1)
@@ -87,12 +87,12 @@ class BeerAdvisorSpecification extends Specification
          def beerAdvisor = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
       when: "I enter 'strongest' as the search criteria and click on the beer"
-         def beer = beerAdvisor.detailsOf("strongest")
+         def beer = beerAdvisor.detailsOf "strongest"
 
       then: "I should see detailed information about the strongest beer in the world"
          beer.shouldBeNamed("End of history")
              .shouldBeFrom("Brew Dog")
-             .shouldCost(765.0)
+             .shouldCosts(765.0)
              .shouldHaveAlcoholPercentageOf(55.0)
    }
 
@@ -103,11 +103,23 @@ class BeerAdvisorSpecification extends Specification
          def beerAdvisorPage = new BeerAdvisorPage(driver, deploymentUrl.toString())
 
       when: "I enter a criteria for which there is no result"
-         def beers = beerAdvisorPage.searchFor("aAa")
+         def beers = beerAdvisorPage.searchFor "aAa"
 
       then: "Error message should be displayed"
-         Thread.sleep(1000)
-         beerAdvisorPage.errorMessageShouldBeDisplayed("No beers matching specified criteria 'aAa'.")
+         beerAdvisorPage.errorMessageShouldBeDisplayed "No beers matching specified criteria 'aAa'."
+   }
+
+   @Test
+   def "Should display available criteria when wrong criteria have been entered"()
+   {
+      given: "I'm on the main page"
+         def beerAdvisorPage = new BeerAdvisorPage(driver, deploymentUrl.toString())
+
+      when: "I enter a criteria for which there is no result"
+         def beers = beerAdvisorPage.searchFor "aAa"
+
+      then: "All available criteria should be suggested"
+         beerAdvisorPage.shouldSuggest "all", "cheapest", "strongest", "from belgium", "from switzerland"
    }
 
 }

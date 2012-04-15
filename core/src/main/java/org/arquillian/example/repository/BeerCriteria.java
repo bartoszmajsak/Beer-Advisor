@@ -1,9 +1,11 @@
 package org.arquillian.example.repository;
 
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 import com.google.common.base.Preconditions;
+import com.google.common.collect.Lists;
 
 public enum BeerCriteria
 {
@@ -22,6 +24,11 @@ public enum BeerCriteria
       this.criteriaString = criteriaString;
    }
 
+   public String getCriteriaString()
+   {
+      return criteriaString;
+   }
+
    public static BeerCriteria fromStringDescription(String criteriaString)
    {
       Preconditions.checkNotNull(criteriaString, "Criteria string should not be null");
@@ -38,6 +45,11 @@ public enum BeerCriteria
          }
       }
       return UNKNOWN;
+   }
+
+   public static List<BeerCriteria> allCriteria()
+   {
+      return Lists.newArrayList(EnumSet.complementOf(EnumSet.of(NONE, UNKNOWN)));
    }
 
 }

@@ -10,8 +10,10 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import org.arquillian.example.domain.Beer;
+import org.arquillian.example.repository.BeerCriteria;
 import org.arquillian.example.service.BeerService;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 
 @Named
@@ -40,6 +42,18 @@ public class BeerAdvisorController
       final Set<Beer> result = beerService.fetchByCriteria(criteria);
       notFound = result.isEmpty() && !NONE.equals(criteria);
       beers = Lists.newArrayList(result);
+   }
+
+   public List<String> getAvailableCriteria()
+   {
+      return Lists.transform(BeerCriteria.allCriteria(), new Function<BeerCriteria, String>()
+      {
+         @Override
+         public String apply(BeerCriteria criterion)
+         {
+            return criterion.getCriteriaString();
+         }
+      });
    }
 
    public List<Beer> getBeers()

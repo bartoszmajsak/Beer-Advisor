@@ -18,6 +18,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 
@@ -85,7 +86,31 @@ public class BeerAdvisorPage
       assertThat(errorMessageTextField.getText()).isEqualTo(errorMessage);
    }
 
+   public void shouldSuggest(String ... suggestedCriteria)
+   {
+      final List<String> criteria = extractListElements("available-criteria");
+      assertThat(criteria).containsOnly(suggestedCriteria);
+   }
+
    // --- Private methods
+
+   private List<String> extractListElements(final String listId)
+   {
+      final List<WebElement> listElements = findListElements(listId);
+      final List<String> criteria = Lists.transform(listElements, new Function<WebElement, String>() {
+         @Override
+         public String apply(WebElement li)
+         {
+            return li.getText();
+         }
+      });
+      return criteria;
+   }
+
+   private List<WebElement> findListElements(final String listId)
+   {
+      return driver.findElement(By.id(listId)).findElements(By.tagName("li"));
+   }
 
    private WebElement getErrorMessageTextField()
    {

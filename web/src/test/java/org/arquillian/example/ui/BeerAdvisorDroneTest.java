@@ -89,7 +89,7 @@ public class BeerAdvisorDroneTest
       // then
       beer.shouldBeNamed("End of history")
           .shouldBeFrom("Brew Dog")
-          .shouldCost(765.0)
+          .shouldCosts(765.0)
           .shouldHaveAlcoholPercentageOf(55.0);
    }
 

@@ -17,9 +17,16 @@
 			</div>
 			<h:panelGroup id="beers">
 				<div class="criteria-not-found">
-					<h:outputText value="No beers matching specified criteria '#{beerAdvisorController.criteria}'."
-								  id="error"
-								  rendered="#{beerAdvisorController.notFound}" />
+					<h:panelGroup rendered="#{beerAdvisorController.notFound}" >
+						<h:outputText value="No beers matching specified criteria '#{beerAdvisorController.criteria}'."
+									  id="error" /><br /><br />
+						<span>Please try one of the following:</span>
+						<ul id="available-criteria">
+							<ui:repeat value="#{beerAdvisorController.availableCriteria}" var="criterion">
+								<li>#{criterion}</li>							
+							</ui:repeat>
+						</ul>
+					</h:panelGroup>
 				</div>
 				<table id="beer-results-table">
 					<thead>

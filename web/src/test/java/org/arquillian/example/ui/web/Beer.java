@@ -37,7 +37,7 @@ public class Beer
       return this;
    }
 
-   public Beer shouldCost(Double price)
+   public Beer shouldCosts(Double price)
    {
       assertThat(this.price).isEqualByComparingTo(BigDecimal.valueOf(price));
       return this;
