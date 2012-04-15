@@ -6,8 +6,9 @@
   <container qualifier="openshift-express" default="true">
     <configuration>
       <property name="namespace">bmajsak</property>
-      <property name="application">beeradvisortest</property>
-      <property name="sshUserName">208c47bf327d4d4bbbaf5b18c8dd472b</property>
+      <property name="application">arqtest</property>
+      <!-- Important: Add this host to list of known hosts for ssh connection -->
+      <property name="sshUserName">d31c330fcce24f238635a8d1db10e4f7</property>
       <!--
       Set as environment variable SSH_PASSPHRASE
       <property name="passphrase"></property>
