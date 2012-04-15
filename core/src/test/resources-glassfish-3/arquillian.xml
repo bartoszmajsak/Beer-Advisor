@@ -17,4 +17,8 @@
     <property name="dumpData">true</property>
   </extension>
 
+  <extension qualifier="persistence-dbunit">
+    <property name="datatypeFactory">org.dbunit.ext.hsqldb.HsqldbDataTypeFactory</property>
+  </extension>
+
 </arquillian>
