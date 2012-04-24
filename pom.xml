@@ -37,6 +37,7 @@
     <version.maven_surefire>2.12</version.maven_surefire>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
+    <version.guava>10.0.1</version.guava>
     <version.hsqldb>1.8.0.10</version.hsqldb>
     <version.arquillian_core>1.0.0.Final</version.arquillian_core>
   </properties>
@@ -54,6 +55,12 @@
         <version>${version.arquillian_core}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${version.guava}</version>
       </dependency>
 
       <dependency>

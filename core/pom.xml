@@ -16,7 +16,6 @@
     <version.maven_compiler>2.3.2</version.maven_compiler>
     <version.hibernate_jpamodelgen>1.2.0.Final</version.hibernate_jpamodelgen>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.guava>10.0.1</version.guava>
     <version.arquillian_persistence>1.0.0.Alpha4</version.arquillian_persistence>
   </properties>
 
@@ -25,7 +24,6 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>${version.guava}</version>
     </dependency>
 
     <dependency>

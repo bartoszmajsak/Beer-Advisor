@@ -19,7 +19,6 @@
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
 
     <!-- Dependencies versions -->
-    <version.guava>10.0.1</version.guava>
     <version.arquillian_drone>1.0.0.Final</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Alpha1</version.arquillian_spock>
     <version.selenium>2.21.0</version.selenium>
@@ -123,7 +122,6 @@
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>${version.guava}</version>
     </dependency>
 
     <dependency>
@@ -211,6 +209,13 @@
       <groupId>org.jboss.shrinkwrap.resolver</groupId>
       <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <!-- Conflicts with Guava 11.0.2 -->
+          <groupId>com.google.collections</groupId>
+          <artifactId>google-collections</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -392,7 +397,6 @@
         <plugins>
           <plugin>
             <artifactId>maven-surefire-plugin</artifactId>
-            <version>${version.maven_surefire}</version>
             <configuration>
               <systemPropertyVariables>
                 <container.target.dir>${container.target.dir}</container.target.dir>

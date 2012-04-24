@@ -41,8 +41,10 @@ public class BeerAdvisorDroneTest
 {
    /**
     * Deploys your web application and executes tests from the client side.
-    * testable=false flag means that the deployment package does not contain any tests to be run on the server side.
-    * @return
+    * testable=false flag means that the deployment package does not contain
+    * any tests to be run on the server side.
+    *
+    * @return WebArchive created by ShrinkWrap which is deployed in the target container
     */
    @Deployment(testable = false)
    public static WebArchive createDeployment()
