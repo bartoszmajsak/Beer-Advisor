@@ -71,6 +71,7 @@ public class BeerRepositoryBasicJpaTest
        utx.begin();
        em.joinTransaction();
        em.createQuery("delete from Beer").executeUpdate();
+       em.createQuery("delete from Brewery").executeUpdate();
        utx.commit();
    }
 

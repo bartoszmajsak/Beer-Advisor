@@ -19,7 +19,6 @@ import org.arquillian.example.domain.Brewery;
 import org.arquillian.example.domain.Brewery_;
 import org.arquillian.example.domain.Country;
 
-
 @RequestScoped
 public class JpaBeerRepository implements BeerRepository
 {
@@ -57,7 +56,7 @@ public class JpaBeerRepository implements BeerRepository
             strongestAlcoholPercentage());
       criteriaQuery.select(fromBeers).where(strongestBeerPredicate);
 
-      Set<Beer> result = new HashSet<Beer>();
+      final Set<Beer> result = new HashSet<Beer>();
       result.addAll(em.createQuery(criteriaQuery).getResultList());
 
       return result;
@@ -74,7 +73,7 @@ public class JpaBeerRepository implements BeerRepository
       Predicate isFromCountry = criteriaBuilder.equal(beers.get(Beer_.brewery).get(Brewery_.country), country);
       CriteriaQuery<Beer> select = query.select(beers).where(isFromCountry);
 
-      Set<Beer> result = new HashSet<Beer>();
+      final Set<Beer> result = new HashSet<Beer>();
       result.addAll(em.createQuery(select).getResultList());
 
       return result;
@@ -88,7 +87,7 @@ public class JpaBeerRepository implements BeerRepository
       Root<Beer> from = query.from(Beer.class);
       CriteriaQuery<Beer> select = query.select(from);
 
-      Set<Beer> result = new HashSet<Beer>();
+      final Set<Beer> result = new HashSet<Beer>();
       result.addAll(em.createQuery(select).getResultList());
 
       return result;
