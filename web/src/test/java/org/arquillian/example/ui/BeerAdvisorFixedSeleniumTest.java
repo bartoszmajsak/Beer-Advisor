@@ -13,17 +13,17 @@ import com.thoughtworks.selenium.Selenium;
 
 /**
  *
- * Fixed version of test recorded using Selenium IDE and exported
+ * Fixed version of test recorded using Selenium IDE 1.5 and exported
  * as JUnit4 WebDriverBackedSelenium.
  *
  * But this test still have bunch of problems:
  * <ul>
  *  <li>First of all test is written using low level and verbose API, which operates directly in the DOM domain.</li>
  *  <li>This makes it hard to understand when you will go back to it after a while.</li>
- *  <li>But most importantly if you keep writing tests in this style and your UI will be changed you will immediately enter the "Maintenance Hell"</li>
+ *  <li>But most importantly if you keep writing tests in this style and your UI will be changed you will immediately end up with "maintenance hell"</li>
  *  <li>Another problem is that WebDriver is managed by you and the URL is hardcoded.</li>
  *  <li>This obviously can be externalized to the system properties, but in some cases you might not know URL of your deployed application beforehand (hello cloud!).</li>
- *  <li>It also assumes that you have already build and deployed your application somewhere</li>
+ *  <li>It also assumes that you have already built and deployed your application somewhere</li>
  * </ul>
  *
  * @see BeerAdvisorDroneTest Let's have a look how Arquillian and it's Drone extension
