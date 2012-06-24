@@ -7,10 +7,10 @@ import java.util.List;
 import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -44,12 +44,15 @@ public class BeerAdvisorPage
 
    private final WebDriver driver;
 
+   private final String baseLocation;
+
    @FindBy(id = "advisor:beerSearch")
    private WebElement searchBox;
 
    public BeerAdvisorPage(WebDriver driver, String location)
    {
       this.driver = driver;
+      this.baseLocation = location;
       driver.get(location);
       PageFactory.initElements(driver, this);
    }
@@ -58,7 +61,13 @@ public class BeerAdvisorPage
    {
       searchBox.clear();
       searchBox.sendKeys(criteria);
-      searchBox.sendKeys(Keys.ENTER);
+      /*
+       * This is workaround for sending "enter key pressed" event to the search box for Firefox browser.
+       * Apparently newer versions of Selenium and Firefox are having problem with that.
+       * Using selenium wrapper solves this problem.
+       */
+//      searchBox.sendKeys(Keys.ENTER);
+      new WebDriverBackedSelenium(driver, baseLocation).keyPress(searchBox.getAttribute("id"), "\\13");
 
       if (errorDisplayed())
       {

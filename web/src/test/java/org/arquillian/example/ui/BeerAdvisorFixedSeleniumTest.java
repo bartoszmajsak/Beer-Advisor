@@ -38,14 +38,14 @@ public class BeerAdvisorFixedSeleniumTest
    @Before
    public void setUp() throws Exception
    {
-      String baseUrl = "http://beeradvisor-bmajsak.rhcloud.com/";
+      String baseUrl = "http://beeradvisor.bartoszmajsak.com";
       selenium = new WebDriverBackedSelenium(new FirefoxDriver(), baseUrl);
    }
 
    @Test
    public void should_find_strongest_beer() throws Exception
    {
-      selenium.open("/home.jsf");
+      selenium.open("/search.xhtml");
       selenium.type("id=advisor:beerSearch", "strongest");
       selenium.keyPress("id=advisor:beerSearch", "\\13");
       for (int second = 0;; second++)

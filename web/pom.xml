@@ -21,8 +21,8 @@
     <!-- Dependencies versions -->
     <version.arquillian_drone>1.0.0.Final</version.arquillian_drone>
     <version.arquillian_spock>1.0.0.Alpha1</version.arquillian_spock>
-    <version.selenium>2.21.0</version.selenium>
-    <version.selenium.server>2.21.0</version.selenium.server>
+    <version.selenium>2.24.1</version.selenium>
+    <version.selenium.server>2.24.1</version.selenium.server>
     <version.spock>0.5-groovy-1.8</version.spock>
     <version.groovy>1.8.5</version.groovy>
     <version.groovy.eclipse_compiler>2.6.0-01</version.groovy.eclipse_compiler>
