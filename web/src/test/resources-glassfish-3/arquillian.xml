@@ -16,8 +16,9 @@
   </extension>
 
   <!-- Binds implementation of the driver to @Firefox qualifiers -->
+  <!--
   <extension qualifier="webdriver-firefox">
     <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
   </extension>
-
+   -->
 </arquillian>

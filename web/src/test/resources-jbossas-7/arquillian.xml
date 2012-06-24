@@ -20,4 +20,11 @@
     <property name="implementationClass">org.openqa.selenium.chrome.ChromeDriver</property>
     <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
   </extension>
+
+  <!-- Binds implementation of the driver to @Firefox qualifiers -->
+  <!--
+  <extension qualifier="webdriver-firefox">
+    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+  </extension>
+  -->
 </arquillian>
