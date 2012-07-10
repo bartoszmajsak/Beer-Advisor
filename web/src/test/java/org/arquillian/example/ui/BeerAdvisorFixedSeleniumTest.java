@@ -38,7 +38,7 @@ public class BeerAdvisorFixedSeleniumTest
    @Before
    public void setUp() throws Exception
    {
-      String baseUrl = "http://beeradvisor.bartoszmajsak.com";
+      String baseUrl = "http://localhost:8080/beer-advisor";
       selenium = new WebDriverBackedSelenium(new FirefoxDriver(), baseUrl);
    }
 
