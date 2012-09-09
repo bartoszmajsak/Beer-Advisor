@@ -11,12 +11,9 @@
   </container>
 
   <extension qualifier="webdriver">
-    <property name="implementationClass">org.openqa.selenium.chrome.ChromeDriver</property>
+    <property name="browserCapabilities">chrome</property>
     <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
+    <property name="useJavaScript">true</property>
   </extension>
 
-  <!-- Binds implementation of the driver to @Firefox qualifiers -->
-  <extension qualifier="webdriver-firefox">
-    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
-  </extension>
 </arquillian>

@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.arquillian.drone.browser.Firefox;
 import org.arquillian.example.ui.utils.BeersAssert;
 import org.arquillian.example.ui.utils.Deployments;
 import org.arquillian.example.ui.web.Beer;
@@ -15,6 +14,7 @@ import org.arquillian.example.ui.web.BeerAdvisorPage;
 import org.arquillian.example.ui.web.BeerDetailsPage;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
+import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
@@ -63,6 +63,7 @@ public class BeerAdvisorDroneTest
    {
       // make the driver more patient for our VM environments :)
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+      System.out.println(driver);
    }
 
    @Test
@@ -111,14 +112,8 @@ public class BeerAdvisorDroneTest
       BeersAssert.assertThat(beers).shouldContain(bugel, appenzeller);
    }
 
-   /**
-    * Runs test in the concrete browser implementation
-    *
-    * @see src/test/resources-glassfish-3/arquillian.xml for the configuration example
-    * @param driver
-    */
    @Test
-   public void should_find_all_belgian_beers(@Drone @Firefox WebDriver driver)
+   public void should_find_all_belgian_beers()
    {
       // given
       Beer delirium = new Beer("Delirium Tremens");

@@ -10,11 +10,8 @@
   </container>
 
   <extension qualifier="webdriver">
-    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
+    <property name="browserCapabilities">firefox</property>
+    <property name="useJavaScript">true</property>
   </extension>
 
-  <!-- Binds implementation of the driver to @Firefox qualifiers -->
-  <extension qualifier="webdriver-firefox">
-    <property name="implementationClass">org.openqa.selenium.firefox.FirefoxDriver</property>
-  </extension>
 </arquillian>

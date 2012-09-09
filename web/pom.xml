@@ -19,13 +19,12 @@
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
 
     <!-- Dependencies versions -->
-    <version.arquillian_drone>1.0.0.Final</version.arquillian_drone>
-    <version.arquillian_spock>1.0.0.Alpha1</version.arquillian_spock>
-    <version.selenium>2.24.1</version.selenium>
-    <version.selenium.server>2.24.1</version.selenium.server>
-    <version.spock>0.5-groovy-1.8</version.spock>
+    <version.arquillian_drone>1.1.0.CR2</version.arquillian_drone>
+    <version.arquillian_graphene>2.0.0-SNAPSHOT</version.arquillian_graphene>
+    <version.arquillian_spock>1.0.0.Alpha2</version.arquillian_spock>
+    <version.spock>0.6-groovy-1.8</version.spock>
     <version.groovy>1.8.5</version.groovy>
-    <version.groovy.eclipse_compiler>2.6.0-01</version.groovy.eclipse_compiler>
+    <version.groovy.eclipse_compiler>2.7.0-01</version.groovy.eclipse_compiler>
     <version.easyb>1.5</version.easyb>
   </properties>
 
@@ -37,67 +36,6 @@
         <version>${version.arquillian_core}</version>
         <type>pom</type>
         <scope>import</scope>
-      </dependency>
-
-      <!-- Selenium Server -->
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-server</artifactId>
-        <version>${version.selenium.server}</version>
-      </dependency>
-
-      <!-- Selenium dependecies -->
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-api</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-java</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-support</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-
-      <!-- Drivers -->
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-android-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-chrome-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-firefox-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-htmlunit-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-ie-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-iphone-driver</artifactId>
-        <version>${version.selenium}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.seleniumhq.selenium</groupId>
-        <artifactId>selenium-remote-driver</artifactId>
-        <version>${version.selenium}</version>
       </dependency>
 
       <dependency>
@@ -201,15 +139,48 @@
     </dependency>
 
     <dependency>
-      <groupId>org.seleniumhq.selenium</groupId>
-      <artifactId>selenium-java</artifactId>
+      <groupId>org.jboss.arquillian.extension</groupId>
+      <artifactId>arquillian-drone-webdriver-depchain</artifactId>
+      <type>pom</type>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+      <groupId>org.jboss.arquillian.graphene</groupId>
+      <artifactId>arquillian-graphene</artifactId>
+      <version>${version.arquillian_graphene}</version>
+      <type>pom</type>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>commons-io</groupId>
+          <artifactId>commons-io</artifactId>
+        </exclusion>
+        <exclusion>
+          <artifactId>servlet-api-2.5</artifactId>
+          <groupId>org.mortbay.jetty</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+     <dependency>
+            <groupId>org.jboss.arquillian.graphene</groupId>
+            <artifactId>graphene-webdriver-spi</artifactId>
+            <version>${version.arquillian_graphene}</version>
+            <scope>test</scope>
+        </dependency>
 
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-simple</artifactId>
       <version>1.5.10</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>2.4</version>
       <scope>test</scope>
     </dependency>
 
@@ -285,6 +256,12 @@
                 <artifactId>groovy-all</artifactId>
               </exclusion>
             </exclusions>
+          </dependency>
+          <!-- Compile using Groovy 1.8 instead of 2.0.0 -->
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-batch</artifactId>
+            <version>1.8.6-01</version>
           </dependency>
         </dependencies>
       </plugin>
