@@ -1,4 +1,4 @@
-package org.arquillian.example.functional.utils;
+package org.arquillian.example.ui.utils;
 
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;

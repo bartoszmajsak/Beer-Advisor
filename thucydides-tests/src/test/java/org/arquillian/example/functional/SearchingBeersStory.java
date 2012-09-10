@@ -48,7 +48,7 @@ public class SearchingBeersStory
    @Before
    public void before_tests()
    {
-      pages.setDefaultBaseUrl("http://localhost:8080/beer-advisor-web-1.0.0-SNAPSHOT");
+      pages.setDefaultBaseUrl("http://localhost:8080/beer-advisor");
    }
 
    @Test

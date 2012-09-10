@@ -2,6 +2,7 @@ package org.arquillian.example.ui;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
@@ -17,6 +18,7 @@ import com.thoughtworks.selenium.Selenium;
  * @see BeerAdvisorFixedSeleniumTest fixed version.
  *
  */
+@Ignore
 public class BeerAdvisorExportedSeleniumTest extends SeleneseTestCase {
 
    @Before
