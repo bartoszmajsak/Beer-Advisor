@@ -7,4 +7,8 @@ Demonstrates various aspects of [Arquillian](https://github.com/arquillian)
 
 * Web tests using [Arquillian Drone](https://github.com/arquillian/arquillian-extension-persistence) and [Spock](https://github.com/arquillian/arquillian-testrunner-spock)
 
+* Thucidydes tests written in JUnit
+
+*Note* : Default browser is Firefox. If you would like to use chrome, activate chrome profile and provide path to your chrome binary using -Dwebdriver.chrome.driver property for the maven build.
+
 Running example available on [OpenShift](http://beeradvisor.bartoszmajsak.com/)
