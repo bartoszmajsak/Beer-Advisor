@@ -320,9 +320,6 @@
       <activation>
         <activeByDefault>true</activeByDefault>
       </activation>
-      <properties>
-        <container.target.dir>target/jboss-as-${version.jbossas_7}</container.target.dir>
-      </properties>
       <dependencies>
         <dependency>
           <groupId>org.jboss.as</groupId>
@@ -354,14 +351,6 @@
           </testResource>
         </testResources>
         <plugins>
-          <plugin>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <configuration>
-              <systemPropertyVariables>
-                <container.target.dir>${container.target.dir}</container.target.dir>
-              </systemPropertyVariables>
-            </configuration>
-          </plugin>
           <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>2.1</version>
