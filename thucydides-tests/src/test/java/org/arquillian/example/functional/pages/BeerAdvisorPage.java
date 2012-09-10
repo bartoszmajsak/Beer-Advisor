@@ -4,13 +4,16 @@ import java.util.List;
 import java.util.Set;
 
 import net.thucydides.core.pages.PageObject;
+import net.thucydides.core.webdriver.WebDriverFacade;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -51,13 +54,19 @@ public class BeerAdvisorPage extends PageObject
    {
       searchBox.clear();
       searchBox.sendKeys(criteria);
-      /*
-       * This is workaround for sending "enter key pressed" event to the search box for Firefox browser.
-       * Apparently newer versions of Selenium and Firefox are having problem with that.
-       * Using selenium wrapper solves this problem.
-       */
-//      searchBox.sendKeys(Keys.ENTER);
-      new WebDriverBackedSelenium(getDriver(), getDriver().getCurrentUrl()).keyPress(searchBox.getAttribute("id"), "\\13");
+      if (((WebDriverFacade) getDriver()).getProxiedDriver() instanceof FirefoxDriver)
+      {
+         /*
+          * This is workaround for sending "enter key pressed" event to the search box for Firefox browser.
+          * Apparently newer versions of Selenium and Firefox are having problem with that.
+          * Using selenium wrapper solves this problem.
+          */
+         new WebDriverBackedSelenium(getDriver(), getDriver().getCurrentUrl()).keyPress(searchBox.getAttribute("id"), "\\13");
+      }
+      else
+      {
+         searchBox.sendKeys(Keys.ENTER);
+      }
 
       if (!errorDisplayed())
       {
