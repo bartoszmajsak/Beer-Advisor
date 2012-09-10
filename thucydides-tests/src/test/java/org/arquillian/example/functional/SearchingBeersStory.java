@@ -14,10 +14,12 @@ import org.arquillian.example.functional.pages.Beer;
 import org.arquillian.example.functional.specs.BeerAdvisor;
 import org.arquillian.example.functional.steps.SearchingSteps;
 import org.arquillian.example.functional.utils.Deployments;
+import org.arquillian.example.thucydides.ArquillianEnricher;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
@@ -36,6 +38,9 @@ public class SearchingBeersStory
    @Steps
    public SearchingSteps searchingSteps;
 
+   @Rule
+   public ArquillianEnricher enricher = new ArquillianEnricher();
+
    @Deployment(testable = false)
    public static WebArchive createTestArchive()
    {
@@ -43,12 +48,12 @@ public class SearchingBeersStory
    }
 
    @ArquillianResource
-   URL deploymentUrl; // Currently results with NPE - enricher is apparently not kicked in
+   URL deploymentUrl;
 
    @Before
    public void before_tests()
    {
-      pages.setDefaultBaseUrl("http://localhost:8080/beer-advisor");
+      pages.setDefaultBaseUrl(deploymentUrl.toExternalForm());
    }
 
    @Test
