@@ -12,7 +12,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import com.thoughtworks.selenium.Selenium;
 
 /**
- *
  * Fixed version of test recorded using Selenium IDE 1.5 and exported
  * as JUnit4 WebDriverBackedSelenium.
  *
@@ -26,8 +25,8 @@ import com.thoughtworks.selenium.Selenium;
  *  <li>It also assumes that you have already built and deployed your application somewhere</li>
  * </ul>
  *
- * @see BeerAdvisorDroneTest Let's have a look how Arquillian and it's Drone extension
- * can help us and how we can apply PageObject pattern to make our tests more readable.
+ * @see BeerAdvisorFixedSeleniumWithPageObjectsTest which demonstrates
+ * how we can apply PageObject concept to make our tests more readable and easier to maintain.
  *
  */
 public class BeerAdvisorFixedSeleniumTest
