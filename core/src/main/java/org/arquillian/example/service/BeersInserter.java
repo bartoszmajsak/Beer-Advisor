@@ -96,6 +96,28 @@ public class BeersInserter
                                                    .withCode("schwarzer_kristall")
                                                    .build();
       save(appenzellerSchwarzKrystall);
+
+      Beer ipaNogne = BeerBuilder.create()
+                                 .named("India Pale Ale")
+                                 .withPrice(BigDecimal.valueOf(4.0))
+                                 .havingAlcohol(BigDecimal.valueOf(7.5))
+                                 .from(new Brewery("Nøgne ø", Country.NORWAY))
+                                 .ofType(Type.IPA)
+                                 .withCode("ipa_nogne")
+                                 .build();
+      save(ipaNogne);
+
+      Beer darkForce = BeerBuilder.create()
+                                  .named("Dark Force")
+                                  .withPrice(BigDecimal.valueOf(4.0))
+                                  .havingAlcohol(BigDecimal.valueOf(9.0))
+                                  .from(new Brewery("Haand Bryggeriet", Country.NORWAY))
+                                  .ofType(Type.RUSSIAN_IMPERIAL_STOUT)
+                                  .withCode("dark_force")
+                                  .build();
+
+      save(darkForce);
+
    }
 
    private void save(Beer beer)

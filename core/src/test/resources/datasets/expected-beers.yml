@@ -11,6 +11,10 @@ Brewery:
     name: "Feldschlösschen"
   - country: SWITZERLAND
     name: "Locher"
+  - country: NORWAY
+    name: "Nøgne ø"
+  - country: NORWAY
+    name: "Haand Bryggeriet"
 
 Beer:
   - alcohol: 4.5
@@ -41,3 +45,11 @@ Beer:
     name: "Appenzeller Schwarzer Kristall"
     price: 4.0
     type: SCHWARZBIER
+  - alcohol: 7.5
+    name: "India Pale Ale"
+    price: 4.0
+    type: IPA
+  - alcohol: 9.0
+    name: "Dark Force"
+    price: 4.0
+    type: RUSSIAN_IMPERIAL_STOUT

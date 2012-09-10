@@ -13,6 +13,7 @@ public enum BeerCriteria
    CHEAPEST("cheapest"),
    STRONGEST("strongest"),
    BELGIUM("from belgium"),
+   NORWAY("from norway"),
    SWITZERLAND("from switzerland"),
    NONE("none"),
    UNKNOWN("---");

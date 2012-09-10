@@ -6,7 +6,8 @@ public enum Country
    POLAND,
    BELGIUM,
    SCOTLAND,
-   SWITZERLAND;
+   SWITZERLAND,
+   NORWAY;
 
 
    public String getLabel()

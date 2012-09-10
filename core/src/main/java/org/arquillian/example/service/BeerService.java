@@ -30,6 +30,8 @@ public class BeerService
             return beerRepository.from(Country.SWITZERLAND);
          case BELGIUM:
             return beerRepository.from(Country.BELGIUM);
+         case NORWAY:
+            return beerRepository.from(Country.NORWAY);
          case CHEAPEST:
             return beerRepository.cheapest();
          case STRONGEST:

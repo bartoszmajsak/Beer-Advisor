@@ -69,7 +69,7 @@ public class SearchingBeersStory
    {
       searchingSteps.on_main_beer_advisor_page();
       searchingSteps.search_for("from belgium");
-      searchingSteps.should_contain_beers( new Beer("Delirium Tremens"), new Beer("Pauwel Kwak"));
+      searchingSteps.should_contain_beers(new Beer("Delirium Tremens"), new Beer("Pauwel Kwak"));
    }
 
    @Pending
