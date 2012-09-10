@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<arquillian xmlns="http://jboss.org/schema/arquillian"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+
+  <container qualifier="openshift-express" default="true">
+    <configuration>
+      <property name="namespace">bmajsak</property>
+      <property name="application">arqtest</property>
+      <!-- Important: Add this host to list of known hosts for ssh connection -->
+      <property name="sshUserName">d31c330fcce24f238635a8d1db10e4f7</property>
+      <!--
+      Set as environment variable SSH_PASSPHRASE
+      <property name="passphrase"></property>
+      -->
+      <property name="login">bartosz.majsak@gmail.com</property>
+    </configuration>
+  </container>
+
+  <extension qualifier="webdriver">
+    <property name="browserCapabilities">chrome</property>
+    <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
+    <property name="useJavaScript">true</property>
+  </extension>
+
+</arquillian>
