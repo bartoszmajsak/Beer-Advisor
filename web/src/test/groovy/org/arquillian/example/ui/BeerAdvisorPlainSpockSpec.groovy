@@ -27,8 +27,7 @@ import spock.lang.*
  * Plain Spock acceptance test for Beer Advisor leveraging WebDriver and its
  * implementation of Page Objects.
  */
-@Ignore("This test expects that application is up and running. Available under predefined URL.")
-class BeerAdvisorPlainSpockSpecification extends Specification
+class BeerAdvisorPlainSpockSpec extends Specification
 {
    @Shared def driver
    @Shared def baseUrl

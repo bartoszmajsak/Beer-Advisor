@@ -33,7 +33,7 @@
     <maven.compiler.source>1.6</maven.compiler.source>
     <maven.compiler.target>1.6</maven.compiler.target>
     <version.jbossas_7>7.1.1.Final</version.jbossas_7>
-    <version.jboss_spec>2.0.0.Final</version.jboss_spec>
+    <version.jboss_spec>3.0.1.Final</version.jboss_spec>
     <version.maven_surefire>2.12</version.maven_surefire>
     <version.junit>4.8.2</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
@@ -109,13 +109,29 @@
 
   <profiles>
     <profile>
+      <id>firefox</id>
+      <activation>
+        <property>
+          <name>!browser</name>
+        </property>
+      </activation>
+      <properties>
+        <browser>firefox</browser>
+      </properties>
+    </profile>
+    <profile>
+      <id>chrome</id>
+      <properties>
+        <browser>chrome</browser>
+        <!-- Define location of your chrome webdriver executable -Dwebdriver.chrome.driver -->
+        <webdriver.chrome.driver>${env.webdriver.chrome.driver}</webdriver.chrome.driver>
+      </properties>
+    </profile>
+    <profile>
       <id>arq-jbossas-managed-7</id>
     </profile>
     <profile>
       <id>arq-jbossas-remote-7</id>
-    </profile>
-    <profile>
-      <id>arq-glassfish-embedded-3</id>
     </profile>
   </profiles>
 

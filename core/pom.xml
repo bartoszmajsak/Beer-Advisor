@@ -228,38 +228,5 @@
         </testResources>
       </build>
     </profile>
-    <profile>
-      <id>arq-glassfish-embedded-3</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-          <version>1.0.0.CR3</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.extras</groupId>
-          <artifactId>glassfish-embedded-all</artifactId>
-          <version>3.1.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>hsqldb</groupId>
-          <artifactId>hsqldb</artifactId>
-          <version>${version.hsqldb}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-glassfish-3</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
   </profiles>
 </project>

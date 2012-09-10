@@ -20,7 +20,6 @@
     <!-- Dependencies versions -->
     <version.arquillian_drone>1.1.0.CR2</version.arquillian_drone>
     <thucydides.version>0.9.20</thucydides.version>
-    <webdriver.driver>firefox</webdriver.driver>
   </properties>
 
   <dependencyManagement>
@@ -70,37 +69,6 @@
       <scope>test</scope>
     </dependency>
 
-    <!-- Drone dependencies -->
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-impl</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-spi</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-configuration</artifactId>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-webdriver</artifactId>
-      <scope>test</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.jboss.shrinkwrap.resolver</groupId>
       <artifactId>shrinkwrap-resolver-impl-maven</artifactId>
@@ -114,25 +82,18 @@
       </exclusions>
     </dependency>
 
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-drone-webdriver-depchain</artifactId>
-      <type>pom</type>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <artifactId>guava</artifactId>
-          <groupId>com.google.guava</groupId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
     <!-- Thucydides deps -->
     <dependency>
       <groupId>net.thucydides</groupId>
       <artifactId>thucydides-core</artifactId>
       <version>${thucydides.version}</version>
       <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>servlet-api-2.5</artifactId>
+          <groupId>org.mortbay.jetty</groupId>
+        </exclusion>
+      </exclusions>
     </dependency>
 
     <dependency>
@@ -187,7 +148,8 @@
           </includes>
           <argLine>-Xmx512m</argLine>
           <systemPropertyVariables>
-            <webdriver.driver>${webdriver.driver}</webdriver.driver>
+            <webdriver.driver>${browser}</webdriver.driver>
+            <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
           </systemPropertyVariables>
         </configuration>
         <executions>
@@ -327,99 +289,6 @@
             <directory>src/test/resources-jbossas-7</directory>
           </testResource>
         </testResources>
-      </build>
-    </profile>
-    <profile>
-      <id>arq-glassfish-embedded-3</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-          <version>1.0.0.CR3</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.extras</groupId>
-          <artifactId>glassfish-embedded-all</artifactId>
-          <version>3.1.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>hsqldb</groupId>
-          <artifactId>hsqldb</artifactId>
-          <version>${version.hsqldb}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-glassfish-3</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
-      <id>arq-openshift-express</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-6.0</artifactId>
-          <version>1.0.0.Final</version>
-          <type>pom</type>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-openshift-express</artifactId>
-          <version>1.0.0.Beta1</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-openshift-express</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
-      <!-- When built in OpenShift the 'openshift' profile will be used when
-        invoking mvn. -->
-      <!-- Use this profile for any OpenShift specific customization your
-        app will need. -->
-      <!-- By default that is to put the resulting archive into the 'deployments'
-        folder. -->
-      <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-      <id>openshift</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-6.0</artifactId>
-          <version>1.0.0.Final</version>
-          <type>pom</type>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <finalName>beeradvisor</finalName>
-        <plugins>
-          <plugin>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>2.1.1</version>
-            <configuration>
-              <outputDirectory>deployments</outputDirectory>
-              <warName>ROOT</warName>
-            </configuration>
-          </plugin>
-        </plugins>
       </build>
     </profile>
   </profiles>

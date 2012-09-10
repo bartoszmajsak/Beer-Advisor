@@ -352,6 +352,14 @@
         </testResources>
         <plugins>
           <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <browser>${browser}</browser>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+          <plugin>
             <artifactId>maven-dependency-plugin</artifactId>
             <version>2.1</version>
             <executions>
@@ -403,6 +411,16 @@
         </dependency>
       </dependencies>
       <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <browser>${browser}</browser>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
         <testResources>
           <testResource>
             <directory>src/test/resources</directory>
@@ -414,45 +432,12 @@
       </build>
     </profile>
     <profile>
-      <id>arq-glassfish-embedded-3</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.arquillian.container</groupId>
-          <artifactId>arquillian-glassfish-embedded-3.1</artifactId>
-          <version>1.0.0.CR3</version>
-          <scope>test</scope>
-        </dependency>
-        <dependency>
-          <groupId>org.glassfish.extras</groupId>
-          <artifactId>glassfish-embedded-all</artifactId>
-          <version>3.1.1</version>
-          <scope>provided</scope>
-        </dependency>
-        <dependency>
-          <groupId>hsqldb</groupId>
-          <artifactId>hsqldb</artifactId>
-          <version>${version.hsqldb}</version>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <testResources>
-          <testResource>
-            <directory>src/test/resources</directory>
-          </testResource>
-          <testResource>
-            <directory>src/test/resources-glassfish-3</directory>
-          </testResource>
-        </testResources>
-      </build>
-    </profile>
-    <profile>
       <id>arq-openshift-express</id>
       <dependencies>
         <dependency>
           <groupId>org.jboss.spec</groupId>
           <artifactId>jboss-javaee-6.0</artifactId>
-          <version>1.0.0.Final</version>
+          <version>${version.jboss_spec}</version>
           <type>pom</type>
           <scope>provided</scope>
         </dependency>
@@ -464,6 +449,16 @@
         </dependency>
       </dependencies>
       <build>
+        <plugins>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration>
+              <systemPropertyVariables>
+                <browser>${browser}</browser>
+              </systemPropertyVariables>
+            </configuration>
+          </plugin>
+        </plugins>
         <testResources>
           <testResource>
             <directory>src/test/resources</directory>

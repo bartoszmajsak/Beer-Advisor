@@ -17,10 +17,4 @@
     </configuration>
   </container>
 
-  <extension qualifier="webdriver">
-    <property name="browserCapabilities">chrome</property>
-    <property name="chromeDriverBinary">/usr/lib/chromium-browser/chromedriver</property>
-    <property name="useJavaScript">true</property>
-  </extension>
-
 </arquillian>
