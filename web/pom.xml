@@ -310,7 +310,7 @@
             <directory>src/test/resources</directory>
           </testResource>
           <testResource>
-            <directory>src/test/resources-jbossas-7</directory>
+            <directory>src/test/resources-jbossas-7-remote</directory>
           </testResource>
         </testResources>
       </build>

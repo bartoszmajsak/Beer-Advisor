@@ -32,7 +32,7 @@ public class Deployments
                                                                   .loadMetadataFromPom("pom.xml")
                                                                   .goOffline();
 
-      return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor.war"))
+      return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor-drone.war"))
             .addPackages(true, Beer.class.getPackage(),
                   BeerService.class.getPackage(),
                   BeerAdvisorController.class.getPackage())
@@ -52,7 +52,7 @@ public class Deployments
                                                                      .loadMetadataFromPom("pom.xml")
                                                                      .goOffline();
 
-      return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor.war"))
+      return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor-drone.war"))
             .addPackages(true, Beer.class.getPackage(),
                                BeerService.class.getPackage(),
                                BeerAdvisorController.class.getPackage())

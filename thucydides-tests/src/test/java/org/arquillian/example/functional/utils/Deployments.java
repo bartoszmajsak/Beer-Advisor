@@ -17,7 +17,7 @@ public class Deployments
       final Archive<?> webArchive = ShrinkWrap.createFromZipFile(WebArchive.class, resolver.artifacts("org.arquillian.example:beer-advisor-web:war:1.0.0-SNAPSHOT")
                                       .resolveAsFiles()[0]);
 
-      return ShrinkWrap.create(WebArchive.class, "beer-advisor.war")
+      return ShrinkWrap.create(WebArchive.class, "beer-advisor-thucydides.war")
                        .merge(webArchive);
    }
 
