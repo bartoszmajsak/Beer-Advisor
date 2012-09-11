@@ -6,6 +6,8 @@
   <container qualifier="jbossas" default="true">
     <configuration>
       <property name="jbossHome">target/jboss-as-7.1.1.Final</property>
+      <property name="javaVmArguments">-Djboss.socket.binding.port-offset=10000</property>
+      <property name="managementPort">19999</property>
     </configuration>
   </container>
 

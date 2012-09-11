@@ -14,7 +14,6 @@ import org.arquillian.example.ui.web.BeerAdvisorPage;
 import org.arquillian.example.ui.web.BeerDetailsPage;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.drone.api.annotation.Drone;
-import org.jboss.arquillian.graphene.spi.annotations.Page;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
