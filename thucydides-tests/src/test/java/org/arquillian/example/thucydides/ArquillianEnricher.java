@@ -12,14 +12,19 @@ public class ArquillianEnricher implements MethodRule
    @Override
    public Statement apply(final Statement base, final FrameworkMethod method, final Object target)
    {
-      return new Statement() {
-         public void evaluate() throws Throwable {
-            
+      return new Statement()
+      {
+         public void evaluate() throws Throwable
+         {
+
             TestRunnerAdaptor adaptor = ArquillianListener.adaptor.get();
             adaptor.before(target, method.getMethod(), LifecycleMethodExecutor.NO_OP);
-            try {
+            try
+            {
                base.evaluate();
-            } finally {
+            }
+            finally
+            {
                adaptor.after(target, method.getMethod(), LifecycleMethodExecutor.NO_OP);
             }
          };
