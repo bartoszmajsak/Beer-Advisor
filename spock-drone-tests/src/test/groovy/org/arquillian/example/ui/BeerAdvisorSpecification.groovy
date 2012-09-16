@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.arquillian.example.ui.utils.BeersAssert
-import org.arquillian.example.ui.utils.Deployments
+import org.arquillian.example.ui.utils.SpockDeployments
 import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisorPage
 import spock.lang.*
@@ -36,7 +36,7 @@ class BeerAdvisorSpecification extends Specification
    @Deployment(testable = false)
    public static WebArchive createDeployment()
    {
-      return Deployments.create()
+      return SpockDeployments.create()
    }
 
    @ArquillianResource
@@ -120,7 +120,7 @@ class BeerAdvisorSpecification extends Specification
          def beers = beerAdvisorPage.searchFor "aAa"
 
       then: "All available criteria should be suggested"
-         beerAdvisorPage.shouldSuggest "all", "cheapest", "strongest", "from belgium", "from switzerland"
+         beerAdvisorPage.shouldSuggest "all", "cheapest", "strongest", "from belgium", "from norway", "from switzerland", "from sweden"
    }
 
 }

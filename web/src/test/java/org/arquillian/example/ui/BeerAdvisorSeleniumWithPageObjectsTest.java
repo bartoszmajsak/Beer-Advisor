@@ -8,13 +8,12 @@ import org.arquillian.example.ui.web.Beer;
 import org.arquillian.example.ui.web.BeerAdvisorPage;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 /**
- * Improved version of {@link BeerAdvisorFixedSeleniumTest} levaring concept of page objects.
+ * Improved version of {@link BeerAdvisorSeleniumTest} levaring concept of page objects.
  *
  * Concerns still not addressed:
  * <ul>
@@ -27,8 +26,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * can help us to address these limitations.
  *
  */
-@Ignore
-public class BeerAdvisorFixedSeleniumWithPageObjectsTest
+public class BeerAdvisorSeleniumWithPageObjectsTest
 {
 
    private String baseUrl;

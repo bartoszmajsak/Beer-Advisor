@@ -15,7 +15,7 @@ import com.thoughtworks.selenium.Selenium;
  * This test was exported from Selenium IDE (v 1.6.0). Unfortunately it does not work :)
  * Can you spot the problem?
  *
- * @see BeerAdvisorFixedSeleniumTest fixed version.
+ * @see BeerAdvisorSeleniumTest fixed version.
  *
  */
 @Ignore
@@ -24,7 +24,7 @@ public class BeerAdvisorExportedSeleniumTest extends SeleneseTestCase {
    @Before
     public void setUp() throws Exception {
         WebDriver driver = new FirefoxDriver();
-        String baseUrl = "http://beeradvisor-bmajsak.rhcloud.com/";
+        String baseUrl = "http://localhost:8080/beer-advisor";
         Selenium selenium = new WebDriverBackedSelenium(driver, baseUrl);
         selenium.start();
     }

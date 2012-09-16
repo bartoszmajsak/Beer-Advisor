@@ -27,7 +27,7 @@ import com.google.common.collect.Sets;
  *
  * Provides following functionalities:
  * <ul>
- *  <li>Searching for beers using some criteria</li>
+ *  <li>SearchingBeers for beers using some criteria</li>
  *  <li>Getting details of the selected beer</li>
  * </ul>
  */

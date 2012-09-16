@@ -32,6 +32,8 @@ public class BeerService
             return beerRepository.from(Country.BELGIUM);
          case NORWAY:
             return beerRepository.from(Country.NORWAY);
+         case SWEDEN:
+            throw new RuntimeException("Oups! No beers found from Sweden.");
          case CHEAPEST:
             return beerRepository.cheapest();
          case STRONGEST:

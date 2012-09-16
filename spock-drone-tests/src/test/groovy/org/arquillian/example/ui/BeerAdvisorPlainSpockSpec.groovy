@@ -17,7 +17,7 @@ import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.arquillian.example.ui.utils.BeersAssert
-import org.arquillian.example.ui.utils.Deployments
+import org.arquillian.example.ui.utils.SpockDeployments
 import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisorPage
 import spock.lang.*

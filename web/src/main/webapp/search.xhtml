@@ -5,6 +5,7 @@
 				template="template.xhtml">
 				
 	<ui:define name="content">
+		<h:outputScript library="javax.faces" name="jsf.js" target="head" />
 		<h:form id="advisor" onkeypress="return event.keyCode != 13">
 			<div id="search_beer">
 				<h:inputText id="beerSearch" value="#{beerAdvisorController.criteria}"
@@ -48,5 +49,12 @@
 				</table>
 			</h:panelGroup>
 		</h:form>
+		<h:outputScript target="body" >
+			window.onload = function() {
+				jsf.ajax.addOnError(function (data) {
+				    alert(data.errorName + ": " + data.errorMessage);
+			});
+			};
+		</h:outputScript>
 	</ui:define>
 </ui:composition>

@@ -63,19 +63,7 @@ public class BeerAdvisorPage
    {
       searchBox.clear();
       searchBox.sendKeys(criteria);
-      if (driver instanceof FirefoxDriver)
-      {
-         /*
-          * This is workaround for sending "enter key pressed" event to the search box for Firefox browser.
-          * Apparently newer versions of Selenium and Firefox are having problem with that.
-          * Using selenium wrapper solves this problem.
-          */
-         new WebDriverBackedSelenium(driver, baseLocation).keyPress(searchBox.getAttribute("id"), "\\13");
-      }
-      else
-      {
-         searchBox.sendKeys(Keys.ENTER);
-      }
+      pressEnter();
       if (errorDisplayed())
       {
          return Collections.emptyList();
@@ -109,6 +97,23 @@ public class BeerAdvisorPage
    }
 
    // --- Private methods
+
+   private void pressEnter()
+   {
+      if (driver instanceof FirefoxDriver)
+      {
+         /*
+          * This is workaround for sending "enter key pressed" event to the search box for Firefox browser.
+          * Apparently newer versions of Selenium and Firefox are having problem with that.
+          * Using selenium wrapper solves this problem.
+          */
+         new WebDriverBackedSelenium(driver, baseLocation).keyPress(searchBox.getAttribute("id"), "\\13");
+      }
+      else
+      {
+         searchBox.sendKeys(Keys.ENTER);
+      }
+   }
 
    private List<String> extractListElements(final String listId)
    {

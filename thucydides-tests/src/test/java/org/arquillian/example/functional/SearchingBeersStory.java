@@ -11,9 +11,9 @@ import net.thucydides.core.pages.Pages;
 import net.thucydides.junit.runners.ThucydidesRunner;
 
 import org.arquillian.example.functional.pages.Beer;
-import org.arquillian.example.functional.specs.BeerAdvisor;
+import org.arquillian.example.functional.specs.BeerAdvisorFeatures;
 import org.arquillian.example.functional.steps.SearchingSteps;
-import org.arquillian.example.functional.utils.Deployments;
+import org.arquillian.example.functional.utils.ThucydidesDeployments;
 import org.arquillian.example.thucydides.ArquillianEnricher;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.test.api.ArquillianResource;
@@ -25,7 +25,7 @@ import org.junit.runner.RunWith;
 import org.openqa.selenium.WebDriver;
 
 @RunWith(ThucydidesRunner.class)
-@Story(BeerAdvisor.Searching.class)
+@Story(BeerAdvisorFeatures.SearchingBeers.class)
 public class SearchingBeersStory
 {
 
@@ -44,7 +44,7 @@ public class SearchingBeersStory
    @Deployment(testable = false)
    public static WebArchive createTestArchive()
    {
-      return Deployments.create();
+      return ThucydidesDeployments.create();
    }
 
    @ArquillianResource
@@ -72,8 +72,15 @@ public class SearchingBeersStory
       searchingSteps.should_contain_beers(new Beer("Delirium Tremens"), new Beer("Pauwel Kwak"));
    }
 
-   @Pending
    @Test
+   public void should_find_all_swedish_beers()
+   {
+      searchingSteps.on_main_beer_advisor_page();
+      searchingSteps.search_for("from sweden");
+      searchingSteps.should_contain_beers(new Beer("Pripps"));
+   }
+
+   @Pending @Test
    public void should_find_cheapest_beer()
    {
    }

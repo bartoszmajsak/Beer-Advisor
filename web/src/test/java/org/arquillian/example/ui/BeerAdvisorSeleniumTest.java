@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 
 import org.junit.After;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -26,12 +25,11 @@ import com.thoughtworks.selenium.Selenium;
  *  <li>It also assumes that you have already built and deployed your application somewhere</li>
  * </ul>
  *
- * @see BeerAdvisorFixedSeleniumWithPageObjectsTest which demonstrates
+ * @see BeerAdvisorSeleniumWithPageObjectsTest which demonstrates
  * how we can apply PageObject concept to make our tests more readable and easier to maintain.
  *
  */
-@Ignore
-public class BeerAdvisorFixedSeleniumTest
+public class BeerAdvisorSeleniumTest
 {
 
    private Selenium selenium;

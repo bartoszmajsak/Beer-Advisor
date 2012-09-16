@@ -15,6 +15,7 @@ public enum BeerCriteria
    BELGIUM("from belgium"),
    NORWAY("from norway"),
    SWITZERLAND("from switzerland"),
+   SWEDEN("from sweden"),
    NONE("none"),
    UNKNOWN("---");
 

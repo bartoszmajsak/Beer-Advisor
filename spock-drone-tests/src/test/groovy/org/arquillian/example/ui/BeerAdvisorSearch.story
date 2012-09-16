@@ -21,7 +21,7 @@ scenario "Searching for all Swiss beers using natural language", {
        given "I am on the main page", {
           bugel = new Beer("Bügel")
           appenzeller = new Beer("Appenzeller Schwarzer Kristall")
-          beerAdvisorPage = new BeerAdvisorPage(driver, "http://beeradvisor.bartoszmajsak.com/")
+          beerAdvisorPage = new BeerAdvisorPage(driver, "http://localhost:8080/beer-advisor")
        }
 
        when "I enter 'from switzerland' as the search criteria", {

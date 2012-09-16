@@ -7,6 +7,7 @@ public enum Country
    BELGIUM,
    SCOTLAND,
    SWITZERLAND,
+   SWEDEN,
    NORWAY;
 
 

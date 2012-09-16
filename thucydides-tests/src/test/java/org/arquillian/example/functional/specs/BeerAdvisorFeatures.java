@@ -2,11 +2,11 @@ package org.arquillian.example.functional.specs;
 
 import net.thucydides.core.annotations.Feature;
 
-public class BeerAdvisor
+public class BeerAdvisorFeatures
 {
    @Feature
-   public class Searching {}
+   public class SearchingBeers {}
 
    @Feature
-   public class Details {}
+   public class ShowingDetailsOfBeer {}
 }
