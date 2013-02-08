@@ -4,9 +4,9 @@ import static org.fest.assertions.Assertions.assertThat;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Represent beer exposed in the UI.
@@ -59,7 +59,7 @@ public class Beer
    public int hashCode()
    {
       return new HashCodeBuilder(11, 41).append(name)
-                                        .hashCode();
+            .hashCode();
    }
 
    @Override
@@ -77,17 +77,17 @@ public class Beer
 
       Beer other = (Beer) obj;
       return new EqualsBuilder().append(name, other.getName())
-                                .isEquals();
+            .isEquals();
    }
 
    @Override
    public String toString()
    {
       return new ToStringBuilder(this).append("name", name)
-                                      .append("brewery", brewery)
-                                      .append("alcohol", alcohol)
-                                      .append("price", price)
-                                      .toString();
+            .append("brewery", brewery)
+            .append("alcohol", alcohol)
+            .append("price", price)
+            .toString();
    }
 
    // Getters and setters
