@@ -127,9 +127,9 @@ public class JpaBeerRepository implements BeerRepository
       CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
       CriteriaQuery<BigDecimal> query = criteriaBuilder.createQuery(BigDecimal.class);
       Root<Beer> beerRoot = query.from(Beer.class);
-      Expression<BigDecimal> maxAlcolhol = criteriaBuilder.max(beerRoot.get(Beer_.alcohol));
+      Expression<BigDecimal> maxAlcohol = criteriaBuilder.max(beerRoot.get(Beer_.alcohol));
 
-      return em.createQuery(query.select(maxAlcolhol)).getSingleResult();
+      return em.createQuery(query.select(maxAlcohol)).getSingleResult();
    }
 
    private BigDecimal lowestPrice()

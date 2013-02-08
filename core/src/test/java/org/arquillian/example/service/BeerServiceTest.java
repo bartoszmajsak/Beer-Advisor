@@ -10,7 +10,6 @@ import javax.inject.Inject;
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
 import org.arquillian.example.repository.BeerRepository;
-import org.arquillian.example.service.BeerService;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;

@@ -8,6 +8,7 @@ import org.arquillian.example.ui.web.Beer;
 import org.arquillian.example.ui.web.BeerAdvisorPage;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -26,6 +27,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * can help us to address these limitations.
  *
  */
+@Ignore
 public class BeerAdvisorSeleniumWithPageObjectsTest
 {
 
@@ -36,8 +38,8 @@ public class BeerAdvisorSeleniumWithPageObjectsTest
    @Before
    public void setUp() throws Exception
    {
-      this.baseUrl = "http://localhost:8080/beer-advisor";
-      this.driver = new FirefoxDriver();
+      baseUrl = "http://beeradvisor.bartoszmajsak.com";
+      driver = new FirefoxDriver();
    }
 
    @Test

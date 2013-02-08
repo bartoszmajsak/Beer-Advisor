@@ -18,7 +18,7 @@
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
 
     <!-- Dependencies versions -->
-    <version.arquillian_drone>1.1.0.CR2</version.arquillian_drone>
+    <version.arquillian_drone>1.2.0.Alpha1</version.arquillian_drone>
     <version.arquillian_graphene>2.0.0-SNAPSHOT</version.arquillian_graphene>
     <version.arquillian_spock>1.0.0.Alpha2</version.arquillian_spock>
     <version.spock>0.6-groovy-1.8</version.spock>

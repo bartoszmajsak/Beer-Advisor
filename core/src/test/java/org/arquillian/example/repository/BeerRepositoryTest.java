@@ -11,7 +11,6 @@ import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -28,11 +27,11 @@ public class BeerRepositoryTest
    public static Archive<?> createDeployment()
    {
       return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                       .addPackage(Beer.class.getPackage())
-                       .addPackage(BeerRepository.class.getPackage())
-                       .addPackages(true, "org.fest")
-                       .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                       .addAsManifestResource("test-persistence.xml", "persistence.xml");
+            .addPackage(Beer.class.getPackage())
+            .addPackage(BeerRepository.class.getPackage())
+            .addPackages(true, "org.fest")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+            .addAsManifestResource("test-persistence.xml", "persistence.xml");
    }
 
    @Inject
@@ -40,8 +39,7 @@ public class BeerRepositoryTest
 
    @Test
    @UsingDataSet("beers.yml")
-   public void should_find_strongest_beer() throws Exception
-   {
+   public void should_find_strongest_beer() throws Exception {
       // given
       String expectedName = "End of history";
       BigDecimal expectedVoltage = BigDecimal.valueOf(55.0);

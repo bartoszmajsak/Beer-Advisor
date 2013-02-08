@@ -18,7 +18,7 @@
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
 
     <!-- Dependencies versions -->
-    <version.arquillian_drone>1.1.0.CR2</version.arquillian_drone>
+    <version.arquillian_drone>1.2.0.Alpha1</version.arquillian_drone>
     <thucydides.version>0.9.20</thucydides.version>
   </properties>
 
@@ -115,6 +115,13 @@
       <groupId>commons-io</groupId>
       <artifactId>commons-io</artifactId>
       <version>2.4</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>3.1</version>
       <scope>test</scope>
     </dependency>
 
