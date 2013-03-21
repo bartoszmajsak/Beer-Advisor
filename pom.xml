@@ -46,7 +46,6 @@
     <module>core</module>
     <module>web</module>
     <module>spock-drone-tests</module>
-    <module>thucydides-tests</module>
   </modules>
 
   <dependencyManagement>

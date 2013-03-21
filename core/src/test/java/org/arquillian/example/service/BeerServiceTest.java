@@ -3,7 +3,7 @@ package org.arquillian.example.service;
 import static org.fest.assertions.Assertions.assertThat;
 
 import java.math.BigDecimal;
-import java.util.Set;
+import java.util.Collection;
 
 import javax.inject.Inject;
 
@@ -46,7 +46,7 @@ public class BeerServiceTest
       int expectedAmountOfBeers = 7;
 
       // when
-      Set<Beer> allBeers = beerService.fetchByCriteria("ALL");
+      Collection<Beer> allBeers = beerService.fetchByCriteria("ALL");
 
       // then
       assertThat(allBeers).hasSize(expectedAmountOfBeers);
@@ -62,7 +62,7 @@ public class BeerServiceTest
       BigDecimal expectedVoltage = BigDecimal.valueOf(55.0);
 
       // when
-      Set<Beer> beers = beerService.fetchByCriteria(strongestCriteria);
+      Collection<Beer> beers = beerService.fetchByCriteria(strongestCriteria);
       Beer firstBeer = beers.iterator().next();
 
       // then
@@ -80,7 +80,7 @@ public class BeerServiceTest
       BigDecimal expectedPrice = BigDecimal.valueOf(1.0);
 
       // when
-      Set<Beer> beers = beerService.fetchByCriteria(cheapestCriteria);
+      Collection<Beer> beers = beerService.fetchByCriteria(cheapestCriteria);
       Beer firstBeer = beers.iterator().next();
 
       // then
@@ -96,7 +96,7 @@ public class BeerServiceTest
       String belgiumCriteria = "from Belgium";
 
       // when
-      Set<Beer> beers = beerService.fetchByCriteria(belgiumCriteria);
+      Collection<Beer> beers = beerService.fetchByCriteria(belgiumCriteria);
 
       // then
       assertThat(beers).hasSize(2);

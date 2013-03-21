@@ -27,7 +27,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
  * can help us to address these limitations.
  *
  */
-@Ignore
+@Ignore("As the url is fixed so not really automation friendly.")
 public class BeerAdvisorSeleniumWithPageObjectsTest
 {
 
@@ -38,7 +38,7 @@ public class BeerAdvisorSeleniumWithPageObjectsTest
    @Before
    public void setUp() throws Exception
    {
-      baseUrl = "http://beeradvisor.bartoszmajsak.com";
+      baseUrl = "http://localhost:8080/beer-advisor";
       driver = new FirefoxDriver();
    }
 

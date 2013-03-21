@@ -1,6 +1,6 @@
 package org.arquillian.example.service;
 
-import static org.fest.assertions.Assertions.*;
+import static org.fest.assertions.Assertions.assertThat;
 
 import javax.ejb.EJB;
 

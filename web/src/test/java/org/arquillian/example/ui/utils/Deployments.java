@@ -7,6 +7,7 @@ import org.arquillian.example.controller.BeerAdvisorController;
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.repository.BeerRepository;
 import org.arquillian.example.repository.JpaBeerRepository;
+import org.arquillian.example.resource.BeerResource;
 import org.arquillian.example.service.BeerService;
 import org.arquillian.example.stub.SkeletonBeerRepository;
 import org.jboss.shrinkwrap.api.Filters;
@@ -54,11 +55,12 @@ public class Deployments
 
       return addWebResourcesTo(ShrinkWrap.create(WebArchive.class, "beer-advisor-drone.war"))
             .addPackages(true, Beer.class.getPackage(),
+                               BeerResource.class.getPackage(),
                                BeerService.class.getPackage(),
                                BeerAdvisorController.class.getPackage())
             .addPackages(true, BeerRepository.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-            .addAsLibraries(resolver.artifact("com.google.guava:guava").resolveAsFiles());
+            .addAsLibraries(resolver.artifacts("com.google.guava:guava", "com.google.code.gson:gson").resolveAsFiles());
    }
 
    private static WebArchive addWebResourcesTo(WebArchive archive)

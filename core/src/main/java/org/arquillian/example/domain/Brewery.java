@@ -16,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class Brewery implements Serializable
 {
@@ -31,10 +33,12 @@ public class Brewery implements Serializable
 
    @Basic
    @NotNull
+   @Expose
    private String name;
 
    @Enumerated(EnumType.STRING)
    @NotNull
+   @Expose
    private Country country;
 
    protected Brewery()

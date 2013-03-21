@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
+import com.google.gson.annotations.Expose;
+
 @Entity
 public class Beer implements Serializable
 {
@@ -21,18 +23,22 @@ public class Beer implements Serializable
 
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   @Expose
    private Long id;
 
    @Basic
    @NotNull
+   @Expose
    private String name;
 
    @Basic
    @NotNull
+   @Expose
    private BigDecimal price;
 
    @Basic
    @NotNull
+   @Expose
    private BigDecimal alcohol;
 
    @Basic
@@ -43,6 +49,7 @@ public class Beer implements Serializable
    private Type type;
 
    @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   @Expose
    private Brewery brewery;
 
    protected Beer()

@@ -1,8 +1,8 @@
 package org.arquillian.example.controller;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.event.AjaxBehaviorEvent;
@@ -39,7 +39,7 @@ public class BeerAdvisorController
          criteria = NONE;
       }
 
-      final Set<Beer> result = beerService.fetchByCriteria(criteria);
+      final Collection<Beer> result = beerService.fetchByCriteria(criteria);
       notFound = result.isEmpty() && !NONE.equals(criteria);
       beers = Lists.newArrayList(result);
    }
@@ -68,7 +68,7 @@ public class BeerAdvisorController
 
    public void setCriteria(String filter)
    {
-      this.criteria = filter;
+      criteria = filter;
    }
 
    public boolean isNotFound()

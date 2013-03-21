@@ -1,5 +1,6 @@
 package org.arquillian.example.service;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Set;
 
@@ -18,7 +19,7 @@ public class BeerService
    @Inject
    private BeerRepository beerRepository;
 
-   public Set<Beer> fetchByCriteria(String criteriaString)
+   public Collection<Beer> fetchByCriteria(String criteriaString)
    {
       final BeerCriteria criteria = BeerCriteria.fromStringDescription(criteriaString);
 
