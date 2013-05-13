@@ -78,6 +78,7 @@ public class BeerRepositoryBasicJpaTest
    private void insertData() throws Exception {
        utx.begin();
        em.joinTransaction();
+       
        Beer mocnyFull = BeerBuilder.create()
                                    .named("Mocny Full")
                                    .withPrice(BigDecimal.valueOf(1.0))

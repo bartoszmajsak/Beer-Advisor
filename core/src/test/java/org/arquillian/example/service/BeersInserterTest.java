@@ -37,9 +37,9 @@ public class BeersInserterTest
    BeersInserter beersInserter;
 
    @Test
-   @ShouldMatchDataSet("expected-beers.yml")
+   @ShouldMatchDataSet(value = "expected-beers.yml", orderBy = "name")
    @Cleanup(phase = TestExecutionPhase.AFTER)
-   public void should_return_all_beers() throws Exception
+   public void should_return_all_beert() throws Exception
    {
       assertThat(beersInserter).isNotNull();
    }

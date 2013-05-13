@@ -6,15 +6,15 @@ import org.arquillian.example.ui.web.Beer;
 import org.fest.assertions.Assertions;
 import org.fest.assertions.GenericAssert;
 
-public class BeersAssert extends GenericAssert<BeersAssert, Collection<Beer>>
+public class BeersAssert extends GenericAssert<BeersAssert, Collection<BeersAssert>>
 {
 
-   private BeersAssert(Collection<Beer> actual)
+   private BeersAssert(Collection<BeersAssert> actual)
    {
       super(BeersAssert.class, actual);
    }
 
-   public static BeersAssert assertThat(Collection<Beer> beers)
+   public static BeersAssert assertThat(Collection<BeersAssert> beers)
    {
       return new BeersAssert(beers);
    }

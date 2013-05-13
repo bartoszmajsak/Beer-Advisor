@@ -13,8 +13,15 @@
 
   <extension qualifier="persistence">
     <property name="defaultDataSource">java:jboss/datasources/ExampleDS</property>
+  </extension>
+
+  <extension qualifier="transaction">
+    <property name="manager">java:jboss/UserTransaction</property>
+  </extension>
+
+  <extension qualifier="persistence-script">
     <property name="scriptsToExecuteBeforeTest">SET REFERENTIAL_INTEGRITY FALSE</property>
-    <property name="userTransactionJndi">java:jboss/UserTransaction</property>
+    <property name="sqlStatementDelimiter">NEW_LINE</property>
   </extension>
 
   <extension qualifier="persistence-dbunit">
