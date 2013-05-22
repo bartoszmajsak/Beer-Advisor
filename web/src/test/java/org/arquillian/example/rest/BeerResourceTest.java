@@ -51,4 +51,15 @@ public class BeerResourceTest
               .get("/{id}");
    }
 
+   @Test
+   public void should_delete_beer_based_on_id()
+   {
+      expect()
+              .statusCode(equalTo(204))
+      .given()
+              .request().pathParameter("id", 1)
+      .when()
+              .delete("/{id}");
+   }
+
 }

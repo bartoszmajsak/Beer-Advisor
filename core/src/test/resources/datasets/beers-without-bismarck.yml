@@ -1,0 +1,62 @@
+Brewery:
+  - id: 1
+    country: POLAND
+    name: "Kiepski Browar"
+  - id: 2
+    country: SCOTLAND
+    name: "Brew Dog"
+  - id: 3
+    country: BELGIUM
+    name: "Brouwerij Huyghe"
+  - id: 4
+    country: BELGIUM
+    name: "Brouwerij Bosteels"
+  - id: 5
+    country: SWITZERLAND
+    name: "Feldschlösschen"
+  - id: 6
+    country: SWITZERLAND
+    name: "Locher"
+Beer:
+  - id: 1
+    alcohol: 4.5
+    name: "Mocny Full"
+    price: 1.0
+    type: LAGER
+    code: mocny_full
+    brewery_id: 1
+  - id: 2
+    alcohol: 55.0
+    name: "End of history"
+    price: 765
+    type: BLOND_ALE
+    code: end_of_history
+    brewery_id: 2
+  - id: 4
+    alcohol: 8.5
+    name: "Delirium Tremens"
+    price: 10.0
+    type: PALE_ALE
+    code: delirium
+    brewery_id: 3
+  - id: 5
+    alcohol: 8.4
+    name: "Pauwel Kwak"
+    price: 4.0
+    type: AMBER
+    code: kwak
+    brewery_id: 4
+  - id: 6
+    alcohol: 4.8
+    name: "Bügel"
+    price: 3.0
+    type: VIENNA
+    code: bugel
+    brewery_id: 5
+  - id: 7
+    alcohol: 6.3
+    name: "Appenzeller Schwarzer Kristall"
+    price: 4.0
+    type: SCHWARZBIER
+    code: schwarzer_kristall
+    brewery_id: 6

@@ -28,7 +28,7 @@ public class Brewery implements Serializable
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   @OneToMany(cascade = CascadeType.ALL, mappedBy = "brewery")
+   @OneToMany(cascade = CascadeType.ALL, mappedBy = "brewery", orphanRemoval = true)
    private Set<Beer> beers = new HashSet<Beer>();
 
    @Basic
@@ -56,6 +56,12 @@ public class Brewery implements Serializable
    {
       beers.add(beer);
       beer.setBrewery(this);
+   }
+
+   public void remove(Beer beer)
+   {
+      beers.remove(beer);
+      beer.setBrewery(null);
    }
 
    @Override

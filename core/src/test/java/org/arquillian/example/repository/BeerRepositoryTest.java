@@ -11,6 +11,7 @@ import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.persistence.ShouldMatchDataSet;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -125,6 +126,36 @@ public class BeerRepositoryTest
 
       // then
       assertThat(beers.getName()).isEqualTo(expectedName);
+   }
+
+   @Test
+   @UsingDataSet("beers.yml")
+   @ShouldMatchDataSet("beers-without-mocny-full.yml")
+   public void should_remove_beer_by_id_and_its_unique_brewery() throws Exception
+   {
+      // given
+      Long beerId = 1L;
+
+      // when
+      beerRepository.delete(beerId);
+
+      // then
+      // verified by @Should
+   }
+
+   @Test
+   @UsingDataSet("beers.yml")
+   @ShouldMatchDataSet("beers-without-bismarck.yml")
+   public void should_remove_beer_but_not_brewery() throws Exception
+   {
+      // given
+      Beer bismarck = beerRepository.getById(3L);
+
+      // when
+      beerRepository.delete(bismarck);
+
+      // then
+      // verified by @Should
    }
 
 }

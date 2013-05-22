@@ -48,7 +48,7 @@ public class Beer implements Serializable
    @Enumerated(EnumType.STRING)
    private Type type;
 
-   @ManyToOne(optional = false, cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+   @ManyToOne(optional = false, cascade = CascadeType.ALL)
    @Expose
    private Brewery brewery;
 

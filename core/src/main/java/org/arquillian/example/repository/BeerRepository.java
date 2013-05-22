@@ -13,6 +13,10 @@ public interface BeerRepository
 
    void save(Brewery brewery);
 
+   void delete(Long id);
+
+   void delete(Beer beer);
+
    Beer getById(Long id);
 
    Set<Beer> cheapest();

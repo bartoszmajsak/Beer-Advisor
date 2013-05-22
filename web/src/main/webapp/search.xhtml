@@ -3,7 +3,7 @@
 				xmlns:h="http://java.sun.com/jsf/html"
 				xmlns:f="http://java.sun.com/jsf/core"
 				template="template.xhtml">
-				
+
 	<ui:define name="content">
 		<h:outputScript library="javax.faces" name="jsf.js" target="head" />
 		<h:form id="advisor" onkeypress="return event.keyCode != 13">
@@ -12,7 +12,7 @@
 							styleClass="beer-search-field"
 							autocomplete="off"
 							onkeypress="if (event.keyCode == 13) { this.blur(); }">
-					<f:ajax event="blur" render="beers" 
+					<f:ajax event="blur" render="beers"
 							listener="#{beerAdvisorController.loadBeers}" />
 				</h:inputText>
 			</div>
@@ -24,7 +24,7 @@
 						<span>Please try one of the following:</span>
 						<ul id="available-criteria">
 							<ui:repeat value="#{beerAdvisorController.availableCriteria}" var="criterion">
-								<li>#{criterion}</li>							
+								<li>#{criterion}</li>
 							</ui:repeat>
 						</ul>
 					</h:panelGroup>
@@ -53,8 +53,9 @@
 			window.onload = function() {
 				jsf.ajax.addOnError(function (data) {
 				    alert(data.errorName + ": " + data.errorMessage);
-			});
+				});
 			};
 		</h:outputScript>
+		<h:outputScript />
 	</ui:define>
 </ui:composition>

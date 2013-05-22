@@ -87,6 +87,20 @@ public class SkeletonBeerRepository implements BeerRepository
       beers.put(beer.getId(), beer);
    }
 
+
+   @Override
+   public void delete(Long id)
+   {
+      beers.remove(id);
+   }
+
+   @Override
+   public void delete(Beer beer)
+   {
+      beers.remove(beer.getId());
+   }
+
+
    @Override
    public void save(Brewery brewery)
    {
