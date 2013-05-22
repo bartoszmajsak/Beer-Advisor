@@ -44,7 +44,7 @@ public class BeerResourceTest
       expect()
               .statusCode(equalTo(200))
               .body("id", equalTo(1),
-                     "name", equalTo("Mocny Full"))
+                    "name", equalTo("Mocny Full"))
       .given()
               .request().pathParameter("id", 1)
       .when()

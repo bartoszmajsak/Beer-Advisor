@@ -60,7 +60,8 @@ public class Deployments
                                BeerAdvisorController.class.getPackage())
             .addPackages(true, BeerRepository.class.getPackage())
             .addAsResource("test-persistence.xml", "META-INF/persistence.xml")
-            .addAsLibraries(resolver.artifacts("com.google.guava:guava", "com.google.code.gson:gson").resolveAsFiles());
+            .addAsLibraries(resolver.artifacts("com.google.guava:guava",
+                                               "com.google.code.gson:gson").resolveAsFiles());
    }
 
    private static WebArchive addWebResourcesTo(WebArchive archive)
