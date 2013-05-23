@@ -8,13 +8,11 @@
   <container qualifier="jbossas" default="true">
     <configuration>
       <!--
-        Port offset results in following Warp exception
+        Port offset cannot be 10000, because it results in following Warp exception
         https://gist.github.com/bartoszmajsak/5630321
       -->
-      <!--
-      <property name="javaVmArguments">-Djboss.socket.binding.port-offset=10000</property>
-      <property name="managementPort">19999</property>
-       -->
+      <property name="javaVmArguments">-Djboss.socket.binding.port-offset=20000</property>
+      <property name="managementPort">29999</property>
       <property name="jbossHome">target/jboss-as-7.1.1.Final</property>
     </configuration>
   </container>

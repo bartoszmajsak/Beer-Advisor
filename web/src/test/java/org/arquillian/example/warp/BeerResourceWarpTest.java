@@ -62,8 +62,7 @@ public class BeerResourceWarpTest
                   .delete("/{id}");
          }
       })
-      .inspect(new Inspection()
-      {
+      .inspect(new Inspection() {
          private static final long serialVersionUID = -778115683463909014L;
 
          @Inject
