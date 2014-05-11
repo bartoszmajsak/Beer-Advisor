@@ -18,6 +18,9 @@
     <version.hsqldb>1.8.0.10</version.hsqldb>
     <version.arquillian_persistence>1.0.0.Alpha6</version.arquillian_persistence>
     <version.wildfly>8.0.0.Final</version.wildfly>
+    <version.mongodb>2.11.3</version.mongodb>
+    <version.nosqlunit>0.7.9</version.nosqlunit>
+    <version.json.path.assert>0.9.1</version.json.path.assert>
   </properties>
 
   <dependencies>
@@ -56,6 +59,32 @@
       <artifactId>arquillian-persistence-impl</artifactId>
       <version>${version.arquillian_persistence}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+        <groupId>org.mongodb</groupId>
+        <artifactId>mongo-java-driver</artifactId>
+        <version>${version.mongodb}</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.lordofthejars</groupId>
+        <artifactId>nosqlunit-mongodb</artifactId>
+        <version>${version.nosqlunit}</version>
+        <scope>test</scope>
+        <exclusions>
+            <exclusion>
+                <groupId>org.mongodb</groupId>
+                <artifactId>mongo-java-driver</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+
+    <dependency>
+        <groupId>com.jayway.jsonpath</groupId>
+        <artifactId>json-path-assert</artifactId>
+        <version>${version.json.path.assert}</version>
+        <scope>test</scope>
     </dependency>
 
     <dependency>

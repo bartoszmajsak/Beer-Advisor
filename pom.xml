@@ -35,7 +35,7 @@
     <version.jbossas_7>7.1.1.Final</version.jbossas_7>
     <version.jboss_spec>3.0.1.Final</version.jboss_spec>
     <version.maven_surefire>2.14.1</version.maven_surefire>
-    <version.junit>4.8.2</version.junit>
+    <version.junit>4.11</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>13.0</version.guava>
     <version.hsqldb>1.8.0.10</version.hsqldb>

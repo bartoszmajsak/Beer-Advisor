@@ -1,0 +1,6 @@
+{
+	"recipes":
+			[
+				{ "beer_code" : "kölsch" , "ingredients" : { "malts" : [ "Pilsner  4,6kg" , "Wheat 800gr"] , "hops" : [ "Hallertau Hersbrucker Flor 50gr"] , "yeasts" : [ "Safale S-04"] , "fining_agents" : [ "Irish Moss 10gr"]} , "elaboration" : "Typical English Beer. Original Density 1048 (5% Vol. Alc), ... "}
+			]
+}
