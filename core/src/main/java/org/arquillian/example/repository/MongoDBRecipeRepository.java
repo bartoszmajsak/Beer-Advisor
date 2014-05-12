@@ -1,5 +1,7 @@
 package org.arquillian.example.repository;
 
+import javax.inject.Inject;
+
 import org.arquillian.example.domain.Recipe;
 
 import com.mongodb.BasicDBObject;
@@ -8,6 +10,8 @@ import com.mongodb.DBObject;
 
 public class MongoDBRecipeRepository implements RecipeRepository {
 
+    @Inject
+    @RecipeCollection
     DBCollection recipeCollection;
     
     @Override

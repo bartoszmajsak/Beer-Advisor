@@ -1,62 +1,36 @@
 package org.arquillian.example.repository;
 
-import static com.lordofthejars.nosqlunit.mongodb.InMemoryMongoDb.InMemoryMongoRuleBuilder.newInMemoryMongoDbRule;
-import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder.newMongoDbRule;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.Matchers.contains;
-import static org.junit.Assert.assertThat;
+import org.apache.deltaspike.core.api.config.PropertyFileConfig;
+import org.arquillian.example.util.MongoDBConfigurationFile;
+import org.jboss.arquillian.container.test.api.Deployment;
+import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.jboss.shrinkwrap.resolver.api.maven.Maven;
+import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
+@RunWith(Arquillian.class)
+public class RecipeRepositoryTest {
 
-import org.arquillian.example.domain.Recipe;
-import org.junit.ClassRule;
-import org.junit.Rule;
-import org.junit.Test;
-
-import com.lordofthejars.nosqlunit.annotation.UsingDataSet;
-import com.lordofthejars.nosqlunit.core.LoadStrategyEnum;
-import com.lordofthejars.nosqlunit.mongodb.InMemoryMongoDb;
-import com.lordofthejars.nosqlunit.mongodb.MongoDbRule;
-import com.mongodb.DB;
-import com.mongodb.DBCollection;
-import com.mongodb.Mongo;
-
-
-public class RecipeRepositoryTest
-{
-
-    private static final String TEST_DB = "test";
-
-    @ClassRule
-    public static final InMemoryMongoDb IN_MEMORY_MONGO_DB = newInMemoryMongoDbRule().build();
-
-    @Rule
-    public MongoDbRule remoteMongoDbRule = newMongoDbRule().defaultEmbeddedMongoDb(TEST_DB);
-    
-    @Inject
-    private Mongo mongo;
-    
-    @Test
-    @UsingDataSet(locations="initialRecipes.json", loadStrategy=LoadStrategyEnum.CLEAN_INSERT)
-    public void test() 
+    @Deployment
+    public static JavaArchive createDeployment() 
     {
-        MongoDBRecipeRepository mongoDBRecipeRepository = new MongoDBRecipeRepository();
-        mongoDBRecipeRepository.recipeCollection = getRecipesCollection();
         
-        Recipe recipe = mongoDBRecipeRepository.findRecipeByBeerCode("kölsch");
+        JavaArchive javaArchive = ShrinkWrap.create(JavaArchive.class)
+                                            .addAsServiceProvider(PropertyFileConfig.class, MongoDBConfigurationFile.class)
+                                            .addClasses(MongoDBConfigurationFile.class, MongoDbFactory.class, MongoDBRecipeRepository.class, RecipeCollection.class)
+                                            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
         
-        assertThat(recipe.getBeerCode(), is("kölsch"));
-        assertThat(recipe.getElaboration(), is("Typical English Beer. Original Density 1048 (5% Vol. Alc), ... "));
-        assertThat(recipe.getMalts(), contains("Pilsner  4,6kg", "Wheat 800gr"));
-        assertThat(recipe.getHops(), contains("Hallertau Hersbrucker Flor 50gr"));
-        assertThat(recipe.getYeasts(), contains("Safale S-04"));
-        assertThat(recipe.getFiningAgents(), contains("Irish Moss 10gr"));
+        JavaArchive[] deltaSpikeLibrary = Maven.resolver().loadPomFromFile("pom.xml").resolve("org.apache.deltaspike.core:deltaspike-core-impl").withTransitivity().as(JavaArchive.class);
         
-    }
-    
-    private DBCollection getRecipesCollection() {
-        DB db = mongo.getDB(TEST_DB);
-        return db.getCollection("recipes");
+        for (JavaArchive deltaSpikeDependecy : deltaSpikeLibrary) 
+        {
+            javaArchive.merge(deltaSpikeDependecy);
+        }
+        
+        return javaArchive;
+        
     }
     
 }

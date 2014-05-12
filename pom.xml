@@ -39,7 +39,9 @@
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>13.0</version.guava>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.arquillian_core>1.0.3.Final</version.arquillian_core>
+    <version.shrinkwrap>1.2.2</version.shrinkwrap>
+    <!-- Can we update to 1.1.4.Final? -->
+    <version.arquillian_core>1.1.4.Final</version.arquillian_core>
   </properties>
 
   <modules>
@@ -54,6 +56,14 @@
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
         <version>${version.arquillian_core}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      
+      <dependency>
+        <groupId>org.jboss.shrinkwrap</groupId>
+        <artifactId>shrinkwrap-bom</artifactId>
+        <version>${version.shrinkwrap}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
