@@ -38,7 +38,7 @@ public class RecipeRepositoryBasicTest
     
     @Test
     @UsingDataSet(locations="initialRecipes.json", loadStrategy=LoadStrategyEnum.CLEAN_INSERT)
-    public void test() 
+    public void should_return_recipes_by_name() 
     {
         MongoDBRecipeRepository mongoDBRecipeRepository = new MongoDBRecipeRepository();
         mongoDBRecipeRepository.recipeCollection = getRecipesCollection();
