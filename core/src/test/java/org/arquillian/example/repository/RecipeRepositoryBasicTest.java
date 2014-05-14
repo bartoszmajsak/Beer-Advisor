@@ -31,7 +31,7 @@ public class RecipeRepositoryBasicTest
     public static final InMemoryMongoDb IN_MEMORY_MONGO_DB = newInMemoryMongoDbRule().build();
 
     @Rule
-    public MongoDbRule remoteMongoDbRule = newMongoDbRule().defaultEmbeddedMongoDb(TEST_DB);
+    public MongoDbRule embedMongoDbRule = newMongoDbRule().defaultEmbeddedMongoDb(TEST_DB);
     
     @Inject
     private Mongo mongo;
