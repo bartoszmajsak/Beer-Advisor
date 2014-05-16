@@ -1,4 +1,4 @@
-package org.arquillian.example.repository;
+package org.arquillian.example.repository.mongo;
 
 import static com.lordofthejars.nosqlunit.mongodb.InMemoryMongoDb.InMemoryMongoRuleBuilder.newInMemoryMongoDbRule;
 import static com.lordofthejars.nosqlunit.mongodb.MongoDbRule.MongoDbRuleBuilder.newMongoDbRule;
@@ -8,7 +8,8 @@ import static org.junit.Assert.assertThat;
 
 import javax.inject.Inject;
 
-import org.arquillian.example.domain.Recipe;
+import org.arquillian.example.domain.mongo.Recipe;
+import org.arquillian.example.repository.mongo.MongoDBRecipeRepository;
 import org.junit.ClassRule;
 import org.junit.Rule;
 import org.junit.Test;

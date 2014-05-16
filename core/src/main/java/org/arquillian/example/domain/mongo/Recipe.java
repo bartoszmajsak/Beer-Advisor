@@ -1,4 +1,4 @@
-package org.arquillian.example.domain;
+package org.arquillian.example.domain.mongo;
 
 import java.util.ArrayList;
 import java.util.List;

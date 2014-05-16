@@ -1,8 +1,8 @@
-package org.arquillian.example.repository;
+package org.arquillian.example.repository.mongo;
 
 import javax.inject.Inject;
 
-import org.arquillian.example.domain.Recipe;
+import org.arquillian.example.domain.mongo.Recipe;
 
 import com.mongodb.BasicDBObject;
 import com.mongodb.DBCollection;

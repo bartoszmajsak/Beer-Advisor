@@ -1,11 +1,11 @@
-package org.arquillian.example.repository;
+package org.arquillian.example.repository.mongo;
 
 import static com.jayway.jsonassert.JsonAssert.with;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.Matchers.contains;
 import static org.junit.Assert.assertThat;
 
-import org.arquillian.example.domain.Recipe;
+import org.arquillian.example.domain.mongo.Recipe;
 import org.junit.Test;
 
 import com.mongodb.BasicDBObject;

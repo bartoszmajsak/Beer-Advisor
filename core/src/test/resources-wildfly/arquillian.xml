@@ -5,16 +5,42 @@
         http://jboss.org/schema/arquillian
         http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
-  <defaultProtocol type="Servlet 3.0"/>
-  <engine>
-    <property name="deploymentExportPath">target/deployments</property>
-  </engine>
+    <defaultProtocol type="Servlet 3.0"/>
+    <engine>
+        <property name="deploymentExportPath">target/deployments</property>
+    </engine>
 
-  <container qualifier="wildfly-managed" default="true">
-    <configuration>
-      <property name="jbossHome">target/wildfly-8.0.0.Final</property>
-      <property name="outputToConsole">true</property>
-    </configuration>
-  </container>
+    <container qualifier="wildfly-managed" default="true">
+        <configuration>
+            <property name="jbossHome">target/wildfly-8.0.0.Final</property>
+            <property name="outputToConsole">true</property>
+            <property name="javaVmArguments">-Djboss.socket.binding.port-offset=10000 -Xmx1024m -XX:PermSize=256m
+                -XX:MaxPermSize=256m -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n
+            </property>
+            <property name="managementPort">19999</property>
+        </configuration>
+    </container>
+
+    <extension qualifier="persistence-mongodb">
+        <property name="dbName">beers</property>
+        <property name="host">localhost</property>
+    </extension>
+
+    <extension qualifier="persistence">
+        <property name="defaultDataSource">java:jboss/datasources/ExampleDS</property>
+    </extension>
+
+    <extension qualifier="transaction">
+        <property name="manager">java:jboss/UserTransaction</property>
+    </extension>
+
+    <extension qualifier="persistence-script">
+        <property name="scriptsToExecuteBeforeTest">SET REFERENTIAL_INTEGRITY FALSE</property>
+        <property name="sqlStatementDelimiter">NEW_LINE</property>
+    </extension>
+
+    <extension qualifier="persistence-dbunit">
+        <property name="datatypeFactory">org.dbunit.ext.h2.H2DataTypeFactory</property>
+    </extension>
 
 </arquillian>

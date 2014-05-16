@@ -1,4 +1,4 @@
-package org.arquillian.example.repository;
+package org.arquillian.example.repository.mongo;
 
 import static java.lang.annotation.ElementType.FIELD;
 import static java.lang.annotation.ElementType.METHOD;

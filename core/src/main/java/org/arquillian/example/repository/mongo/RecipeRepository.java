@@ -1,6 +1,6 @@
-package org.arquillian.example.repository;
+package org.arquillian.example.repository.mongo;
 
-import org.arquillian.example.domain.Recipe;
+import org.arquillian.example.domain.mongo.Recipe;
 
 public interface RecipeRepository {
 
