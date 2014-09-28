@@ -35,3 +35,7 @@ infinitest.filters
 
 # Openshift
 deployments/
+
+#
+web/lib
+log.txt

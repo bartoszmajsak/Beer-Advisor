@@ -13,7 +13,7 @@ import org.jboss.arquillian.test.api.ArquillianResource
 import org.jboss.shrinkwrap.api.spec.WebArchive
 import org.junit.Test
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebDriverBackedSelenium;
+import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import org.arquillian.example.ui.utils.BeersAssert
