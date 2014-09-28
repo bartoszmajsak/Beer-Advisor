@@ -1,26 +1,21 @@
 package org.arquillian.example.ui
 
-import static org.fest.assertions.Assertions.assertThat
-
-import java.net.URL
-import java.util.List
-import java.util.concurrent.TimeUnit
-
+import org.arquillian.example.ui.utils.BeersAssert
+import org.arquillian.example.ui.utils.SpockDeployments
+import org.arquillian.example.ui.web.Beer
+import org.arquillian.example.ui.web.BeerAdvisorPage
 import org.jboss.arquillian.container.test.api.Deployment
-import org.jboss.arquillian.container.test.api.RunAsClient
 import org.jboss.arquillian.drone.api.annotation.Drone
 import org.jboss.arquillian.test.api.ArquillianResource
 import org.jboss.shrinkwrap.api.spec.WebArchive
 import org.junit.Test
 import org.openqa.selenium.WebDriver
-import org.openqa.selenium.WebDriverBackedSelenium;
-import org.openqa.selenium.firefox.FirefoxDriver;
+import spock.lang.Specification
+import spock.lang.Stepwise
 
-import org.arquillian.example.ui.utils.BeersAssert
-import org.arquillian.example.ui.utils.SpockDeployments
-import org.arquillian.example.ui.web.Beer
-import org.arquillian.example.ui.web.BeerAdvisorPage
-import spock.lang.*
+import java.util.concurrent.TimeUnit
+
+import static org.fest.assertions.Assertions.assertThat
 
 /**
  *

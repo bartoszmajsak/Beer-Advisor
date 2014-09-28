@@ -48,6 +48,7 @@
   <modules>
     <module>core</module>
     <module>web</module>
+    <module>spock-drone-tests</module>
   </modules>
 
   <dependencyManagement>
