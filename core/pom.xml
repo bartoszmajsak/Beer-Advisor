@@ -13,10 +13,9 @@
   <artifactId>beer-advisor-core</artifactId>
 
   <properties>
-    <version.maven_compiler>2.3.2</version.maven_compiler>
-    <version.hibernate_jpamodelgen>1.2.0.Final</version.hibernate_jpamodelgen>
+    <version.hibernate_jpamodelgen>4.3.5.Final</version.hibernate_jpamodelgen>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.arquillian_persistence>1.0.0.Alpha6</version.arquillian_persistence>
+    <version.arquillian_persistence>1.0.0.Alpha7</version.arquillian_persistence>
     <version.wildfly>8.0.0.Final</version.wildfly>
   </properties>
 
@@ -46,14 +45,7 @@
 
     <dependency>
       <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-persistence-api</artifactId>
-      <version>${version.arquillian_persistence}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jboss.arquillian.extension</groupId>
-      <artifactId>arquillian-persistence-impl</artifactId>
+      <artifactId>arquillian-persistence-dbunit</artifactId>
       <version>${version.arquillian_persistence}</version>
       <scope>test</scope>
     </dependency>
@@ -264,7 +256,7 @@
         </dependency>
       </dependencies>
       <build>
-				<plugins>
+		<plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
@@ -291,7 +283,7 @@
             </executions>
           </plugin>
         </plugins>
-				<testResources>
+        <testResources>
           <testResource>
             <directory>src/test/resources</directory>
           </testResource>

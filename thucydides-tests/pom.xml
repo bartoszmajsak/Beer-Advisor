@@ -18,7 +18,7 @@
     <version.maven.build_helper_plugin>1.5</version.maven.build_helper_plugin>
 
     <!-- Dependencies versions -->
-    <version.arquillian_drone>1.2.0.Alpha1</version.arquillian_drone>
+    <version.arquillian_drone>1.3.1.Final</version.arquillian_drone>
     <thucydides.version>0.9.20</thucydides.version>
   </properties>
 

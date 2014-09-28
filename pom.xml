@@ -34,18 +34,20 @@
     <maven.compiler.target>1.6</maven.compiler.target>
     <version.jbossas_7>7.1.1.Final</version.jbossas_7>
     <version.jboss_spec>3.0.1.Final</version.jboss_spec>
-    <version.maven_surefire>2.14.1</version.maven_surefire>
-    <version.junit>4.8.2</version.junit>
+    <version.maven_surefire>2.17</version.maven_surefire>
+    <version.maven_compiler>3.1</version.maven_compiler>
+    <version.junit>4.11</version.junit>
     <version.fest_assert>1.4</version.fest_assert>
     <version.guava>13.0</version.guava>
     <version.hsqldb>1.8.0.10</version.hsqldb>
-    <version.arquillian_core>1.0.3.Final</version.arquillian_core>
+    <version.shrinkwrap>1.2.2</version.shrinkwrap>
+    <version.arquillian_core>1.1.5.Final</version.arquillian_core>
+    <version.arquillian_drone>1.3.1.Final</version.arquillian_drone>
   </properties>
 
   <modules>
     <module>core</module>
     <module>web</module>
-    <module>spock-drone-tests</module>
   </modules>
 
   <dependencyManagement>
@@ -54,6 +56,14 @@
         <groupId>org.jboss.arquillian</groupId>
         <artifactId>arquillian-bom</artifactId>
         <version>${version.arquillian_core}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.jboss.arquillian.extension</groupId>
+        <artifactId>arquillian-drone-bom</artifactId>
+        <version>${version.arquillian_drone}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
