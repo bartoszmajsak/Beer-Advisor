@@ -1,13 +1,6 @@
 package org.arquillian.example.warp;
 
-import static com.jayway.restassured.RestAssured.expect;
-import static org.fest.assertions.Assertions.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-
-import java.net.URL;
-
-import javax.inject.Inject;
-
+import com.jayway.restassured.RestAssured;
 import org.arquillian.example.repository.BeerRepository;
 import org.arquillian.example.ui.utils.Deployments;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -24,7 +17,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import com.jayway.restassured.RestAssured;
+import javax.inject.Inject;
+import javax.ws.rs.core.Response;
+import java.net.URL;
+
+import static com.jayway.restassured.RestAssured.given;
+import static javax.ws.rs.core.Response.Status.*;
+import static org.fest.assertions.Assertions.assertThat;
+import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Arquillian.class)
 @WarpTest @RunAsClient
@@ -50,26 +50,29 @@ public class BeerResourceWarpTest
    @Test
    public void should_delete_beer_based_on_id()
    {
-      Warp.initiate(new Activity() {
+      Warp.initiate(new Activity()
+      {
          @Override
          public void perform()
          {
-            expect()
-                  .statusCode(equalTo(204))
-            .given()
+            given()
                   .request().pathParameter("id", 1)
             .when()
-                  .delete("/{id}");
+                  .delete("/{id}")
+            .then()
+                  .statusCode(equalTo(NO_CONTENT.getStatusCode()));
          }
       })
-      .inspect(new Inspection() {
+      .inspect(new Inspection()
+      {
          private static final long serialVersionUID = -778115683463909014L;
 
          @Inject
          private BeerRepository beerRepository;
 
          @AfterServlet
-         public void check() {
+         public void check()
+         {
             assertThat(beerRepository.getById(1L)).isNull();
          }
       });

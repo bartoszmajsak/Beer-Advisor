@@ -7,6 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.Response;
 
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.repository.BeerRepository;
@@ -25,18 +26,19 @@ public class BeerResource
    @GET
    @Path("{id}")
    @Produces("application/json")
-   public String getBeerById(@PathParam("id") Long id)
+   public Response getBeerById(@PathParam("id") Long id)
    {
       final Beer beer = beerRepository.getById(id);
       final Gson gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
-      return gson.toJson(beer);
+      return Response.ok(gson.toJson(beer)).build();
    }
 
    @DELETE
    @Path("{id}")
-   public void deleteById(@PathParam("id") Long id)
+   public Response deleteById(@PathParam("id") Long id)
    {
       beerRepository.delete(id);
+      return Response.noContent().build();
    }
 
 }

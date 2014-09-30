@@ -126,15 +126,6 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>${version.maven_surefire}</version>
-          <configuration>
-              <excludes>
-                <!--
-                  Tmp removed from mvn execution as it's failing. Works in eclipse though.
-                  Most likely some groovy problem.
-                 -->
-                <exclude>**/BeerResourceTest.java</exclude>
-              </excludes>
-          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
