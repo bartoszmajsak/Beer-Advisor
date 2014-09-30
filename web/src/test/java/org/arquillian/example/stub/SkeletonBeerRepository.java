@@ -72,6 +72,19 @@ public class SkeletonBeerRepository implements BeerRepository
    }
 
    @Override
+   public Beer getByCode(String code)
+   {
+      for (Beer beer : beers.values())
+      {
+         if (code.equals(beer.getCode()))
+         {
+            return beer;
+         }
+      }
+      return null;
+   }
+
+   @Override
    public Set<Beer> fetchAll()
    {
       return Sets.newHashSet(beers.values());

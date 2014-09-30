@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.enterprise.context.RequestScoped;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityNotFoundException;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -74,6 +76,26 @@ public class JpaBeerRepository implements BeerRepository
 
       return result;
 
+   }
+
+   @Override
+   public Beer getByCode(String code)
+   {
+      CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+      CriteriaQuery<Beer> query = criteriaBuilder.createQuery(Beer.class);
+      Root<Beer> beers = query.from(Beer.class);
+
+      Predicate codeEquals = criteriaBuilder.equal(beers.get(Beer_.code), code);
+      CriteriaQuery<Beer> select = query.select(beers).where(codeEquals);
+
+      try
+      {
+         return em.createQuery(select).getSingleResult();
+      }
+      catch (NoResultException e)
+      {
+         return null;
+      }
    }
 
    @Override

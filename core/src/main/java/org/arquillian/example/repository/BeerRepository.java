@@ -19,6 +19,8 @@ public interface BeerRepository
 
    Beer getById(Long id);
 
+   Beer getByCode(String code);
+
    Set<Beer> cheapest();
 
    Set<Beer> strongest();

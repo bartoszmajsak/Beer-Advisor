@@ -5,6 +5,7 @@ import org.arquillian.example.ui.utils.Deployments;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.container.test.api.RunAsClient;
 import org.jboss.arquillian.junit.Arquillian;
+import org.jboss.arquillian.junit.InSequence;
 import org.jboss.arquillian.test.api.ArquillianResource;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Before;
@@ -41,26 +42,26 @@ public class BeerResourceTest
        RestAssured.basePath = "/resource/beer";
    }
 
-   @Test
-   public void should_return_beer_based_on_id()
+   @Test @InSequence(1)
+   public void should_return_beer_based_on_unique_code()
    {
       given()
-              .request().pathParameter("id", 1)
+              .request().pathParameter("code", "mocny_full")
       .when()
-              .get("/{id}")
-      .then()
+              .get("/{code}")
+      .then().log().all()
             .statusCode(equalTo(OK.getStatusCode()))
-            .body("id", equalTo(1),
-                  "name", equalTo("Mocny Full"))
+            .body("code", equalTo("mocny_full"),
+                  "name", equalTo("Mocny Full"));
    }
 
-   @Test
-   public void should_delete_beer_based_on_id()
+   @Test @InSequence(2)
+   public void should_delete_beer_based_on_uniqe_code()
    {
       given()
-              .request().pathParameter("id", 1)
+              .request().pathParameter("code", "mocny_full")
       .when()
-              .delete("/{id}")
+              .delete("/{code}")
       .then()
             .statusCode(equalTo(NO_CONTENT.getStatusCode()));
 

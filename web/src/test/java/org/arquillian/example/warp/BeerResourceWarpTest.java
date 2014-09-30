@@ -48,7 +48,7 @@ public class BeerResourceWarpTest
    }
 
    @Test
-   public void should_delete_beer_based_on_id()
+   public void should_delete_beer_based_on_unique_code()
    {
       Warp.initiate(new Activity()
       {
@@ -56,9 +56,9 @@ public class BeerResourceWarpTest
          public void perform()
          {
             given()
-                  .request().pathParameter("id", 1)
+                  .request().pathParameter("code", "mocny_full")
             .when()
-                  .delete("/{id}")
+                  .delete("/{code}")
             .then()
                   .statusCode(equalTo(NO_CONTENT.getStatusCode()));
          }
@@ -73,7 +73,7 @@ public class BeerResourceWarpTest
          @AfterServlet
          public void check()
          {
-            assertThat(beerRepository.getById(1L)).isNull();
+            assertThat(beerRepository.getByCode("mocny_full")).isNull();
          }
       });
    }

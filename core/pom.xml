@@ -16,10 +16,23 @@
     <version.hibernate_jpamodelgen>4.3.5.Final</version.hibernate_jpamodelgen>
     <version.hsqldb>1.8.0.10</version.hsqldb>
     <version.arquillian_persistence>1.0.0.Alpha7</version.arquillian_persistence>
-    <version.wildfly>8.0.0.Final</version.wildfly>
   </properties>
 
   <dependencies>
+    <dependency>
+      <groupId>org.jboss.spec</groupId>
+      <artifactId>jboss-javaee-web-6.0</artifactId>
+      <version>${version.jboss_spec}</version>
+      <type>pom</type>
+      <scope>provided</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.apache.xalan</groupId>
+          <artifactId>xalan</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
@@ -134,19 +147,6 @@
           <version>${version.jbossas_7}</version>
           <scope>test</scope>
         </dependency>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.apache.xalan</groupId>
-              <artifactId>xalan</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
       </dependencies>
       <build>
         <testResources>
@@ -199,19 +199,6 @@
           <version>${version.jbossas_7}</version>
           <scope>test</scope>
         </dependency>
-        <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.apache.xalan</groupId>
-              <artifactId>xalan</artifactId>
-            </exclusion>
-          </exclusions>
-        </dependency>
       </dependencies>
       <build>
         <testResources>
@@ -240,19 +227,6 @@
           <groupId>org.jboss.arquillian.protocol</groupId>
           <artifactId>arquillian-protocol-servlet</artifactId>
           <scope>test</scope>
-        </dependency>
-         <dependency>
-          <groupId>org.jboss.spec</groupId>
-          <artifactId>jboss-javaee-web-6.0</artifactId>
-          <version>${version.jboss_spec}</version>
-          <type>pom</type>
-          <scope>provided</scope>
-          <exclusions>
-            <exclusion>
-              <groupId>org.apache.xalan</groupId>
-              <artifactId>xalan</artifactId>
-            </exclusion>
-          </exclusions>
         </dependency>
       </dependencies>
       <build>
