@@ -222,6 +222,11 @@
           <version>${version.jbossas_7}</version>
           <scope>test</scope>
         </dependency>
+        <dependency>
+          <groupId>org.jboss.arquillian.protocol</groupId>
+          <artifactId>arquillian-protocol-servlet</artifactId>
+          <scope>test</scope>
+        </dependency>
       </dependencies>
       <build>
         <testResources>
@@ -305,7 +310,7 @@
         </dependency>
       </dependencies>
       <build>
-		<plugins>
+        <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-dependency-plugin</artifactId>
