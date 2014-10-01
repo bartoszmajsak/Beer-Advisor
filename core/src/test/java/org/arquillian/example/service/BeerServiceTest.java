@@ -1,26 +1,22 @@
 package org.arquillian.example.service;
 
-import static org.fest.assertions.Assertions.assertThat;
-
-import java.math.BigDecimal;
-import java.util.Collection;
-
-import javax.inject.Inject;
-
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
 import org.arquillian.example.repository.BeerRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-@RunWith(Arquillian.class)
+import javax.inject.Inject;
+import java.math.BigDecimal;
+import java.util.Collection;
+
+import static org.fest.assertions.Assertions.assertThat;
+
 public class BeerServiceTest
 {
    @Deployment

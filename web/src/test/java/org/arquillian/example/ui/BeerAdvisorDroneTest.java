@@ -61,7 +61,6 @@ public class BeerAdvisorDroneTest
    public void setup()
    {
       // make the driver more patient for our VM environments :)
-      System.out.println("----> " + driver.getClass());
       driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
    }
 

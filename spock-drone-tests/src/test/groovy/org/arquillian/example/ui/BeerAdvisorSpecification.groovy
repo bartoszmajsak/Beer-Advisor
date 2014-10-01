@@ -6,9 +6,11 @@ import org.arquillian.example.ui.web.Beer
 import org.arquillian.example.ui.web.BeerAdvisorPage
 import org.jboss.arquillian.container.test.api.Deployment
 import org.jboss.arquillian.drone.api.annotation.Drone
+import org.jboss.arquillian.spock.ArquillianSputnik
 import org.jboss.arquillian.test.api.ArquillianResource
 import org.jboss.shrinkwrap.api.spec.WebArchive
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.openqa.selenium.WebDriver
 import spock.lang.Specification
 import spock.lang.Stepwise
@@ -25,6 +27,7 @@ import static org.fest.assertions.Assertions.assertThat
  * in <a href="http://en.wikipedia.org/wiki/Behavior_Driven_Development#Application_examples_in_the_Gherkin_language">gherkin language</a>.
  */
 @Stepwise
+@RunWith(ArquillianSputnik)
 class BeerAdvisorSpecification extends Specification
 {
 

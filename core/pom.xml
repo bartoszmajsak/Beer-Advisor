@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-  xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+        xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -41,7 +41,6 @@
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <scope>test</scope>
     </dependency>
 
     <dependency>
@@ -50,9 +49,37 @@
       <scope>test</scope>
     </dependency>
 
+    <!-- Arquillian Spock Runner dependencies -->
     <dependency>
-      <groupId>org.jboss.arquillian.junit</groupId>
-      <artifactId>arquillian-junit-container</artifactId>
+      <groupId>org.jboss.arquillian.spock</groupId>
+      <artifactId>arquillian-spock-container</artifactId>
+      <version>${version.arquillian_spock}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.spockframework</groupId>
+      <artifactId>spock-core</artifactId>
+      <version>${version.spock}</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <groupId>org.codehaus.groovy</groupId>
+          <artifactId>groovy-all</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+
+    <dependency>
+      <groupId>org.codehaus.groovy</groupId>
+      <artifactId>groovy-all</artifactId>
+      <version>${version.groovy}</version>
       <scope>test</scope>
     </dependency>
 
@@ -116,6 +143,41 @@
         </dependencies>
       </plugin>
       <plugin>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerId>groovy-eclipse-compiler</compilerId>
+          <verbose>false</verbose>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-compiler</artifactId>
+            <version>${version.groovy.eclipse_compiler}</version>
+            <exclusions>
+              <exclusion>
+                <groupId>org.codehaus.groovy</groupId>
+                <artifactId>groovy-all</artifactId>
+              </exclusion>
+            </exclusions>
+          </dependency>
+          <!-- Compile using Groovy 1.8 instead of 2.0.0 -->
+          <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-eclipse-batch</artifactId>
+            <version>${version.groovy.eclipse_batch}</version>
+          </dependency>
+        </dependencies>
+      </plugin>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.17</version>
+        <configuration>
+          <includes>
+            <include>**/*Specification.java</include>
+          </includes>
+        </configuration>
+      </plugin>
+      <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
         <version>1.7</version>
@@ -128,7 +190,20 @@
             </goals>
             <configuration>
               <sources>
+                <source>src/main/groovy</source>
                 <source>target/generated-sources</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-test-source</id>
+            <phase>generate-test-sources</phase>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/test/groovy</source>
               </sources>
             </configuration>
           </execution>

@@ -1,18 +1,15 @@
 package org.arquillian.example.service;
 
-import static org.fest.assertions.Assertions.assertThat;
-
-import javax.ejb.EJB;
-
 import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.Archive;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 
-@RunWith(Arquillian.class)
+import javax.ejb.EJB;
+
+import static org.fest.assertions.Assertions.assertThat;
+
 public class FluidOuncesConverterTest
 {
 
