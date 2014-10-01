@@ -14,6 +14,7 @@
         <configuration>
             <property name="jbossHome">target/wildfly-8.0.0.Final</property>
             <property name="outputToConsole">true</property>
+            <property name="javaVmArguments">-Xmx512m -XX:MaxPermSize=128m -Darquillian.debug=true</property>
         </configuration>
     </container>
 
