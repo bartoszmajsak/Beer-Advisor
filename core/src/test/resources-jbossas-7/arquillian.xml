@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<arquillian xmlns="http://jboss.org/schema/arquillian"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
+<arquillian xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns="http://jboss.org/schema/arquillian"
+    xsi:schemaLocation="http://jboss.org/schema/arquillian http://jboss.org/schema/arquillian/arquillian_1_0.xsd">
 
   <container qualifier="jbossas" default="true">
     <configuration>
       <property name="jbossHome">target/jboss-as-7.1.1.Final</property>
-      <property name="javaVmArguments">-Djboss.socket.binding.port-offset=10000 -Xmx1024m -XX:PermSize=256m -XX:MaxPermSize=256m -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n</property>
+      <property name="javaVmArguments">-Djboss.socket.binding.port-offset=10000 -Xmx1024m -XX:PermSize=256m
+        -XX:MaxPermSize=256m -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n
+      </property>
       <property name="managementPort">19999</property>
     </configuration>
   </container>

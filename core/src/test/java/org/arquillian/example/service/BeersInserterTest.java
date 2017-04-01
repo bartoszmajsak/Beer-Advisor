@@ -1,9 +1,6 @@
 package org.arquillian.example.service;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import javax.ejb.EJB;
-
 import org.arquillian.example.domain.Beer;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -17,31 +14,28 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.fest.assertions.Assertions.assertThat;
 
 @RunWith(Arquillian.class)
-public class BeersInserterTest
-{
+public class BeersInserterTest {
 
-   @Deployment
-   public static Archive<?> createDeployment()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                       .addPackage(Beer.class.getPackage())
-                       .addClass(BeersInserter.class)
-                       .addPackages(true, "org.fest")
-                       .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                       .addAsManifestResource("test-persistence.xml", "persistence.xml");
-   }
+    @EJB
+    BeersInserter beersInserter;
 
-   @EJB
-   BeersInserter beersInserter;
+    @Deployment
+    public static Archive<?> createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+            .addPackage(Beer.class.getPackage())
+            .addClass(BeersInserter.class)
+            .addPackages(true, "org.fest")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+            .addAsManifestResource("test-persistence.xml", "persistence.xml");
+    }
 
-   @Test
-   @ShouldMatchDataSet(value = "expected-beers.yml", orderBy = "name")
-   @Cleanup(phase = TestExecutionPhase.AFTER)
-   public void should_return_all_beert() throws Exception
-   {
-      assertThat(beersInserter).isNotNull();
-   }
-
+    @Test
+    @ShouldMatchDataSet(value = "expected-beers.yml", orderBy = "name")
+    @Cleanup(phase = TestExecutionPhase.AFTER)
+    public void should_return_all_beert() throws Exception {
+        assertThat(beersInserter).isNotNull();
+    }
 }

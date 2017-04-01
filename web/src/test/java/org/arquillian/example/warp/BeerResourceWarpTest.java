@@ -1,6 +1,8 @@
 package org.arquillian.example.warp;
 
 import com.jayway.restassured.RestAssured;
+import java.net.URL;
+import javax.inject.Inject;
 import org.arquillian.example.repository.BeerRepository;
 import org.arquillian.example.ui.utils.Deployments;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -17,65 +19,53 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.inject.Inject;
-import javax.ws.rs.core.Response;
-import java.net.URL;
-
 import static com.jayway.restassured.RestAssured.given;
-import static javax.ws.rs.core.Response.Status.*;
+import static javax.ws.rs.core.Response.Status.NO_CONTENT;
 import static org.fest.assertions.Assertions.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 @RunWith(Arquillian.class)
-@WarpTest @RunAsClient
-public class BeerResourceWarpTest
-{
+@WarpTest
+@RunAsClient
+public class BeerResourceWarpTest {
 
-   @Deployment(testable = true)
-   public static WebArchive createDeployment()
-   {
-      return Deployments.create().addPackages(true, "org.fest");
-   }
+    @ArquillianResource
+    private URL applicationPath;
 
-   @ArquillianResource
-   private URL applicationPath;
+    @Deployment(testable = true)
+    public static WebArchive createDeployment() {
+        return Deployments.create().addPackages(true, "org.fest");
+    }
 
-   @Before
-   public void resourcePath()
-   {
-       RestAssured.baseURI = applicationPath.toString();
-       RestAssured.basePath = "/resource/beer";
-   }
+    @Before
+    public void resourcePath() {
+        RestAssured.baseURI = applicationPath.toString();
+        RestAssured.basePath = "/resource/beer";
+    }
 
-   @Test
-   public void should_delete_beer_based_on_unique_code()
-   {
-      Warp.initiate(new Activity()
-      {
-         @Override
-         public void perform()
-         {
-            given()
-                  .request().pathParameter("code", "mocny_full")
-            .when()
-                  .delete("/{code}")
-            .then()
-                  .statusCode(equalTo(NO_CONTENT.getStatusCode()));
-         }
-      })
-      .inspect(new Inspection()
-      {
-         private static final long serialVersionUID = -778115683463909014L;
+    @Test
+    public void should_delete_beer_based_on_unique_code() {
+        Warp.initiate(new Activity() {
+            @Override
+            public void perform() {
+                given()
+                    .request().pathParameter("code", "mocny_full")
+                    .when()
+                    .delete("/{code}")
+                    .then()
+                    .statusCode(equalTo(NO_CONTENT.getStatusCode()));
+            }
+        })
+            .inspect(new Inspection() {
+                private static final long serialVersionUID = -778115683463909014L;
 
-         @Inject
-         private BeerRepository beerRepository;
+                @Inject
+                private BeerRepository beerRepository;
 
-         @AfterServlet
-         public void check()
-         {
-            assertThat(beerRepository.getByCode("mocny_full")).isNull();
-         }
-      });
-   }
-
+                @AfterServlet
+                public void check() {
+                    assertThat(beerRepository.getByCode("mocny_full")).isNull();
+                }
+            });
+    }
 }

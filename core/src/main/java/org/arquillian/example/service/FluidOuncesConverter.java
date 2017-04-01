@@ -1,8 +1,6 @@
 package org.arquillian.example.service;
 
-public interface FluidOuncesConverter
-{
+public interface FluidOuncesConverter {
 
-   double convertToMilliliters(double ounces);
-
+    double convertToMilliliters(double ounces);
 }

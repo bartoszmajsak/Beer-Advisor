@@ -1,174 +1,154 @@
 package org.arquillian.example.domain;
 
+import com.google.gson.annotations.Expose;
 import java.io.Serializable;
 import java.math.BigDecimal;
-
-import javax.persistence.*;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
-import com.google.gson.annotations.Expose;
-
 @Entity
-public class Beer implements Serializable
-{
-   private static final long serialVersionUID = 5892013208071126314L;
+public class Beer implements Serializable {
+    private static final long serialVersionUID = 5892013208071126314L;
 
-   @Id
-   @GeneratedValue(strategy = GenerationType.IDENTITY)
-   @Expose
-   private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Expose
+    private Long id;
 
-   @Basic
-   @NotNull
-   @Expose
-   private String name;
+    @Basic
+    @NotNull
+    @Expose
+    private String name;
 
-   @Basic
-   @NotNull
-   @Expose
-   private BigDecimal price;
+    @Basic
+    @NotNull
+    @Expose
+    private BigDecimal price;
 
-   @Basic
-   @NotNull
-   @Expose
-   private BigDecimal alcohol;
+    @Basic
+    @NotNull
+    @Expose
+    private BigDecimal alcohol;
 
-   @Basic
-   @NotNull
-   @Expose
-   private String code;
+    @Basic
+    @NotNull
+    @Expose
+    private String code;
 
-   @Enumerated(EnumType.STRING)
-   private Type type;
+    @Enumerated(EnumType.STRING)
+    private Type type;
 
-   @ManyToOne(optional = false, cascade = CascadeType.ALL)
-   @Expose
-   private Brewery brewery;
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @Expose
+    private Brewery brewery;
 
-   protected Beer()
-   {
-      // to satisfy JPA
-   }
+    protected Beer() {
+        // to satisfy JPA
+    }
 
-   public Beer(String name, Brewery brewery, Type type, BigDecimal price, BigDecimal alcohol, String code)
-   {
-      this.name = name;
-      this.price = price;
-      this.alcohol = alcohol;
-      this.type = type;
-      this.code = code;
-      this.brewery = brewery;
-      this.brewery.addBeer(this);
-   }
+    public Beer(String name, Brewery brewery, Type type, BigDecimal price, BigDecimal alcohol, String code) {
+        this.name = name;
+        this.price = price;
+        this.alcohol = alcohol;
+        this.type = type;
+        this.code = code;
+        this.brewery = brewery;
+        this.brewery.addBeer(this);
+    }
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((code == null) ? 0 : code.hashCode());
-      return result;
-   }
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((code == null) ? 0 : code.hashCode());
+        return result;
+    }
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
 
-      if (!(obj instanceof Beer))
-      {
-         return false;
-      }
-
-      Beer other = (Beer) obj;
-      if (code == null)
-      {
-         if (other.code != null)
-         {
+        if (!(obj instanceof Beer)) {
             return false;
-         }
-      }
-      else if (!code.equals(other.code))
-      {
-         return false;
-      }
+        }
 
-      return true;
-   }
+        Beer other = (Beer) obj;
+        if (code == null) {
+            if (other.code != null) {
+                return false;
+            }
+        } else if (!code.equals(other.code)) {
+            return false;
+        }
 
-   // --- Accessor methods
+        return true;
+    }
 
-   public Long getId()
-   {
-      return id;
-   }
+    // --- Accessor methods
 
-   public void setId(Long id)
-   {
-      this.id = id;
-   }
+    public Long getId() {
+        return id;
+    }
 
-   public String getName()
-   {
-      return name;
-   }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-   public void setName(String name)
-   {
-      this.name = name;
-   }
+    public String getName() {
+        return name;
+    }
 
-   public BigDecimal getPrice()
-   {
-      return price;
-   }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-   public void setPrice(BigDecimal price)
-   {
-      this.price = price;
-   }
+    public BigDecimal getPrice() {
+        return price;
+    }
 
-   public BigDecimal getAlcohol()
-   {
-      return alcohol;
-   }
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
 
-   public void setAlcohol(BigDecimal alcohol)
-   {
-      this.alcohol = alcohol;
-   }
+    public BigDecimal getAlcohol() {
+        return alcohol;
+    }
 
-   public Brewery getBrewery()
-   {
-      return brewery;
-   }
+    public void setAlcohol(BigDecimal alcohol) {
+        this.alcohol = alcohol;
+    }
 
-   public void setBrewery(Brewery brewery)
-   {
-      this.brewery = brewery;
-   }
+    public Brewery getBrewery() {
+        return brewery;
+    }
 
-   public Type getType()
-   {
-      return type;
-   }
+    public void setBrewery(Brewery brewery) {
+        this.brewery = brewery;
+    }
 
-   public void setType(Type type)
-   {
-      this.type = type;
-   }
+    public Type getType() {
+        return type;
+    }
 
-   public String getCode()
-   {
-      return code;
-   }
+    public void setType(Type type) {
+        this.type = type;
+    }
 
-   public void setCode(String code)
-   {
-      this.code = code;
-   }
+    public String getCode() {
+        return code;
+    }
 
+    public void setCode(String code) {
+        this.code = code;
+    }
 }

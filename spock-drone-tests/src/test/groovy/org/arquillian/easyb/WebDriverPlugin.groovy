@@ -1,10 +1,5 @@
 package org.arquillian.easyb
 
-import java.util.Map;
-
-import groovy.lang.Binding;
-import groovy.lang.Closure;
-
 import org.easyb.plugin.BasePlugin
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
@@ -20,31 +15,31 @@ import org.openqa.selenium.ie.InternetExplorerDriver
  */
 class WebDriverPlugin extends BasePlugin {
 
-   String type
+    String type
 
-   public String getName() {
-      return "WebDriver";
-   }
+    public String getName() {
+        return "WebDriver";
+    }
 
-   def beforeStory(Binding binding) {
-      binding.driver = resolveDriver()
-   }
+    def beforeStory(Binding binding) {
+        binding.driver = resolveDriver()
+    }
 
-   def configure(Closure closure) {
-      closure.call(this)
-   }
+    def configure(Closure closure) {
+        closure.call(this)
+    }
 
-   def afterStory(Binding binding) {
-      binding.driver?.quit()
-   }
+    def afterStory(Binding binding) {
+        binding.driver?.quit()
+    }
 
-   def WebDriver resolveDriver() {
-      switch (type?.toLowerCase()) {
-         case null : return new ChromeDriver()
-         case "chrome" : return new ChromeDriver()
-         case "firefox" : return new FirefoxDriver()
-         case "ie" : return new InternetExplorerDriver()
-         default : throw new RuntimeException("""Unsupported driver type. Try ["ie", "firefox", "chrome"]""")
-      }
-   }
+    def WebDriver resolveDriver() {
+        switch (type?.toLowerCase()) {
+            case null: return new ChromeDriver()
+            case "chrome": return new ChromeDriver()
+            case "firefox": return new FirefoxDriver()
+            case "ie": return new InternetExplorerDriver()
+            default: throw new RuntimeException("""Unsupported driver type. Try ["ie", "firefox", "chrome"]""")
+        }
+    }
 }

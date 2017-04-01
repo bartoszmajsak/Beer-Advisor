@@ -1,113 +1,104 @@
 package org.arquillian.example.repository;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import org.junit.Test;
 
-public class BeerCriteriaTest
-{
+import static org.fest.assertions.Assertions.assertThat;
 
-   @Test(expected = NullPointerException.class)
-   public void should_throw_exception_if_criteria_string_is_null() throws Exception
-   {
-      // given
-      String criteriaString = null;
+public class BeerCriteriaTest {
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test(expected = NullPointerException.class)
+    public void should_throw_exception_if_criteria_string_is_null() throws Exception {
+        // given
+        String criteriaString = null;
 
-      // then
-      // exception should be thrown
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test(expected = IllegalArgumentException.class)
-   public void should_throw_exception_if_criteria_string_is_empty() throws Exception
-   {
-      // given
-      String criteriaString = "";
+        // then
+        // exception should be thrown
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_exception_if_criteria_string_is_empty() throws Exception {
+        // given
+        String criteriaString = "";
 
-      // then
-      // exception should be thrown
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test(expected = IllegalArgumentException.class)
-   public void should_throw_exception_if_criteria_string_is_blank() throws Exception
-   {
-      // given
-      String criteriaString = "                     ";
+        // then
+        // exception should be thrown
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test(expected = IllegalArgumentException.class)
+    public void should_throw_exception_if_criteria_string_is_blank() throws Exception {
+        // given
+        String criteriaString = "                     ";
 
-      // then
-      // exception should be thrown
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test
-   public void should_return_unknown_if_criteria_string_is_not_recognized() throws Exception
-   {
-      // given
-      String criteriaString = "everything";
+        // then
+        // exception should be thrown
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test
+    public void should_return_unknown_if_criteria_string_is_not_recognized() throws Exception {
+        // given
+        String criteriaString = "everything";
 
-      // then
-      assertThat(beerCriteria).isEqualTo(BeerCriteria.UNKNOWN);
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test
-   public void should_recognize_all_beer_criteria() throws Exception
-   {
-      // given
-      String criteriaString = "all";
+        // then
+        assertThat(beerCriteria).isEqualTo(BeerCriteria.UNKNOWN);
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test
+    public void should_recognize_all_beer_criteria() throws Exception {
+        // given
+        String criteriaString = "all";
 
-      // then
-      assertThat(beerCriteria).isEqualTo(BeerCriteria.ALL);
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test
-   public void should_recognize_belgium_beer_criteria() throws Exception
-   {
-      // given
-      String criteriaString = "from Belgium    ";
+        // then
+        assertThat(beerCriteria).isEqualTo(BeerCriteria.ALL);
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test
+    public void should_recognize_belgium_beer_criteria() throws Exception {
+        // given
+        String criteriaString = "from Belgium    ";
 
-      // then
-      assertThat(beerCriteria).isEqualTo(BeerCriteria.BELGIUM);
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test
-   public void should_recognize_strongest_beer_criteria() throws Exception
-   {
-      // given
-      String criteriaString = "   STRONGEST   ";
+        // then
+        assertThat(beerCriteria).isEqualTo(BeerCriteria.BELGIUM);
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test
+    public void should_recognize_strongest_beer_criteria() throws Exception {
+        // given
+        String criteriaString = "   STRONGEST   ";
 
-      // then
-      assertThat(beerCriteria).isEqualTo(BeerCriteria.STRONGEST);
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
 
-   @Test
-   public void should_recognize_cheapest_beer_criteria() throws Exception
-   {
-      // given
-      String criteriaString = "cheapest";
+        // then
+        assertThat(beerCriteria).isEqualTo(BeerCriteria.STRONGEST);
+    }
 
-      // when
-      BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+    @Test
+    public void should_recognize_cheapest_beer_criteria() throws Exception {
+        // given
+        String criteriaString = "cheapest";
 
-      // then
-      assertThat(beerCriteria).isEqualTo(BeerCriteria.CHEAPEST);
-   }
+        // when
+        BeerCriteria beerCriteria = BeerCriteria.fromStringDescription(criteriaString);
+
+        // then
+        assertThat(beerCriteria).isEqualTo(BeerCriteria.CHEAPEST);
+    }
 }

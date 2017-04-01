@@ -1,12 +1,8 @@
 package org.arquillian.example.service;
 
-import static org.fest.assertions.Assertions.assertThat;
-
 import java.math.BigDecimal;
 import java.util.Collection;
-
 import javax.inject.Inject;
-
 import org.arquillian.example.domain.Beer;
 import org.arquillian.example.domain.Country;
 import org.arquillian.example.repository.BeerRepository;
@@ -20,88 +16,83 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import static org.fest.assertions.Assertions.assertThat;
+
 @RunWith(Arquillian.class)
-public class BeerServiceTest
-{
-   @Deployment
-   public static Archive<?> createDeployment()
-   {
-      return ShrinkWrap.create(JavaArchive.class, "test.jar")
-                       .addPackages(true, Beer.class.getPackage(), BeerRepository.class.getPackage())
-                       .addClass(BeerService.class)
-                       .addPackages(true, "org.fest")
-                       .addPackages(true, "com.google.common.base")
-                       .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-                       .addAsManifestResource("test-persistence.xml", "persistence.xml");
-   }
+public class BeerServiceTest {
+    @Inject
+    BeerService beerService;
 
-   @Inject
-   BeerService beerService;
+    @Deployment
+    public static Archive<?> createDeployment() {
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+            .addPackages(true, Beer.class.getPackage(), BeerRepository.class.getPackage())
+            .addClass(BeerService.class)
+            .addPackages(true, "org.fest")
+            .addPackages(true, "com.google.common.base")
+            .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
+            .addAsManifestResource("test-persistence.xml", "persistence.xml");
+    }
 
-   @Test
-   @UsingDataSet("beers.yml")
-   public void should_return_all_beers() throws Exception
-   {
-      // given
-      int expectedAmountOfBeers = 7;
+    @Test
+    @UsingDataSet("beers.yml")
+    public void should_return_all_beers() throws Exception {
+        // given
+        int expectedAmountOfBeers = 7;
 
-      // when
-      Collection<Beer> allBeers = beerService.fetchByCriteria("ALL");
+        // when
+        Collection<Beer> allBeers = beerService.fetchByCriteria("ALL");
 
-      // then
-      assertThat(allBeers).hasSize(expectedAmountOfBeers);
-   }
+        // then
+        assertThat(allBeers).hasSize(expectedAmountOfBeers);
+    }
 
-   @Test
-   @UsingDataSet("beers.yml")
-   public void should_find_strongest_beer() throws Exception
-   {
-      // given
-      String strongestCriteria = "strongest";
-      String expectedName = "End of history";
-      BigDecimal expectedVoltage = BigDecimal.valueOf(55.0);
+    @Test
+    @UsingDataSet("beers.yml")
+    public void should_find_strongest_beer() throws Exception {
+        // given
+        String strongestCriteria = "strongest";
+        String expectedName = "End of history";
+        BigDecimal expectedVoltage = BigDecimal.valueOf(55.0);
 
-      // when
-      Collection<Beer> beers = beerService.fetchByCriteria(strongestCriteria);
-      Beer firstBeer = beers.iterator().next();
+        // when
+        Collection<Beer> beers = beerService.fetchByCriteria(strongestCriteria);
+        Beer firstBeer = beers.iterator().next();
 
-      // then
-      assertThat(firstBeer.getName()).isEqualTo(expectedName);
-      assertThat(firstBeer.getAlcohol()).isEqualByComparingTo(expectedVoltage);
-   }
+        // then
+        assertThat(firstBeer.getName()).isEqualTo(expectedName);
+        assertThat(firstBeer.getAlcohol()).isEqualByComparingTo(expectedVoltage);
+    }
 
-   @Test
-   @UsingDataSet("beers.yml")
-   public void should_find_cheapest_beer() throws Exception
-   {
-      // given
-      String expectedName = "Mocny Full";
-      String cheapestCriteria = "cheapest";
-      BigDecimal expectedPrice = BigDecimal.valueOf(1.0);
+    @Test
+    @UsingDataSet("beers.yml")
+    public void should_find_cheapest_beer() throws Exception {
+        // given
+        String expectedName = "Mocny Full";
+        String cheapestCriteria = "cheapest";
+        BigDecimal expectedPrice = BigDecimal.valueOf(1.0);
 
-      // when
-      Collection<Beer> beers = beerService.fetchByCriteria(cheapestCriteria);
-      Beer firstBeer = beers.iterator().next();
+        // when
+        Collection<Beer> beers = beerService.fetchByCriteria(cheapestCriteria);
+        Beer firstBeer = beers.iterator().next();
 
-      // then
-      assertThat(firstBeer.getName()).isEqualTo(expectedName);
-      assertThat(firstBeer.getPrice()).isEqualByComparingTo(expectedPrice);
-   }
+        // then
+        assertThat(firstBeer.getName()).isEqualTo(expectedName);
+        assertThat(firstBeer.getPrice()).isEqualByComparingTo(expectedPrice);
+    }
 
-   @Test
-   @UsingDataSet("beers.yml")
-   public void should_find_all_belgian_beers() throws Exception
-   {
-      // given
-      String belgiumCriteria = "from Belgium";
+    @Test
+    @UsingDataSet("beers.yml")
+    public void should_find_all_belgian_beers() throws Exception {
+        // given
+        String belgiumCriteria = "from Belgium";
 
-      // when
-      Collection<Beer> beers = beerService.fetchByCriteria(belgiumCriteria);
+        // when
+        Collection<Beer> beers = beerService.fetchByCriteria(belgiumCriteria);
 
-      // then
-      assertThat(beers).hasSize(2);
-      Beer beer = beers.iterator().next();
-      assertThat(beer.getBrewery().getCountry()).isEqualTo(Country.BELGIUM);
-   }
-
+        // then
+        assertThat(beers).hasSize(2);
+        Beer beer = beers.iterator().next();
+        assertThat(beer.getBrewery().getCountry()).isEqualTo(Country.BELGIUM);
+    }
 }

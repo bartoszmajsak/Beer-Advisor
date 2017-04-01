@@ -1,4 +1,4 @@
 <dataset>
-  <brewery id="1" name="Brew Dog" country="Scotland" />
-  <beer id="1" name="End of History" price="756" alcohol="55.0" brewery_id="1" />
+  <brewery id="1" name="Brew Dog" country="Scotland"/>
+  <beer id="1" name="End of History" price="756" alcohol="55.0" brewery_id="1"/>
 </dataset>
